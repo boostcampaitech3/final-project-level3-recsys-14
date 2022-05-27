@@ -1,6 +1,8 @@
 import { Service } from "typedi";
 import { RecommendGeneralProblems } from "../database/entity/recommendGeneralProblems";
 import { RecommendGeneralProblemsRepository } from "../repository/recommendGeneralProblemsRepository";
+import { recommendGeneralProblemsFilter } from "./filters/recommendGeneralProblemsFilters";
+import { filterProperites } from "../helper/utils/filterProperties";
 import config from "../config";
 import { number } from "joi";
 
@@ -8,29 +10,32 @@ import { number } from "joi";
 @Service()
 export default class RecommendGeneralProblemsService {
     constructor(
-        private readonly usersRepository: RecommendGeneralProblemsRepository
+        private readonly recommendGeneralProblemsRepository: 
+        RecommendGeneralProblemsRepository
     ) {}
 
-    public async getRecommendByHandle(handle: string) {
-        const { rowInfo } = await this.usersRepository.fetchRowByHandle(
+    public async getRecommendProblemsByHandle(handle: string) {
+        const { rowInfo } = await this.
+        recommendGeneralProblemsRepository.fetchRowByHandle(
             RecommendGeneralProblems, handle
         );
-        return { 
-            handle: rowInfo.handle, 
-            recommend: rowInfo.rec_problems
-        } ;
+        const rowInfoFiltered = filterProperites<RecommendGeneralProblems>(
+            rowInfo, recommendGeneralProblemsFilter
+        );
+        return rowInfoFiltered;
     }
 
-    public async getRecommendByHandles(handles: string[]) {
+    public async getRecommendProblemsByHandles(handles: string[]) {
         let rowsInfo = []
          await Promise.all(handles.map(async handle => {
-            const { rowInfo } = await this.usersRepository.fetchRowByHandle(
+            const { rowInfo } = await this.
+            recommendGeneralProblemsRepository.fetchRowByHandle(
                 RecommendGeneralProblems, handle
             );
-            rowsInfo.push({
-                handle: rowInfo.handle,
-                recommend: rowInfo.rec_problems
-            })
+            const rowInfoFiltered = filterProperites<RecommendGeneralProblems>(
+                rowInfo, recommendGeneralProblemsFilter
+            );
+            rowsInfo.push(rowInfoFiltered);
         }));
         
         return rowsInfo;

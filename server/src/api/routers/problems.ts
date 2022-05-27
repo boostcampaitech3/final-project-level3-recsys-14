@@ -1,7 +1,7 @@
 import { Router } from "express";
 import {
     getProblemById,
-    getProblemByIds,
+    getProblemsByIds,
 } from "../controllers/problemsControllers";
 import { wrapTryCatch } from "../../helper/utils/wrapTryCatch";
 
@@ -11,5 +11,5 @@ export default (router: Router) => {
     router.use("/problem", problemsRouters);
 
     problemsRouters.get("/show", wrapTryCatch(getProblemById));
-    problemsRouters.get("/lookup", wrapTryCatch(getProblemByIds));
+    problemsRouters.get("/lookup", wrapTryCatch(getProblemsByIds));
 };

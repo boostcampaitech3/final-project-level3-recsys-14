@@ -1,0 +1,43 @@
+import { Service } from "typedi";
+import { RecommendRivalsProblems } from "../database/entity/recommendRivalsProblems";
+import { RecommendRivalsProblemsRepository } from "../repository/recommendRivalsProblemsRepository";
+import { recommendRivalsProblemsFilter } from "./filters/recommendRivalsProblemsFilters";
+import { filterProperites } from "../helper/utils/filterProperties";
+import config from "../config";
+import { number } from "joi";
+
+
+@Service()
+export default class RecommendRivalsProblemsService {
+    constructor(
+        private readonly recommendGeneralProblemsRepository: 
+        RecommendRivalsProblemsRepository
+    ) {}
+
+    public async getRivalsProblemsByHandle(handle: string) {
+        const { rowInfo } = await this.
+        recommendGeneralProblemsRepository.fetchRowByHandle(
+            RecommendRivalsProblems, handle
+        );
+        const rowInfoFiltered = filterProperites<RecommendRivalsProblems>(
+            rowInfo, recommendRivalsProblemsFilter
+        );
+        return rowInfoFiltered;
+    }
+
+    public async getRivalsProblemsByHandles(handles: string[]) {
+        let rowsInfo = []
+         await Promise.all(handles.map(async handle => {
+            const { rowInfo } = await this.
+            recommendGeneralProblemsRepository.fetchRowByHandle(
+                RecommendRivalsProblems, handle
+            );
+            const rowInfoFiltered = filterProperites<RecommendRivalsProblems>(
+                rowInfo, recommendRivalsProblemsFilter
+            );
+            rowsInfo.push(rowInfoFiltered);
+        }));
+        
+        return rowsInfo;
+    }
+}
