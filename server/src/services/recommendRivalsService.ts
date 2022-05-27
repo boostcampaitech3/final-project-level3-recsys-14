@@ -22,6 +22,7 @@ export default class RecommenRivalsService {
         const rowInfoFiltered = filterProperites<RecommendRivals>(
             rowInfo, recommendRivalsFilter
         );
+        rowInfoFiltered.rec_rivals = rowInfoFiltered.rec_rivals.split(",");
         return rowInfoFiltered;
     }
 
@@ -35,6 +36,7 @@ export default class RecommenRivalsService {
             const rowInfoFiltered = filterProperites<RecommendRivals>(
                 rowInfo, recommendRivalsFilter
             );
+            rowInfoFiltered.rec_rivals = rowInfoFiltered.rec_rivals.split(",");
             rowsInfo.push(rowInfoFiltered);
         }));
         
