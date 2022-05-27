@@ -22,6 +22,7 @@ export default class RecommendGeneralProblemsService {
         const rowInfoFiltered = filterProperites<RecommendGeneralProblems>(
             rowInfo, recommendGeneralProblemsFilter
         );
+        rowInfoFiltered.rec_problems = rowInfoFiltered.rec_problems.split(",")
         return rowInfoFiltered;
     }
 
@@ -35,6 +36,7 @@ export default class RecommendGeneralProblemsService {
             const rowInfoFiltered = filterProperites<RecommendGeneralProblems>(
                 rowInfo, recommendGeneralProblemsFilter
             );
+            rowInfoFiltered.rec_problems = rowInfoFiltered.rec_problems.split(",")
             rowsInfo.push(rowInfoFiltered);
         }));
         
