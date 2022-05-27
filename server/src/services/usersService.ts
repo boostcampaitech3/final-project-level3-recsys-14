@@ -1,6 +1,8 @@
 import { Service } from "typedi";
 import { Users } from "../database/entity/users";
 import { UsersRepository } from "../repository/usersRepository";
+import { usersFilter } from "./filters/usersFilters";
+import { filterProperites } from "../helper/utils/filterProperties";
 import config from "../config";
 
 
@@ -12,6 +14,25 @@ export default class UsersService {
 
     public async checkUserByHandle(handle: string) {
         const { rowInfo } = await this.usersRepository.fetchRowByHandle(Users, handle);
-        return rowInfo;
+        return rowInfo.handle;
+    }
+
+    public async getUserByHandle(handle: string) {
+        const { rowInfo } = await this.usersRepository.fetchRowByHandle(Users, handle);
+        const rowInfoFiltered = filterProperites<Users>(rowInfo, usersFilter);
+        return rowInfoFiltered;
+    }
+
+    public async getUsersByHandles(handles: string[]) {
+        let rowsInfo = []
+        await Promise.all(handles.map(
+            async handle => {
+                const { rowInfo } = await this.usersRepository.fetchRowByHandle(Users, handle);
+                const rowInfoFiltered = filterProperites<Users>(rowInfo, usersFilter);
+                rowsInfo.push(rowInfoFiltered);
+            }
+        ));
+        
+        return rowsInfo;
     }
 }

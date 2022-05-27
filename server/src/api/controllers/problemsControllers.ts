@@ -5,19 +5,19 @@ import ProblemsService from "../../services/problemsService";
 export const getProblemById = async (req: Request, res: Response) => {
     const problemId = req.query.problemId as unknown as number;
 
-    const problemsServiceInstance = Container.get(ProblemsService);
-    const problemInfo = await problemsServiceInstance.getProblemById(problemId);
+    const problemsService = Container.get(ProblemsService);
+    const problemInfo = await problemsService.getProblemById(problemId);
 
     res.status(200).send(problemInfo);
 };
 
-export const getProblemByIds = async (req: Request, res: Response) => {
+export const getProblemsByIds = async (req: Request, res: Response) => {
     const problem_ids = (req.query.problemIds as string).split(",").map(
         element => Number(element)
     );
 
-    const problemsServiceInstance = Container.get(ProblemsService);
-    const problemsInfo = await problemsServiceInstance.getProblemByIds(problem_ids);
+    const problemsService = Container.get(ProblemsService);
+    const problemsInfo = await problemsService.getProblemsByIds(problem_ids);
 
     res.status(200).send(problemsInfo);
 };
