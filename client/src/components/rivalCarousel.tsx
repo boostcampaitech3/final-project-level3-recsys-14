@@ -32,7 +32,7 @@ const Inner = styled.div`
         (css`
         padding-top : 20px;
         width : 100%;
-        height : 70%;    
+        height : 100%;    
         `) : 
         (css`
         width : 100%;
@@ -49,6 +49,9 @@ const Inner = styled.div`
     .slick-current .paging_items {
         filter: none;
     }
+    .slick-slide{
+        padding: 10px
+    }
 `;
 const defaultItemStyle = css`
     width: 100%;
@@ -60,7 +63,9 @@ const defaultItemStyle = css`
 `;
 const MainSlickItems = styled.div`
     ${defaultItemStyle}
-    height: 350px;
+    height: 100%;
+    background-color: lightgray;
+
     .item{
         max-width: 100%;
     }
@@ -132,7 +137,7 @@ const NextIcon = styled(ArrowForwardIosIcon)`
     ${defaultIconStyle}
 `;
 
-const Slide = (children : any) => {
+const RivalSlide = (children : any) => {
     const [mainSlick, setMainSlick] = useState<any>(null);
     const [pagingSlick, setPagingSlick] = useState<any>(null);
     const mainSlickRef = useRef(null);
@@ -173,10 +178,15 @@ const Slide = (children : any) => {
                             return(
                                 <MainSlickItems key={`${i}`}>
                                     <div className='item'>
-                                        <h2>
-                                            <Nav.Link href = {`https://www.acmicpc.net/problem/${item.probId}`} target='_blank'> {item.probId} </Nav.Link>
-                                        </h2>
-                                        {item.tag.map((item : any) => <div>{item}</div>)}
+                                        <div style={{display:'flex'}}>
+                                            <h3>{item.tier}</h3>
+                                            <h2>
+                                                <Nav.Link href = {`https://solved.ac/profile/${item.handle}`} target='_blank'> {item.handle} </Nav.Link>
+                                            </h2>
+                                        </div>
+                                        <div>rating : {item.rating}</div>
+                                        <div>rank : {item.rank}</div>
+
                                     </div>
                                 </MainSlickItems>
                             )
@@ -192,7 +202,7 @@ const Slide = (children : any) => {
                 </>
             </Inner>
 
-            <Inner property ='subInner'>
+            {/* <Inner property ='subInner'>
                 <Slick
                     ref = {pagingSlickRef}
                     asNavFor={mainSlick}
@@ -218,9 +228,9 @@ const Slide = (children : any) => {
                         <NextIcon />
                     </NextButton>
                 </>
-            </Inner>
+            </Inner> */}
         </Wrap>
     );
 };
 
-export default Slide;
+export default RivalSlide;
