@@ -47,8 +47,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "set PORT=80 && set process.env.NODE_ENV=production && react-scripts start",
-    "start-test": "set PORT=80 && env-cmd -f .env.development react-scripts start",
+    "start": "set PORT=80 && env-cmd -f .env.production react-scripts start",
+    "start-test": "set PORT=80 && env-cmd -f .env react-scripts start",
     "build": "env-cmd -f .env.production react-scripts build",
     "dev-build": "env-cmd -f .env.development react-scripts build",
     "test": "react-scripts test",

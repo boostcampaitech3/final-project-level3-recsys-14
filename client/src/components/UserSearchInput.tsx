@@ -43,7 +43,7 @@ const UserSearchInput = ({onInput} : any)=>{
         <form onSubmit={onSubmit}>
             <input
                 name="userId"
-                placeholder="User"
+                placeholder="user"
                 value={userId}
                 onChange={onChange}
                 onKeyPress = {onEnter}
