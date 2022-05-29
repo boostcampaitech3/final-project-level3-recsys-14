@@ -3,22 +3,32 @@ import React, { useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import axios from "axios";
 import { API } from "../utils/axios";
+import styled from "styled-components";
 import UserSearchInputContainer from "../container/userSearchInputContainer";
+import { primary_purple } from "./color";
+
+const StyledNavBar = styled(Navbar)`
+  background: ${primary_purple};
+`;
+
+const StyledNavbarBrand = styled(Navbar.Brand)`
+  font-size: 1.2rem;
+  font-weight: 800;
+`
 
 const NavBar = ({pathname, userHandle} : any) => {
   console.log(pathname, userHandle)
     return (
-        <>
-          <Navbar bg="dark" expand="lg" variant="dark" sticky="top">
+        <div>
+          <StyledNavBar expand="lg" variant="dark" sticky="top">
             <Container fluid>
-              <Navbar.Brand href="/">RECJOON</Navbar.Brand>
+              <StyledNavbarBrand href="/">RECJOON</StyledNavbarBrand>
               <Navbar.Toggle aria-controls="navbarScroll" />
               <Navbar.Collapse id="navbarScroll">
                 <Nav
                   className="me-auto my-2 my-lg-0"
                   style={{ maxHeight: '100px' }}
-                  navbarScroll
-                >
+                  navbarScroll>
                   <Nav.Link href="/">Home</Nav.Link>
 
                   <Nav.Link href={pathname === `/user/${userHandle}` ? pathname + '/rival' : `/user/${userHandle}`}>
@@ -39,8 +49,8 @@ const NavBar = ({pathname, userHandle} : any) => {
                 <UserSearchInputContainer />
               </Navbar.Collapse>
             </Container>
-          </Navbar>
-        </>
+          </StyledNavBar>
+        </div>
     );
 }
 
