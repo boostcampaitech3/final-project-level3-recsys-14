@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 
 import styled, {css} from "styled-components";
-import {Individual, Diverse} from '../components'
+import {Individual, Diverse, ProblemDetail} from '../components'
 import NavBar from "../components/navbar";
 import {useSelector, useDispatch} from 'react-redux';
 import { API } from "../utils/axios";
@@ -30,10 +30,12 @@ function Userpage() {
     console.log(location.pathname);
 
     const dispatch = useDispatch();
-
     dispatch(search(params.userHandle));
+
     const userHandle = useSelector((state: RootState) => state.userSearchInput.userHandle);
 
+    const problemItem = useSelector((state: RootState) => state.problemItem)
+    // console.log(problemItem);
     let navigate = useNavigate();
 
     const fetchUserCheck = async() =>{
@@ -50,13 +52,18 @@ function Userpage() {
     useEffect(()=>{
         fetchUserCheck();
     }, [userHandle]);
-
+    useEffect(()=>{
+        
+    }, []);
+    
     return(
         <div>
             <NavBar userHandle = {userHandle} pathname = {location.pathname}/>
             <div style={{display : 'flex', justifyContent: 'center', alignItems: 'center', flexDirection : 'column'}}>
                 <Individual userHandle = {userHandle}/>
             </div>
+            {problemItem.toggle && <ProblemDetail item = {problemItem.item}/>}
+
         </div>
     );
 }

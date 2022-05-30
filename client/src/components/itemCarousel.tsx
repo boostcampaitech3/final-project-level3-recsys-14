@@ -5,6 +5,9 @@ import styled, {css} from 'styled-components';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import {Nav} from "react-bootstrap"
+
+import ProblemItemContatiner from '../container/problemItemContainer';
+
 import { height } from '@mui/system';
 
 const Wrap = styled.div`
@@ -68,17 +71,10 @@ const MainSlickItems = styled.div`
 
     .item{
         max-width: 100%;
+
     }
 `;
-const PagingItems = styled.div`
-    ${defaultItemStyle}
-    height: 80px;
-    cursor: pointer;
 
-    .item {
-        width:100%
-    }
-`
 const defaultButtonStyle = css`
     position: absolute;
     
@@ -138,15 +134,8 @@ const NextIcon = styled(ArrowForwardIosIcon)`
 `;
 
 const ItemSlide = (children : any) => {
-    const [mainSlick, setMainSlick] = useState<any>(null);
-    const [pagingSlick, setPagingSlick] = useState<any>(null);
-    const mainSlickRef = useRef(null);
-    const pagingSlickRef = useRef(null);
 
-    useEffect(()=>{
-        setMainSlick(mainSlickRef.current);
-        setPagingSlick(pagingSlickRef.current);
-    }, []);
+    const mainSlickRef = useRef(null);
 
     const mainSettings = {
         dots: false,
@@ -155,14 +144,7 @@ const ItemSlide = (children : any) => {
         slidesToShow: 3,
         slidesToScroll: 1,
     };
-    const pagingSettings = {
-        dots: false,
-        arrows: false,
-        centerMode: true,
-        slidesToShow: 5,
-        swipeToSlide: true,
-        focusOnSelect: true,
-    };
+
     const onClickPrev = useCallback((ref : any) => () => ref.current.slickPrev(), []);
     const onClickNext = useCallback((ref : any) => () => ref.current.slickNext(), []);
 
@@ -171,13 +153,13 @@ const ItemSlide = (children : any) => {
             <Inner property='mainInner'>
                 <Slick
                     ref = {mainSlickRef}
-                    asNavFor = {pagingSlick}
                     {...mainSettings}
                     >
                         {children.probs.map((item : any, i : number)=>{
                             return(
-                                <MainSlickItems key={`${i}`}>
-                                    <div className='item'>
+                                <MainSlickItems key={i}>
+                                    <ProblemItemContatiner key = {i} item = {item}/>
+                                    {/* <div className='item'>
                                         <div style={{display:'flex'}}>
                                             <h3>{item.level}</h3>
                                             <h2>
@@ -185,7 +167,7 @@ const ItemSlide = (children : any) => {
                                             </h2>
                                         </div>
                                         {item.tags.split(',').map((tag : string) => <div>{tag}</div>)}
-                                    </div>
+                                    </div> */}
                                 </MainSlickItems>
                             )
                         })}
@@ -199,34 +181,6 @@ const ItemSlide = (children : any) => {
                         </NextButton>
                 </>
             </Inner>
-
-            {/* <Inner property ='subInner'>
-                <Slick
-                    ref = {pagingSlickRef}
-                    asNavFor={mainSlick}
-                    {...pagingSettings}
-                >
-                    {children.probs.map((item : any, i: number) =>{
-                        return(
-                            <PagingItems key = {`${i}`} className="paging_items">
-                                <div className='item'>
-                                    <h2>
-                                        {item.probId}
-                                    </h2>
-                                </div>
-                            </PagingItems>
-                        )
-                    })}
-                </Slick>
-                <>
-                    <PrevButton onClick={onClickPrev(pagingSlickRef)} property='subButton'>
-                        <PrevIcon />
-                    </PrevButton>
-                    <NextButton onClick={onClickNext(pagingSlickRef)} property='subButton'>
-                        <NextIcon />
-                    </NextButton>
-                </>
-            </Inner> */}
         </Wrap>
     );
 };

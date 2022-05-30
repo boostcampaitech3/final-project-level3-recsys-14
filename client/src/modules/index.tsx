@@ -1,8 +1,10 @@
 import { combineReducers } from "redux";
 import userSearchInput from "./userSearchInput";
+import problemItem from "./problemItem";
 
 const rootReducer = combineReducers({
-    userSearchInput
+    userSearchInput,
+    problemItem
 });
 
 export default rootReducer;

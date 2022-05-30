@@ -53,9 +53,9 @@ function Rival({userHandle} : any){
     console.log(userHandle)
     const fetchprob = async() =>{
         try{
-            const {data} = await API.get(`http://3.36.32.133:3000/api/recommend/rival/show?handle=${userHandle}`);
+            const {data} = await API.get(`/recommend/rival/show?handle=${userHandle}`);
 
-            const rivallist = await API.get(`http://3.36.32.133:3000/api/user/lookup?handles=${data.rec_rivals.join()}`)
+            const rivallist = await API.get(`/user/lookup?handles=${data.rec_rivals.join()}`)
             console.log(rivallist);
 
             setRival(rivallist.data);
