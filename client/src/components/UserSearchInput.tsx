@@ -34,7 +34,7 @@ const USerSearchStyledInput = styled.input`
     padding: 0 20px;
     background-color: #fff;
     color: #323232;
-    font-size: calc(10px + 1vmin);
+    font-size: min(max(calc(10px + 1vmin), 10px), 18px);
     &:placeholder {
         color: #323232;
         opacity: .6;
@@ -64,8 +64,8 @@ const UserSearchStyledButton = styled.button`
 `;
 
 const SearchSvgIcon = styled(svgIcon)` 
-    width: calc(10px + 1vmin); 
-    height: calc(10px + 1vmin);
+    width: min(max(calc(10px + 1vmin), 10px), 18px); 
+    height: min(max(calc(10px + 1vmin), 10px), 18px);
 `;
 
 const UserSearchInput = ({onInput} : any)=>{
@@ -109,7 +109,7 @@ const UserSearchInput = ({onInput} : any)=>{
         <UserSearchStyledForm onSubmit={onSubmit}>
             <USerSearchStyledInput
                 name="userId"
-                placeholder="user"
+                placeholder="사용자의 아이디(handle)를 입력하세요."
                 value={userId}
                 onChange={onChange}
                 onKeyPress = {onEnter}

@@ -13,8 +13,10 @@ import {
     AlgorithmSlider, 
     AlgorithmSliderTrack,
     AlgorithmSlide,
+    AlgorithmSlideHeader,
 } from "../components/algorithmSlider";
 import introImage from '../assets/images/main_large.png';
+import mainBackgroundImage from '../assets/images/main_background_large.png';
 
 const SearchBlock = styled.input`
     background-color: white;
@@ -28,28 +30,38 @@ const Box = styled.div`
 `;
 
 const IntroStyledDiv = styled.div`
+    color: #fff;
     text-align: center;
-    font-size: calc(16px + 3.6vmin);
+    font-size: min(max(calc(16px + 3.6vmin), 20px), 54px);
     font-weight: 800;
     margin: 30px 0;
-    &:p
 `;
 
 const IntroStyledSpan = styled.span`
-    color: #323232;
+    color: #fafafa;
     text-align: center;
-    font-size: calc(10px + 1vmin);
+    font-size: min(max(calc(10px + 1vmin), 10px), 18px);
     font-weight: 500;
 `;
 
 
 const IntroImageStyledDiv = styled.div`
     width: 100%;
-    height: calc(240px + 10vmin);
-    max-width: 1120px;
-    max-height: 500px;
+    height: min(max(calc(240px + 10vmin), 340px), 380px);
     border: 0px;
     background: url(${introImage}) center center / contain no-repeat;
+`;
+
+const MainBackgroundStyledDiv = styled.div`
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: min(calc(400px + 10vmin), 540px);
+    z-index: -1;
+    background: url(${mainBackgroundImage}) center center / cover no-repeat;
+    -webkit-mask: 
+        -webkit-gradient( linear, 0% 80%, 0% 0%, from(rgba(0, 0, 0, 0.7)), to(rgb(0, 0, 0, 1)) );
 `;
 
 const ContentConatiner = styled.div`
@@ -109,15 +121,20 @@ function Usersearch() {
         }
     }
 
+    const clickSlide = (nextLink: string) => () => {
+        window.location.href= nextLink;
+    } 
+
     return(
         <div> 
         <NavBar/>
         <Box>
+            <MainBackgroundStyledDiv />
             <IntroStyledDiv>
                 나를 위한 알고리즘 문제 추천
             </IntroStyledDiv>
             <IntroStyledSpan>
-                문제 풀이 이력과 유저 정보를 바탕으로<br/>
+                BOJ 문제 풀이 이력과 유저 정보를 바탕으로<br/>
                 개인별 풀만한 문제와 라이벌을 추천해 드립니다.
             </IntroStyledSpan>
             <IntroImageStyledDiv />
@@ -127,15 +144,31 @@ function Usersearch() {
             <AlgorithmSliderTrack>
                 {
                     algorithmType.map((algorithm) => (
-                        <AlgorithmSlide key={algorithm + "1"}>
-                            {algorithm}
+                        <AlgorithmSlide 
+                            key={algorithm.id + "1"}
+                            onClick={
+                                clickSlide( "https://solved.ac/search?query=%23" + algorithm.tag)
+                            }  
+                        >
+                            <AlgorithmSlideHeader>
+                                {algorithm.id}
+                            </AlgorithmSlideHeader>
+                            <img src={algorithm.image} />
                         </AlgorithmSlide>
                     ))
                 }
                 {
                     algorithmType.map((algorithm) => (
-                        <AlgorithmSlide key={algorithm + "2"}>
-                            {algorithm}
+                        <AlgorithmSlide 
+                            key={algorithm.id + "2"}
+                            onClick={
+                                clickSlide( "https://solved.ac/search?query=%23" + algorithm.tag)
+                            }      
+                        >
+                            <AlgorithmSlideHeader>
+                                {algorithm.id}
+                            </AlgorithmSlideHeader>
+                            <img src={algorithm.image} />
                         </AlgorithmSlide>
                     ))
                 }
