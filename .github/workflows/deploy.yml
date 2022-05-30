@@ -9,6 +9,7 @@ on:
   #   branches: [ main ]
   pull_request:
     branches: [ main ]
+    types: [closed]
 
 env:
    RECJOON_RDS_HOST: ${{ secrets.RECJOON_RDS_HOST }}
@@ -37,6 +38,7 @@ jobs:
         node-version: [16.x]
 
     # Steps represent a sequence of tasks that will be executed as part of the job
+    if: github.event.pull_request.merged == true
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout source code.

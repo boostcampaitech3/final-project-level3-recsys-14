@@ -2,32 +2,26 @@
 
 import React from 'react';
 import logo from './logo.svg';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import './App.css';
-import { UserContext, UserProvider, UserConsumer } from './context/UserContext';
-import { ROUTES } from './constants/route';
+import {useSelector} from 'react-redux';
+import { RootState } from './modules';
+// import {Switch} from 'react-router-dom';
+import {Usersearch, Userpage, NotFound , Userrival} from './pages'
 
 function App() {
+  const userHandle = useSelector((state: RootState) => state.userSearchInput.userHandle);
+  console.log(process.env.REACT_APP_API)
   return (
-    <UserProvider>
-      <BrowserRouter>
-        <UserConsumer>
-          {({userDetails}) => {
-            if(userDetails?.flag){
-                return <>
-                {ROUTES.USER}
-                </>
-            }
-            else{
-              return <>
-                {ROUTES.SEARCH}
-              </>
-            }
-          }}
-        </UserConsumer>
-      </BrowserRouter>
-    </UserProvider>
+    <BrowserRouter>
+      <Routes>
+        <Route path = '/' element = {<Usersearch />} />
+        <Route path = {`/user/:userHandle`} element={<Userpage />}/>
+        <Route path = {`/user/:userHandle/rival`} element = {<Userrival />} />
+        <Route path = {"*"} element={<NotFound/>}/>
+      </Routes>
+    </BrowserRouter>
   );
 }
 

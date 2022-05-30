@@ -11,7 +11,6 @@ export type UserContextType = {
 
 export const UserContext = createContext<UserContextType>({
     userDetails: {
-        id : -1,
         user : '',
         flag : false},
     actions : {setUserDetails: () => {}}
@@ -21,7 +20,6 @@ const UserProvider = ({ children }:{
     children: React.ReactNode
 }) => {
     const [userInfo, setUserDetails] = useState({
-        id : -1,
         user : '',
         flag : false})
 
