@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import TagSwitch from './TagSwitch';
 
 const ProblemItemPage = styled.div`
 position: relative;
@@ -19,7 +18,6 @@ cursor: pointer;
 const ProblemDetail = ({item}:any) =>{
     return(
         <>
-        <TagSwitch />
         <ProblemItemPage>
             <div style={{display : 'flex'}}>
                 <h2>{item.title}</h2>

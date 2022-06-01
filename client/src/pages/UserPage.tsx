@@ -80,6 +80,15 @@ const UserBackgroundStyledDiv = styled.div`
         -webkit-gradient( linear, 0% 80%, 0% 0%, from(rgba(0, 0, 0, 0.8)), to(rgb(0, 0, 0, 1)) );
 `;
 
+const SliderWrap = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    max-width: 1200px;
+    margin: auto;
+`;
+
 function Userpage() {
     const params = useParams();
     console.log(params); // 첫 번째 userHandle : juk1329, 여섯 번째 userHandle : juk1329
@@ -135,10 +144,10 @@ function Userpage() {
             </UserIntroStyledSpan>
             <UserIntroImage/>
             </UserIntroBox>
-            <div style={{display : 'flex', justifyContent: 'center', alignItems: 'center', flexDirection : 'column'}}>
+            <SliderWrap>
                 <Individual />
-            </div>
-            {problemItem.toggle && <ProblemDetail item = {problemItem.item}/>}
+                {problemItem.toggle && <ProblemDetail item = {problemItem.item}/>}
+            </SliderWrap>
             <MainFooter />
         </div>
     );
