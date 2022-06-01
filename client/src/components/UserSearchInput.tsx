@@ -1,6 +1,7 @@
 import React, { ChangeEvent, FormEvent, useState } from "react";
 import { API } from "../utils/axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+
 import styled from 'styled-components';
 import svgIcon from "./svgIcon";
 import { 
@@ -52,7 +53,7 @@ const UserSearchStyledButton = styled.button`
     box-shadow:
         inset .2rem .2rem 1rem ${light_blue},
         inset -.2rem -.2rem 1rem ${bright_purple},
-        .3rem .3rem .6rem ${light_sky_gray}
+        .3rem .3rem .6rem ${light_sky_gray};
     justify-self: center;
     justify-content: center;
     cursor: pointer;
@@ -69,6 +70,9 @@ const SearchSvgIcon = styled(svgIcon)`
 `;
 
 const UserSearchInput = ({onInput} : any)=>{
+
+    const params = useParams();
+    //params.userHandle
     const [userId, setUserId] = useState('');
     let navigate = useNavigate();
     
@@ -90,17 +94,20 @@ const UserSearchInput = ({onInput} : any)=>{
     //React.KeyboardEvent<HTMLInputElement>
     const onSubmit = (e : FormEvent) => {
         e.preventDefault();
-        onInput(userId);
-        setUserId('');
+        
+        // onInput(userId);
+        // setUserId('');
 
         navigate(`/user/${userId}`);
+        // setUserId('');
     };
     const onEnter = (e : React.KeyboardEvent<HTMLInputElement>) =>{
         if(e.key === 'Enter'){
-            onInput(userId);
-            setUserId('');
+            // onInput(userId);
+            // setUserId('');
             
             navigate(`/user/${userId}`);
+            // setUserId('');
         }
     }
 

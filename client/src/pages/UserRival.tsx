@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
 import styled, {css} from "styled-components";
 import {Rival} from '../components'
@@ -20,14 +20,16 @@ function Userrival() {
 
     const dispatch = useDispatch();
 
-    dispatch(search(params.userHandle));
+    const userHandleDispatch = useCallback((userHandle : string | undefined)=> dispatch(search(userHandle)), [dispatch])
     const userHandle = useSelector((state: RootState) => state.userSearchInput.userHandle);
+    console.log(userHandle);
+    // const RivealItem = 
 
     let navigate = useNavigate();
 
     const fetchUserCheck = async() =>{
         try{
-            const {data} = await API.get(`/user/check?handle=${userHandle}`);
+            const {data} = await API.get(`/user/check?handle=${params.userHandle}`);
             console.log(data);
         }
         catch(e){
@@ -38,13 +40,14 @@ function Userrival() {
     }
     useEffect(()=>{
         fetchUserCheck();
-    }, [userHandle]);
+        userHandleDispatch(params.userHandle);
+    }, [params]);
 
     return(
         <div>
-            <NavBar  userHandle = {userHandle} pathname = {location.pathname}/>
+            <NavBar pathname = {location.pathname}/>
             <div style={{display : 'flex', justifyContent: 'center', alignItems: 'center', flexDirection : 'column'}}>
-                <Rival userHandle = {userHandle}/>
+                <Rival />
             </div>
         </div>
     );
