@@ -35,7 +35,7 @@ function problemItem(state: problemItemState = initialState,
     action:problemItemAction) : problemItemState {
         switch(action.type){
             case TOGGLE:
-                if (state.item == action.payload){
+                if (state.item === action.payload){
                     return {...state, toggle : !state.toggle, item : action.payload}
                 }
                 else{

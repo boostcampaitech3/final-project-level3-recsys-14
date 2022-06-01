@@ -118,12 +118,10 @@ export const AlgorithmSlide = styled.div`
     height: min(calc(120px + 5vmin), 200px);
     margin: 0px 20px;
     border-radius: 1.5rem;
-    background-color: ${light_pink_white}66;
+    background-color: #fffbff66;
     transition: transform .5s ease-out;
     box-shadow:
-        inset 1px 1px .3rem rgba(255, 255, 255, 0.3),
-        inset -1px -1px .3rem ${light_pink}59,
-        .2rem .2rem .3rem rgba(50, 48, 51, 0.25);
+        0 2px 6px 0 rgb(136 148 171 / 20%), 0 24px 20px -24px rgb(71 82 107 / 10%);
     overflow: hidden;
     &:hover{
         transform: scale(0.95, 0.95);
@@ -156,6 +154,6 @@ export const AlgorithmSlideHeader = styled.div`
     padding: 10px 0;
     z-index: 10;
     text-align: center;
-    background-color: ${dawn_purple}66;
+    background-color: rgba(234, 234, 234, 0.4);
     border-radius: 1.5rem 1.5rem 0 0;
 `;

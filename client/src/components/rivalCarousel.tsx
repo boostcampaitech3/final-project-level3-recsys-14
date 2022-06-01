@@ -28,7 +28,7 @@ const Inner = styled.div`
     justify-content: center;
     align-items: center; */
     ${({property}) => {
-        return (property == "mainInner") ? 
+        return (property === "mainInner") ? 
         (css`
         padding-top : 20px;
         width : 100%;
@@ -96,7 +96,7 @@ const defaultButtonStyle = css`
 const PrevButton = styled.button`
     ${defaultButtonStyle}
     ${({property}) => {
-        return (property == "mainButton") ? 
+        return (property === "mainButton") ? 
         `
         top : 30%;    
         `
@@ -110,7 +110,7 @@ const PrevButton = styled.button`
 const NextButton = styled.button`
     ${defaultButtonStyle}
     ${({property}) => {
-        return (property == "mainButton") ? 
+        return (property === "mainButton") ? 
         `
         top : 30%;  
         `

@@ -20,17 +20,21 @@ import {useSelector} from 'react-redux';
 
 export const Box = styled.div`
     position: relative;
-    padding-top: 10px;
-    padding-bottom : 10px;
+    padding: 30px 0;
     display: flex;
     flex-direction: column;
-    width: 70%;
+    width: 100%;
     /* height: 500px; */
     justify-content: center;
     align-items: center;
     margin : 0 auto;
 `;
 
+export const CarouselTitle = styled.h4`
+    color: #595959;
+    font-size: 1.5rem;
+    margin: 10px 0;
+`;
 
 export const CarouselItem = styled.div`
     padding: 10px;
@@ -80,7 +84,7 @@ function Individual(){
     
     return(
         <Box>
-                <h4>개인화된 문제 추천</h4>
+                <CarouselTitle>{userHandle} 님을 위한 추천 문제 리스트</CarouselTitle>
                 <ItemSlide probs = {indvdprob} />
        </Box>
     );

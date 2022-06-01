@@ -20,9 +20,8 @@ const Wrap = styled.div`
     & > div + div{
         margin-top: 20px;
     }
-    .slick-slid {
+    .slick-slide {
         display: inline-block;
-        width: 100%;
     }
 `;
 const Inner = styled.div`
@@ -31,9 +30,8 @@ const Inner = styled.div`
     justify-content: center;
     align-items: center; */
     ${({property}) => {
-        return (property == "mainInner") ? 
+        return (property === "mainInner") ? 
         (css`
-        padding-top : 20px;
         width : 100%;
         height : 100%;    
         `) : 
@@ -53,32 +51,40 @@ const Inner = styled.div`
         filter: none;
     }
     .slick-slide{
-        padding: 10px
+        padding: 1.2rem;
+        margin: 10px 0px 50px;
     }
 `;
 const defaultItemStyle = css`
     width: 100%;
     text-align: center;
+
     .item{
-        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        height: 200px;
         vertical-align: top;
     }
 `;
 const MainSlickItems = styled.div`
     ${defaultItemStyle}
+    
     height: 100%;
-    background-color: lightgray;
+    border-radius: 1rem;
 
     .item{
         max-width: 100%;
-
+        padding: 20px;
+        box-shadow: 0px 15px 35px -5px rgb(50 88 130 / 32%);
     }
 `;
 
 const defaultButtonStyle = css`
     position: absolute;
     
-    padding :0;
+    padding: 0;
     width: 30px;
     height: 30px;
     line-height: 1;
@@ -92,9 +98,9 @@ const defaultButtonStyle = css`
 const PrevButton = styled.button`
     ${defaultButtonStyle}
     ${({property}) => {
-        return (property == "mainButton") ? 
+        return (property === "mainButton") ? 
         `
-        top : 30%;    
+        top : 40%;    
         `
         : 
         `
@@ -106,13 +112,13 @@ const PrevButton = styled.button`
 const NextButton = styled.button`
     ${defaultButtonStyle}
     ${({property}) => {
-        return (property == "mainButton") ? 
+        return (property === "mainButton") ? 
         `
-        top : 30%;  
+        top : 40%;  
         `
         :
         `
-        top : %0%;
+        top : 0%;
         `;
     }}
     right: 0;
@@ -138,11 +144,38 @@ const ItemSlide = (children : any) => {
     const mainSlickRef = useRef(null);
 
     const mainSettings = {
-        dots: false,
-        arrows: false,
         infinite: true,
-        slidesToShow: 3,
+        centerMode: true,
+        swipeToSlide: true,
+        slidesToShow: 3.68,
         slidesToScroll: 1,
+        autoplay: true,
+        pauseOnHover: true,
+        responsive: [
+            {
+                breakpoint: 1200,
+                settings: {
+                    slidesToShow: 2.34,
+                    slidesToScroll: 1,
+                }
+              },
+            {
+              breakpoint: 800,
+              settings: {
+                slidesToShow: 1.67,
+                slidesToScroll: 1,
+              }
+            },
+            {
+              breakpoint: 480,
+              settings: {
+                autoplay: false,
+                pauseOnHover: false,
+                slidesToShow: 1,
+                slidesToScroll: 1,
+              }
+            }
+        ]
     };
 
     const onClickPrev = useCallback((ref : any) => () => ref.current.slickPrev(), []);
