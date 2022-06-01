@@ -16,6 +16,7 @@ import {Nav} from "react-bootstrap"
 import { RootState } from "../modules";
 import { userSearchInputState } from "../modules/userSearchInput";
 import { API } from "../utils/axios";
+import {useSelector} from 'react-redux';
 
 export const Box = styled.div`
     position: relative;
@@ -52,9 +53,11 @@ export const CarouselBtn = styled.div`
 `;
 
 
-function Individual({userHandle} : any){
+function Individual(){
     const [indvdprob, setIndvprob] = React.useState([]);    
-    console.log(userHandle)
+    const userHandle = useSelector((state: RootState) => state.userSearchInput.userHandle);
+
+    console.log(userHandle) //13번째
     const fetchprob = async() =>{
         try{
             const {data} = await API.get(`/recommend/problem/show?handle=${userHandle}`);
@@ -67,17 +70,17 @@ function Individual({userHandle} : any){
             // });
 
             const problist = await API.get(`/problem/lookup?problemIds=${data.rec_problems.join()}`)
-            console.log(problist);
+            console.log(problist);//12번째
 
             setIndvprob(problist.data);
         }
         catch(e){
-            console.error(e);
+            console.error(e); //10번째
         }
     }
     React.useEffect(()=>{
         fetchprob();
-    }, []);
+    }, [userHandle]);
     
     return(
         <Box>

@@ -16,6 +16,7 @@ import {Nav} from "react-bootstrap"
 import { RootState } from "../modules";
 import { userSearchInputState } from "../modules/userSearchInput";
 import { API } from "../utils/axios";
+import { useSelector } from "react-redux";
 
 export const Box = styled.div`
     position: relative;
@@ -48,8 +49,9 @@ export const CarouselBtn = styled.div`
 `;
 
 
-function Rival({userHandle} : any){
-    const [rival, setRival] = React.useState([]);    
+function Rival(){
+    const [rival, setRival] = React.useState([]);
+    const userHandle = useSelector((state: RootState) => state.userSearchInput.userHandle);
     console.log(userHandle)
     const fetchprob = async() =>{
         try{
@@ -66,7 +68,7 @@ function Rival({userHandle} : any){
     }
     React.useEffect(()=>{
         fetchprob();
-    }, []);
+    }, [userHandle]);
     
     return(
         <Box>

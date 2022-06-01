@@ -6,6 +6,8 @@ import { API } from "../utils/axios";
 import styled from "styled-components";
 import UserSearchInputContainer from "../container/userSearchInputContainer";
 import { primary_purple } from "./color";
+import {useSelector} from 'react-redux';
+import { RootState } from "../modules";
 
 const StyledNavBar = styled(Navbar)`
   background: ${primary_purple};
@@ -16,7 +18,8 @@ const StyledNavbarBrand = styled(Navbar.Brand)`
   font-weight: 800;
 `
 
-const NavBar = ({pathname, userHandle} : any) => {
+const NavBar = ({pathname} : any) => {
+  const userHandle = useSelector((state: RootState) => state.userSearchInput.userHandle);
   console.log(pathname, userHandle)
     return (
         <div>
