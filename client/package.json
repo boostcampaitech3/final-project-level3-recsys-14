@@ -39,7 +39,6 @@
     "redux-actions": "^2.6.5",
     "redux-devtools-extension": "^2.13.9",
     "redux-persist": "^6.0.0",
-    "sass": "^1.52.1",
     "slick-carousel": "^1.8.1",
     "styled-component": "^2.8.0",
     "styled-components": "^5.3.5",

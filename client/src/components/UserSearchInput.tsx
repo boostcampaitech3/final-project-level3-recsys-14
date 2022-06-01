@@ -17,13 +17,23 @@ const UserSearchStyledForm = styled.form`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 60%;
+    width: 65%;
     min-width: 120px;
     max-width: 720px;
     padding: 6px 6px;
     background-color: #fff;
-    box-shadow: 0 2px 6px 0 rgba(136,148,171,.2),0 24px 20px -24px rgba(71,82,107,.1);
+    box-shadow: 
+        0 2px 6px 0 rgba(136,148,171,.2),
+        0 24px 20px -24px rgba(71,82,107,.1);
     overflow: hidden;
+    @media screen and (max-width: 480px){
+        width: 90% !important;
+    }
+    &:focus {
+        box-shadow:
+            0 2px 6px 0 rgb(22 10 204 / 20%), 
+            0 24px 20px -24px rgb(23 10 119 / 10%);
+    }
 `;
 
 const USerSearchStyledInput = styled.input`

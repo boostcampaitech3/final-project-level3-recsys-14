@@ -11,5 +11,9 @@ export const dark_purple_blue = "#6867ac"
 export const dawn_purple = "#cea4ea";
 
 export const light_pink = "#ffbcd1";
-export const light_pink_white = "#fbf0ff6";
+export const light_pink_white = "#fbf0ff";
 
+export const almost_black = "#595959";
+
+export const light_gray = "#f7f5f8";
+export const dawn_gray = "#817e82";
