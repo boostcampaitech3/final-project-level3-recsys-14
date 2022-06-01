@@ -23,6 +23,26 @@ const Wrap = styled.div`
     .slick-slide {
         display: inline-block;
     }
+    &::before,
+    &::after {
+        background: linear-gradient(to right, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%);
+        content: "";
+        height: 100%;
+        position: absolute;
+        width: 100px;
+        z-index: 20;
+    }
+
+    &::before {
+        left: 0;
+        top: 0;
+    }
+
+    &::after {
+        right: 0;
+        top: 0;
+        transform: rotateZ(180deg);
+    }
 `;
 const Inner = styled.div`
     position: relative;
@@ -73,6 +93,11 @@ const MainSlickItems = styled.div`
     
     height: 100%;
     border-radius: 1rem;
+    transition: transform 0.3s ease-out;
+
+    &:hover {
+        transform: scale(1.1);
+    }
 
     .item{
         max-width: 100%;
@@ -83,7 +108,7 @@ const MainSlickItems = styled.div`
 
 const defaultButtonStyle = css`
     position: absolute;
-    
+    z-index: 100;
     padding: 0;
     width: 30px;
     height: 30px;
@@ -94,13 +119,16 @@ const defaultButtonStyle = css`
     outline : none;
     transform: translateY(-50%);
     cursor: pointer;
+    background: rgb(255 255 255 / 70%);
+    box-shadow:
+        1px 2px 8px -3px rgb(50 88 130 / 32%);
 `;
 const PrevButton = styled.button`
     ${defaultButtonStyle}
     ${({property}) => {
         return (property === "mainButton") ? 
         `
-        top : 40%;    
+        top : 42%;    
         `
         : 
         `
@@ -114,7 +142,7 @@ const NextButton = styled.button`
     ${({property}) => {
         return (property === "mainButton") ? 
         `
-        top : 40%;  
+        top : 42%;  
         `
         :
         `
@@ -124,8 +152,7 @@ const NextButton = styled.button`
     right: 0;
 `;
 const defaultIconStyle = css`
-    font-size: 22px;
-    color: #dedede;
+    color: #9c9c9c;;
 
     &:focus,
     &:hover{

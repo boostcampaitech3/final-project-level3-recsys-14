@@ -35,7 +35,7 @@ const NavBar = ({pathname} : any) => {
                   <Nav.Link href="/">Home</Nav.Link>
 
                   <Nav.Link href={pathname === `/user/${userHandle}` ? pathname + '/rival' : `/user/${userHandle}`}>
-                  {pathname === `/user/${userHandle}` ? 'Rival' : 'MyProfile'}
+                  {pathname === `/user/${userHandle}` ? 'Rival' : '문제 추천'}
                     </Nav.Link>
                 </Nav>
                 {/* 아래 태그는 원래 div가 아닌 Form이었고, input이 아닌 FormControl이었다 */}
