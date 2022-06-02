@@ -6,6 +6,7 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import {Nav} from "react-bootstrap"
 import { height } from '@mui/system';
+import RivalItemContainer from '../container/rivalItemContainer';
 
 const Wrap = styled.div`
     overflow: hidden;
@@ -174,10 +175,11 @@ const RivalSlide = (children : any) => {
                     asNavFor = {pagingSlick}
                     {...mainSettings}
                     >
-                        {children.probs.map((item : any, i : number)=>{
+                        {children.rival.map((item : any, i : number)=>{
                             return(
-                                <MainSlickItems key={`${i}`}>
-                                    <div className='item'>
+                                <MainSlickItems key={i}>
+                                    <RivalItemContainer key = {i} rival = {item} />
+                                    {/* <div className='item'>
                                         <div style={{display:'flex'}}>
                                             <h3>{item.tier}</h3>
                                             <h2>
@@ -187,7 +189,7 @@ const RivalSlide = (children : any) => {
                                         <div>rating : {item.rating}</div>
                                         <div>rank : {item.rank}</div>
 
-                                    </div>
+                                    </div> */}
                                 </MainSlickItems>
                             )
                         })}

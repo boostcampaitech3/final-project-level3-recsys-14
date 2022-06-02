@@ -24,6 +24,11 @@
             "date": 1654071009839,
             "name": "src\\config\\logs\\debug\\2022-06-01.log",
             "hash": "2f2dd62e8bef146d5be2ebe3566ded12"
+        },
+        {
+            "date": 1654095662833,
+            "name": "src\\config\\logs\\debug\\2022-06-02.log",
+            "hash": "758a0a219a19c23d4f240b7431164463"
         }
     ],
     "hashType": "md5"

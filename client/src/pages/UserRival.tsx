@@ -2,7 +2,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 
 import styled, {css} from "styled-components";
-import {Rival} from '../components'
+import {Rival, RivalDetail} from '../components'
 import NavBar from "../components/navbar";
 import { useLocation, useParams } from "react-router-dom";
 import {useSelector, useDispatch} from 'react-redux';
@@ -13,23 +13,37 @@ import { search } from "../modules/userSearchInput";
 import { RootState } from "../modules";
 
 function Userrival() {
+    const [profile, setProfile] = useState({});
+
     const params = useParams();
     console.log(params);
 
     const location = useLocation();
 
     const dispatch = useDispatch();
-
     const userHandleDispatch = useCallback((userHandle : string | undefined)=> dispatch(search(userHandle)), [dispatch])
+
+
     const userHandle = useSelector((state: RootState) => state.userSearchInput.userHandle);
+    const rivalItem = useSelector((state : RootState) => state.rivalItem)
     console.log(userHandle);
-    // const RivealItem = 
 
     let navigate = useNavigate();
+
+    const fetchMyProfile = async() =>{
+        try{
+            const {data} = await API.get(`/user/show?handle=${params.userHandle}`)
+            setProfile(data)
+        }
+        catch(e){
+            console.log(e);
+        }
+    }
 
     const fetchUserCheck = async() =>{
         try{
             const {data} = await API.get(`/user/check?handle=${params.userHandle}`);
+            fetchMyProfile();
             console.log(data);
         }
         catch(e){
@@ -47,7 +61,9 @@ function Userrival() {
         <div>
             <NavBar pathname = {location.pathname}/>
             <div style={{display : 'flex', justifyContent: 'center', alignItems: 'center', flexDirection : 'column'}}>
+                <RivalDetail rival = {profile} />
                 <Rival />
+                {rivalItem.toggle && <RivalDetail rival = {rivalItem.rival} />}
             </div>
         </div>
     );

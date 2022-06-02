@@ -34,12 +34,13 @@ const Ball = styled.div<Btnprops>`
       transition: all 0.5s ease-in-out;
     `}
 `
-const TagSwitch = () =>{
+const TagSwitch = ({onTagSwitch} : any) =>{
     const [ isChecked, setIsChecked ] = useState(false);
     const [ show, setShow ] = useState(false);
     const target = useRef(null);
     const onClick = () => {
         setIsChecked((prev) => !prev);
+        onTagSwitch();
     };
     const onMouseOver = () => {
         setShow(true)

@@ -102,6 +102,8 @@ function Userpage() {
 
     const userHandle = useSelector((state: RootState) => state.userSearchInput.userHandle);
     const problemItem = useSelector((state: RootState) => state.problemItem)
+    const tagSwitch = useSelector((state : RootState) => state.tagSwitch.toggle);
+
     console.log(userHandle); //두 번째 '', 일곱 번째 juk1329
 
     let navigate = useNavigate();
@@ -146,7 +148,7 @@ function Userpage() {
             </UserIntroBox>
             <SliderWrap>
                 <Individual />
-                {problemItem.toggle && <ProblemDetail item = {problemItem.item}/>}
+                {problemItem.toggle && tagSwitch && <ProblemDetail item = {problemItem.item}/>}
             </SliderWrap>
             <MainFooter />
         </div>
