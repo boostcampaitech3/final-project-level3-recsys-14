@@ -2,7 +2,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 
 import styled, {css} from "styled-components";
-import {Rival, RivalDetail} from '../components'
+import {ProblemDetail, Rival, RivalDetail} from '../components'
 import NavBar from "../components/navbar";
 import { useLocation, useParams } from "react-router-dom";
 import {useSelector, useDispatch} from 'react-redux';
@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 
 import { search } from "../modules/userSearchInput";
 import { RootState } from "../modules";
+import RivalProblem from "../components/rivalProblem";
 
 function Userrival() {
     const [profile, setProfile] = useState({});
@@ -26,6 +27,9 @@ function Userrival() {
 
     const userHandle = useSelector((state: RootState) => state.userSearchInput.userHandle);
     const rivalItem = useSelector((state : RootState) => state.rivalItem)
+    const rivalProblem = useSelector((state:RootState) => state.rivalProblemItem)
+    const tagSwitch = useSelector((state:RootState) => state.tagSwitch.toggle);
+
     console.log(userHandle);
 
     let navigate = useNavigate();
@@ -64,6 +68,8 @@ function Userrival() {
                 <RivalDetail rival = {profile} />
                 <Rival />
                 {rivalItem.toggle && <RivalDetail rival = {rivalItem.rival} />}
+                <RivalProblem />
+                {rivalProblem.toggle && tagSwitch && <ProblemDetail item = {rivalProblem.item} />}
             </div>
         </div>
     );
