@@ -1,15 +1,9 @@
 import styled from "styled-components";
 import { Image } from "react-bootstrap";
-// import iconDataStructure from "../assets/icons/icon_data_structure.png";
-// import iconDP from "../assets/icons/icon_dp.png";
-// import iconGeometry from "../assets/icons/icon_geometry.png";
-// import iconGraphs from "../assets/icons/icon_graphs.png";
-// import iconGreedy from "../assets/icons/icon_greedy.png";
-// import iconImplementation from "../assets/icons/icon_implementation.png";
-// import iconMath from "../assets/icons/icon_math.png";
-// import iconString from "../assets/icons/icon_string.png";
 import iconWrapperImage from "../assets/icons/icon_wrapper.png";
 import ItemSlide from "./itemCarousel";
+import { useSelector } from "react-redux";
+import { RootState } from "../modules";
 
 const ProblemItemPage = styled.div`
     position: relative;
@@ -18,12 +12,12 @@ const ProblemItemPage = styled.div`
         url("${iconWrapperImage}") center center / cover no-repeat;
     width: auto;
     min-width: 60%;
-    max-width: 800px;
+    max-width: 820px;
     padding: 15px;
     border-radius: 1.5rem;
     box-shadow: 
         0px 15px 35px -5px rgb(50 88 130 / 32%);
-    margin: 0 auto;
+    margin: 0 20px;
     cursor: pointer;
     &:hover {
         color: #6b6eff;
@@ -168,6 +162,7 @@ const ProblemDetail = ({item}:any) =>{
         }
         tier = tier + " " + (6 - ((rawLevel - 1) % 5 + 1));
     }
+    const tagSwitch = useSelector((state : RootState) => state.tagSwitch.toggle);
 
     return(
         <>

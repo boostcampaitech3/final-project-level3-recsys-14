@@ -18,6 +18,7 @@ import { userSearchInputState } from "../modules/userSearchInput";
 import { API } from "../utils/axios";
 import {useSelector} from 'react-redux';
 import TagSwitch from "./TagSwitch";
+import TagSwitchContainer from "../container/tagSwitchContainer";
 
 export const Box = styled.div`
     position: relative;
@@ -86,7 +87,7 @@ function Individual(){
     
     return(
         <Box>
-                <CarouselTitle>{userHandle} 님을 위한 추천 문제 리스트<TagSwitch /></CarouselTitle>
+                <CarouselTitle>{userHandle} 님을 위한 추천 문제 리스트<TagSwitchContainer /></CarouselTitle>
                 <ItemSlide probs = {indvdprob} />
        </Box>
     );
