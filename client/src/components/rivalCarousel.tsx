@@ -18,9 +18,28 @@ const Wrap = styled.div`
     & > div + div{
         margin-top: 20px;
     }
-    .slick-slid {
+    .slick-slide {
         display: inline-block;
-        width: 100%;
+    }
+    &::before,
+    &::after {
+        background: linear-gradient(to right, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%);
+        content: "";
+        height: 100%;
+        position: absolute;
+        width: 100px;
+        z-index: 20;
+    }
+
+    &::before {
+        left: 0;
+        top: 0;
+    }
+
+    &::after {
+        right: 0;
+        top: 0;
+        transform: rotateZ(180deg);
     }
 `;
 const Inner = styled.div`
@@ -31,7 +50,6 @@ const Inner = styled.div`
     ${({property}) => {
         return (property === "mainInner") ? 
         (css`
-        padding-top : 20px;
         width : 100%;
         height : 100%;    
         `) : 
@@ -51,24 +69,37 @@ const Inner = styled.div`
         filter: none;
     }
     .slick-slide{
-        padding: 10px
+        padding: 1.2rem;
+        margin: 10px 0px 50px;
     }
 `;
 const defaultItemStyle = css`
     width: 100%;
     text-align: center;
+
     .item{
-        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        height: 200px;
         vertical-align: top;
     }
 `;
 const MainSlickItems = styled.div`
     ${defaultItemStyle}
     height: 100%;
-    background-color: lightgray;
+    border-radius: 1rem;
+    transition: transform 0.3s ease-out;
+
+    &:hover {
+        transform: scale(1.1);
+    }
 
     .item{
         max-width: 100%;
+        padding: 20px;
+        box-shadow: 0px 15px 35px -5px rgb(50 88 130 / 32%);
     }
 `;
 const PagingItems = styled.div`
@@ -82,8 +113,8 @@ const PagingItems = styled.div`
 `
 const defaultButtonStyle = css`
     position: absolute;
-    
-    padding :0;
+    z-index: 100;
+    padding: 0;
     width: 30px;
     height: 30px;
     line-height: 1;
@@ -93,13 +124,16 @@ const defaultButtonStyle = css`
     outline : none;
     transform: translateY(-50%);
     cursor: pointer;
+    background: rgb(255 255 255 / 70%);
+    box-shadow:
+        1px 2px 8px -3px rgb(50 88 130 / 32%);
 `;
 const PrevButton = styled.button`
     ${defaultButtonStyle}
     ${({property}) => {
         return (property === "mainButton") ? 
         `
-        top : 30%;    
+        top : 42%;    
         `
         : 
         `
@@ -113,7 +147,7 @@ const NextButton = styled.button`
     ${({property}) => {
         return (property === "mainButton") ? 
         `
-        top : 30%;  
+        top : 42%;  
         `
         :
         `
@@ -123,8 +157,7 @@ const NextButton = styled.button`
     right: 0;
 `;
 const defaultIconStyle = css`
-    font-size: 22px;
-    color: #dedede;
+    color: #9c9c9c;;
 
     &:focus,
     &:hover{
@@ -150,11 +183,39 @@ const RivalSlide = (children : any) => {
     }, []);
 
     const mainSettings = {
-        dots: false,
-        arrows: false,
         infinite: true,
-        slidesToShow: 3,
+        centerMode: true,
+        swipeToSlide: true,
+        slidesToShow: 3.68,
         slidesToScroll: 1,
+        autoplay: true,
+        pauseOnHover: true,
+        autoplaySpeed: 5000,
+        responsive: [
+            {
+                breakpoint: 1200,
+                settings: {
+                    slidesToShow: 2.34,
+                    slidesToScroll: 1,
+                }
+              },
+            {
+              breakpoint: 800,
+              settings: {
+                slidesToShow: 1.67,
+                slidesToScroll: 1,
+              }
+            },
+            {
+              breakpoint: 480,
+              settings: {
+                autoplay: false,
+                pauseOnHover: false,
+                slidesToShow: 1,
+                slidesToScroll: 1,
+              }
+            }
+        ]
     };
     const pagingSettings = {
         dots: false,

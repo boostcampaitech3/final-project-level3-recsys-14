@@ -13,6 +13,7 @@ import { search } from "../modules/userSearchInput";
 import { RootState } from "../modules";
 import userBackgroundImage from '../assets/images/user_background_large.png';
 import userRecImage from "../assets/images/problem_rec_large.png";
+import ProblemRecFAQ from "../components/problemRecFAQ";
 
 const Box = styled.div`
     display : flex;
@@ -89,6 +90,35 @@ const SliderWrap = styled.div`
     margin: auto;
 `;
 
+const ContentContainer = styled.div`
+    width: 100%;
+    max-width: 1200px;
+    margin: 30px auto;
+`;
+
+const ContentInnerContainer = styled.div`
+    width: 100%;
+    padding: 0px 20px;
+`;
+
+const SectionTitle = styled.h2`
+    display: block;
+    font-weight: 800;
+    font-size: 1.5em;
+    letter-spacing: -0.02ch;
+    margin: 1.5rem 0;
+    text-align: left !important;
+
+    @media screen and (max-width: 800px){
+        text-align: center !important;
+    }
+`;
+
+const BlankBox = styled.div`
+    display: block;
+    weight: 100%;
+    height: 50px;
+`;
 
 function Userpage() {
     const params = useParams();
@@ -151,6 +181,15 @@ function Userpage() {
                 <Individual />
                 {problemItem.toggle && tagSwitch && <ProblemDetail item = {problemItem.item}/>}
             </SliderWrap>
+            <ContentContainer>
+                <ContentInnerContainer>
+                <BlankBox/>
+                <SectionTitle>
+                    문제 추천에 관한 궁금증을 정리했어요.
+                </SectionTitle>
+                <ProblemRecFAQ/>
+                </ContentInnerContainer>
+            </ContentContainer>
             <MainFooter />
         </div>
     );

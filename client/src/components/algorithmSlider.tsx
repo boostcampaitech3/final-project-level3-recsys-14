@@ -12,7 +12,7 @@ import {
     deep_purple,
     dawn_purple,
     light_pink_white,
-} from "./color"
+} from "../constants/color"
 import iconGeometry from "../assets/icons/icon_geometry.png";
 import iconMath from "../assets/icons/icon_math.png";
 import iconGraphs from "../assets/icons/icon_graphs.png";
@@ -124,7 +124,7 @@ export const AlgorithmSlide = styled.div`
         0 2px 6px 0 rgb(136 148 171 / 20%), 0 24px 20px -24px rgb(71 82 107 / 10%);
     overflow: hidden;
     &:hover{
-        transform: scale(0.95, 0.95);
+        transform: scale(1.05, 1.05);
         cursor: pointer;
     }
     > a{

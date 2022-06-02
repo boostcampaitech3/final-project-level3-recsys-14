@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { 
     light_gray,
     dawn_gray,
-} from "./color";
+} from "../constants/color";
 
 const FooterWrapper = styled.div`
     width: 100%;
@@ -23,7 +23,7 @@ const MainFooter = () => {
     return (
         <FooterWrapper>
             <Footer>
-                    본 웹사이트는 Baekjoon Online Judge 또는 solved.ac와 관련이 없으며, 비영리적으로 운영되는 팀 프로젝트의 결과물입니다.
+                    본 웹사이트는 Baekjoon Online Judge 또는 solved.ac와 관련이 없으며, 비영리로 운영되는 팀 프로젝트의 결과물입니다.
             </Footer>
         </FooterWrapper>
     )

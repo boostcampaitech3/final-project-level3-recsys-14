@@ -3,20 +3,18 @@ import React, { ChangeEvent, FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-
 const ProblemItemBox = styled.div`
-position: relative;
-background: white;
-box-shadow: 0 0 8px 0 rgba(0,0,0,0.04);
+    position: relative;
+    background: white;
+    box-shadow: 0 0 8px 0 rgba(0,0,0,0.04);
 
-min-height: 150px;
+    min-height: 150px;
 
-margin: 0 auto;
-border-radius: 1rem;
+    margin: 0 auto;
+    border-radius: 1rem;
 
-cursor: pointer;
-transition: all 0.6s cubic-bezier(.25,.8,.25,1) 0.3s;
-
+    cursor: pointer;
+    transition: all 0.6s cubic-bezier(.25,.8,.25,1) 0.3s;
 `;
 
 const ProblemTitle = styled.h3`
@@ -46,7 +44,7 @@ const ProblemItem = ({item, onToggle}:any) => {
     }
     
     return(
-//onClick={onToggle(item)}
+    //onClick={onToggle(item)}
     <ProblemItemBox className='item' onClick={onClick}>
         <div style={{display:'flex', flexDirection: 'column'}}>
             <ProblemTitle>{item.title}</ProblemTitle>
