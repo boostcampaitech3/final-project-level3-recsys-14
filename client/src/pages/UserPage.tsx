@@ -61,8 +61,8 @@ const UserIntroStyledDiv = styled.div`
     color: #fff;
     text-align: center;
     text-shadow:
-        1px 1px 4px rgb(0 0 0 / 10%),
-        2px 2px 8px rgb(0 0 0 / 14%);
+        1px 1px 14px rgb(0 0 0 / 10%), 
+        2px 2px 28px rgb(0 0 0 / 14%);
     font-size: min(max(calc(16px + 3.6vmin), 20px), 54px);
     font-weight: 800;
     margin: 2.5rem 0;
@@ -88,6 +88,7 @@ const SliderWrap = styled.div`
     max-width: 1200px;
     margin: auto;
 `;
+
 
 function Userpage() {
     const params = useParams();

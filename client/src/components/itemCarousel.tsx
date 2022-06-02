@@ -178,6 +178,7 @@ const ItemSlide = (children : any) => {
         slidesToScroll: 1,
         autoplay: true,
         pauseOnHover: true,
+        autoplaySpeed: 5000,
         responsive: [
             {
                 breakpoint: 1200,
