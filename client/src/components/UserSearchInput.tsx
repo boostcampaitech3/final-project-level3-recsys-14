@@ -10,7 +10,7 @@ import {
     light_sky_gray,
     bright_purple,
     deep_purple,
-} from "./color";
+} from "../constants/color";
 
 const UserSearchStyledForm = styled.form`
     border-radius: 20px;

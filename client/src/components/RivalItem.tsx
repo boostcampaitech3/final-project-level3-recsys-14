@@ -25,12 +25,13 @@ const RivalTitle = styled.h3`
 `;
 
 const RivalLinkButton = styled.button`
-    width: 140px;
+    width: 100%;
     height: 40px;
     border-radius: 20px;
     margin-top: 10px;
     font-weight: 700;
-    font-size: 1.2rem;
+    font-size: 1rem;
+    padding: 0 15px;
     letter-spacing: 1.15px;
     background-color: #6539dc;
     color: #f9f9f9;
@@ -53,7 +54,7 @@ const RivalItem = ({rival, onToggle}:any) => {
             <RivalTitle>
                 <a href = {`https://solved.ac/profile/${rival.handle}`} target='_blank'> 
                     <RivalLinkButton>
-                        {rival.handle}
+                        라이벌로 등록하러 가기
                     </RivalLinkButton>
                 </a>
             </RivalTitle>

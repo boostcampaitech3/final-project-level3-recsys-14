@@ -34,7 +34,8 @@ export const Box = styled.div`
 
 export const CarouselTitle = styled.h4`
     display: flex;
-    color: #595959;
+    color: #323232;
+    font-weight: 600;
     font-size: 1.5rem;
     margin: 10px 0;
 `;
@@ -87,7 +88,7 @@ function RivalProblem(){
     
     return(
         <Box>
-                <CarouselTitle>{userHandle} 님을 위한 라이벌 기반 추천 문제 리스트<TagSwitchContainer /></CarouselTitle>
+                <CarouselTitle>라이벌이 푼 문제도 같이 풀어볼까요?<TagSwitchContainer /></CarouselTitle>
                 <RivalItemSlide rivalprobs = {rivalprob} />
        </Box>
     );

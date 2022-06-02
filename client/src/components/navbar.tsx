@@ -5,9 +5,10 @@ import axios from "axios";
 import { API } from "../utils/axios";
 import styled from "styled-components";
 import UserSearchInputContainer from "../container/userSearchInputContainer";
-import { primary_purple } from "./color";
+import { primary_purple } from "../constants/color";
 import {useSelector} from 'react-redux';
 import { RootState } from "../modules";
+import { Modal } from "react-bootstrap";
 
 const StyledNavBar = styled(Navbar)`
   background: ${primary_purple};
@@ -21,7 +22,36 @@ const StyledNavbarBrand = styled(Navbar.Brand)`
 const NavBar = ({pathname} : any) => {
   const userHandle = useSelector((state: RootState) => state.userSearchInput.userHandle);
   console.log(pathname, userHandle)
+
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  if (show) {
     return (
+      <Modal
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>검색창에 handle을 입력해주세요.</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          검색창에 handle을 입력해야 원하는 페이지로 갈 수 있습니다.
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    );
+  }
+
+  return (
         <div>
           <StyledNavBar expand="lg" variant="dark" sticky="top">
             <Container fluid>
@@ -32,11 +62,18 @@ const NavBar = ({pathname} : any) => {
                   className="me-auto my-2 my-lg-0"
                   style={{ maxHeight: '100px' }}
                   navbarScroll>
-                  <Nav.Link href="/">Home</Nav.Link>
-
-                  <Nav.Link href={pathname === `/user/${userHandle}` ? pathname + '/rival' : `/user/${userHandle}`}>
+                  {/* <Nav.Link href="/">Home</Nav.Link> */}
+                  { pathname != undefined ?
+                    <Nav.Link href={'/user/' + userHandle}>문제 추천</Nav.Link>:
+                    <Nav.Link onClick={handleShow}>문제 추천</Nav.Link> 
+                  }
+                  { pathname != undefined ?
+                    <Nav.Link href={'/user/' + userHandle + '/rival'}>라이벌 기반 추천</Nav.Link>:
+                    <Nav.Link onClick={handleShow}>라이벌 기반 추천</Nav.Link>
+                  }
+                  {/* <Nav.Link href={pathname === `/user/${userHandle}` ? pathname + '/rival' : `/user/${userHandle}`}>
                   {pathname === `/user/${userHandle}` ? 'Rival' : '문제 추천'}
-                    </Nav.Link>
+                    </Nav.Link> */}
                 </Nav>
                 {/* 아래 태그는 원래 div가 아닌 Form이었고, input이 아닌 FormControl이었다 */}
                 {/* <div className="d-flex"  {...usdata.flag ? actions.setUserDetails(usdata) : actions.setUserDetails(userDetails)}>

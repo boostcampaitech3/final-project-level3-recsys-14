@@ -161,7 +161,7 @@ function Usersearch() {
     }
 
     const clickSlide = (nextLink: string) => () => {
-        window.location.href= nextLink;
+        window.open(nextLink, '_blank');
     } 
 
     return(

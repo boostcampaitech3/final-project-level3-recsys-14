@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Image } from "react-bootstrap";
-import iconWrapperImage from "../assets/icons/icon_wrapper.png";
+import specWrapperImage from "../assets/images/spec_background_large.png";
 import ItemSlide from "./itemCarousel";
 import { useSelector } from "react-redux";
 import { RootState } from "../modules";
@@ -9,7 +9,7 @@ const ProblemItemPage = styled.div`
     position: relative;
     background: 
         linear-gradient(rgba(255,255,255,.2), rgba(255,255,255,.2)),
-        url("${iconWrapperImage}") center center / cover no-repeat;
+        url("${specWrapperImage}") center center / cover no-repeat;
     width: auto;
     min-width: 60%;
     max-width: 820px;
@@ -65,7 +65,7 @@ const ProblemTitle = styled.h2`
 
 const ProblemLevel = styled.h4`
     text-align: center;
-    margin: 10px 26px;    
+    margin: 10px 2%;    
     border-radius: 100px;
     padding: 4px 12px;
     font-size: 1.3rem;
@@ -79,7 +79,7 @@ const TagBoxWrapper = styled.div`
     margin-top: 10px;
     @media screen and (max-width: 640px){
         width: 100%;
-        margin-right: 0;
+        margin-left: 1%;
     }
 `;
 
@@ -125,7 +125,8 @@ const SolvedInfoBox = styled.div`
 
 const SolvedInfo = styled.h4`
     text-align: center;
-    margin: 0 5px;    
+    margin: 0 1%;
+    width: 50%;
     border-radius: 1.2rem;
     padding: 4px 8px;
     font-size: 0.9rem;

@@ -34,9 +34,10 @@ export const Box = styled.div`
 
 export const CarouselTitle = styled.h4`
     display: flex;
-    color: #595959;
+    color: #323232;
+    font-weight: 600;
     font-size: 1.5rem;
-    margin: 10px 0;
+    margin: 10px 20px;
 `;
 
 export const CarouselItem = styled.div`
@@ -78,7 +79,7 @@ function Rival(){
     
     return(
         <Box>
-                <CarouselTitle>{userHandle}님과 수준이 비슷한 유저</CarouselTitle>
+                <CarouselTitle>{userHandle}님의 라이벌로 추천합니다.</CarouselTitle>
                 <RivalSlide rival = {rival} />
        </Box>
     );

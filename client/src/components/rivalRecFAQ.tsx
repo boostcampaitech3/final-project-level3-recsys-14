@@ -29,7 +29,7 @@ const StyledAccordianButton = styled(Accordion.Button)`
 
 `;
 
-const UserSearchFAQ = () => {
+const RivalRecFAQ = () => {
     return (
         <Accordion alwaysOpen>
             <Accordion.Item eventKey="0">
@@ -65,4 +65,4 @@ const UserSearchFAQ = () => {
     
 }
 
-export default UserSearchFAQ;
+export default RivalRecFAQ;
