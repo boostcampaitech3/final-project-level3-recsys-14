@@ -174,7 +174,7 @@ function Usersearch() {
             </IntroStyledDiv>
             <IntroStyledSpan>
                 BOJ 문제 풀이 이력과 유저 정보를 바탕으로<br/>
-                개인별 풀만한 문제와 라이벌을 추천해 드립니다.
+                개인별 풀 만한 문제와 라이벌을 추천해 드립니다.
             </IntroStyledSpan>
             <IntroImageStyledDiv />
             <UserSearchInputContainer />
