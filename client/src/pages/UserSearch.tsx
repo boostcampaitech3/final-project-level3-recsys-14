@@ -75,7 +75,7 @@ const ContentContainer = styled.div`
 
 const ContentInnerContainer = styled.div`
     width: 100%;
-    padding 30px 20px;
+    padding: 30px 20px;
 `;
 
 const IntroTitle = styled.h2`

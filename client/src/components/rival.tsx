@@ -18,19 +18,26 @@ import { userSearchInputState } from "../modules/userSearchInput";
 import { API } from "../utils/axios";
 import { useSelector } from "react-redux";
 
+import TagSwitch from "./TagSwitch";
+
 export const Box = styled.div`
     position: relative;
-    padding-top: 10px;
-    padding-bottom : 10px;
+    padding: 30px 0;
     display: flex;
     flex-direction: column;
-    width: 70%;
+    width: 100%;
     /* height: 500px; */
     justify-content: center;
     align-items: center;
     margin : 0 auto;
 `;
 
+export const CarouselTitle = styled.h4`
+    display: flex;
+    color: #595959;
+    font-size: 1.5rem;
+    margin: 10px 0;
+`;
 
 export const CarouselItem = styled.div`
     padding: 10px;
@@ -47,7 +54,6 @@ export const CarouselBtn = styled.div`
     top: 50%;
     transform: translate(0%, -50%);
 `;
-
 
 function Rival(){
     const [rival, setRival] = React.useState([]);
@@ -72,8 +78,8 @@ function Rival(){
     
     return(
         <Box>
-                <h4>{userHandle}님과 수준이 비슷한 유저</h4>
-                <RivalSlide probs = {rival} />
+                <CarouselTitle>{userHandle}님과 수준이 비슷한 유저</CarouselTitle>
+                <RivalSlide rival = {rival} />
        </Box>
     );
 }
