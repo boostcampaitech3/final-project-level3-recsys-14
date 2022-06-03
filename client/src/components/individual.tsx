@@ -16,20 +16,32 @@ import {Nav} from "react-bootstrap"
 import { RootState } from "../modules";
 import { userSearchInputState } from "../modules/userSearchInput";
 import { API } from "../utils/axios";
+import {useSelector} from 'react-redux';
+import TagSwitch from "./TagSwitch";
+import TagSwitchContainer from "../container/tagSwitchContainer";
 
 export const Box = styled.div`
     position: relative;
-    padding-top: 10px;
-    padding-bottom : 10px;
+    padding: 30px 0;
     display: flex;
     flex-direction: column;
-    width: 70%;
+    width: 100%;
     /* height: 500px; */
     justify-content: center;
     align-items: center;
     margin : 0 auto;
 `;
 
+export const CarouselTitle = styled.h4`
+    display: flex;
+    color: #323232;
+    font-weight: 600;
+    font-size: 1.5rem;
+    margin: 10px 20px;
+    @media screen and (max-width: 480px){
+        display: block;
+    }
+`;
 
 export const CarouselItem = styled.div`
     padding: 10px;
@@ -48,9 +60,11 @@ export const CarouselBtn = styled.div`
 `;
 
 
-function Individual({userHandle} : any){
+function Individual(){
     const [indvdprob, setIndvprob] = React.useState([]);    
-    console.log(userHandle)
+    const userHandle = useSelector((state: RootState) => state.userSearchInput.userHandle);
+
+    console.log(userHandle) //13번째
     const fetchprob = async() =>{
         try{
             const {data} = await API.get(`/recommend/problem/show?handle=${userHandle}`);
@@ -63,21 +77,21 @@ function Individual({userHandle} : any){
             // });
 
             const problist = await API.get(`/problem/lookup?problemIds=${data.rec_problems.join()}`)
-            console.log(problist);
+            console.log(problist);//12번째
 
             setIndvprob(problist.data);
         }
         catch(e){
-            console.error(e);
+            console.error(e); //10번째
         }
     }
     React.useEffect(()=>{
         fetchprob();
-    }, []);
+    }, [userHandle]);
     
     return(
         <Box>
-                <h4>개인화된 문제 추천</h4>
+                <CarouselTitle>{userHandle} 님을 위한 추천 문제 리스트<TagSwitchContainer /></CarouselTitle>
                 <ItemSlide probs = {indvdprob} />
        </Box>
     );

@@ -1,11 +1,13 @@
 import React, {useCallback, useEffect, useRef, useState} from 'react';
 import Slick from 'react-slick';
 import styled, {css} from 'styled-components';
-
+import {useSelector} from 'react-redux';
+import { RootState } from "../modules";
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import {Nav} from "react-bootstrap"
 import { height } from '@mui/system';
+import RivalItemContainer from '../container/rivalItemContainer';
 
 const Wrap = styled.div`
     overflow: hidden;
@@ -17,9 +19,28 @@ const Wrap = styled.div`
     & > div + div{
         margin-top: 20px;
     }
-    .slick-slid {
+    .slick-slide {
         display: inline-block;
-        width: 100%;
+    }
+    &::before,
+    &::after {
+        background: linear-gradient(to right, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%);
+        content: "";
+        height: 100%;
+        position: absolute;
+        width: 100px;
+        z-index: 20;
+    }
+
+    &::before {
+        left: 0;
+        top: 0;
+    }
+
+    &::after {
+        right: 0;
+        top: 0;
+        transform: rotateZ(180deg);
     }
 `;
 const Inner = styled.div`
@@ -28,9 +49,8 @@ const Inner = styled.div`
     justify-content: center;
     align-items: center; */
     ${({property}) => {
-        return (property == "mainInner") ? 
+        return (property === "mainInner") ? 
         (css`
-        padding-top : 20px;
         width : 100%;
         height : 100%;    
         `) : 
@@ -50,24 +70,37 @@ const Inner = styled.div`
         filter: none;
     }
     .slick-slide{
-        padding: 10px
+        padding: 1.2rem;
+        margin: 10px 0px 50px;
     }
 `;
 const defaultItemStyle = css`
     width: 100%;
     text-align: center;
+
     .item{
-        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        height: 200px;
         vertical-align: top;
     }
 `;
 const MainSlickItems = styled.div`
     ${defaultItemStyle}
     height: 100%;
-    background-color: lightgray;
+    border-radius: 1rem;
+    transition: transform 0.3s ease-out;
+
+    &:hover {
+        transform: scale(1.1);
+    }
 
     .item{
         max-width: 100%;
+        padding: 20px;
+        box-shadow: 0px 15px 35px -5px rgb(50 88 130 / 32%);
     }
 `;
 const PagingItems = styled.div`
@@ -81,8 +114,8 @@ const PagingItems = styled.div`
 `
 const defaultButtonStyle = css`
     position: absolute;
-    
-    padding :0;
+    z-index: 100;
+    padding: 0;
     width: 30px;
     height: 30px;
     line-height: 1;
@@ -92,13 +125,16 @@ const defaultButtonStyle = css`
     outline : none;
     transform: translateY(-50%);
     cursor: pointer;
+    background: rgb(255 255 255 / 70%);
+    box-shadow:
+        1px 2px 8px -3px rgb(50 88 130 / 32%);
 `;
 const PrevButton = styled.button`
     ${defaultButtonStyle}
     ${({property}) => {
-        return (property == "mainButton") ? 
+        return (property === "mainButton") ? 
         `
-        top : 30%;    
+        top : 42%;    
         `
         : 
         `
@@ -110,9 +146,9 @@ const PrevButton = styled.button`
 const NextButton = styled.button`
     ${defaultButtonStyle}
     ${({property}) => {
-        return (property == "mainButton") ? 
+        return (property === "mainButton") ? 
         `
-        top : 30%;  
+        top : 42%;  
         `
         :
         `
@@ -122,8 +158,7 @@ const NextButton = styled.button`
     right: 0;
 `;
 const defaultIconStyle = css`
-    font-size: 22px;
-    color: #dedede;
+    color: #9c9c9c;;
 
     &:focus,
     &:hover{
@@ -140,20 +175,77 @@ const NextIcon = styled(ArrowForwardIosIcon)`
 const RivalSlide = (children : any) => {
     const [mainSlick, setMainSlick] = useState<any>(null);
     const [pagingSlick, setPagingSlick] = useState<any>(null);
-    const mainSlickRef = useRef(null);
+    const mainSlickRef = useRef<Slick>(null);
     const pagingSlickRef = useRef(null);
 
+    const rivalProblemItem = useSelector((state: RootState) => state.rivalProblemItem)
+    const tagSwitch = useSelector((state : RootState) => state.tagSwitch.toggle);
+
+    const controllAutoPlay = ()=>{
+        console.log(mainSlickRef);
+        console.log(rivalProblemItem.toggle);
+        console.log('flag : ', (rivalProblemItem.toggle && tagSwitch))
+
+        if (rivalProblemItem.toggle && tagSwitch){
+            mainSlickRef.current?.slickPause();
+            // mainSettings = {...mainSettings, autoplay: false}
+        }
+        else {
+            mainSlickRef.current?.slickPlay();
+            // mainSettings = {...mainSettings, autoplay: true}
+
+        }
+    };
+    
     useEffect(()=>{
         setMainSlick(mainSlickRef.current);
         setPagingSlick(pagingSlickRef.current);
     }, []);
 
+    // useEffect(()=>{
+    //     if(rivalProblemItem.toggle&& tagSwitch){
+    //         mainSettings = {...mainSettings, autoplay: false}
+    //     }
+    //     else{
+    //         mainSettings = {...mainSettings, autoplay: true}
+    //     }
+    // }, [rivalProblemItem, tagSwitch])
+    
     const mainSettings = {
-        dots: false,
-        arrows: false,
         infinite: true,
-        slidesToShow: 3,
+        centerMode: true,
+        swipeToSlide: true,
+        slidesToShow: 3.68,
         slidesToScroll: 1,
+        autoplay : true,
+        pauseOnHover: true,
+        autoplaySpeed: 5000,
+        beforeChange: controllAutoPlay,
+        responsive: [
+            {
+                breakpoint: 1200,
+                settings: {
+                    slidesToShow: 2.34,
+                    slidesToScroll: 1,
+                }
+              },
+            {
+              breakpoint: 800,
+              settings: {
+                slidesToShow: 1.67,
+                slidesToScroll: 1,
+              }
+            },
+            {
+              breakpoint: 480,
+              settings: {
+                autoplay: false,
+                pauseOnHover: false,
+                slidesToShow: 1,
+                slidesToScroll: 1,
+              }
+            }
+        ]
     };
     const pagingSettings = {
         dots: false,
@@ -173,11 +265,14 @@ const RivalSlide = (children : any) => {
                     ref = {mainSlickRef}
                     asNavFor = {pagingSlick}
                     {...mainSettings}
+                    // autoplay = {!(rivalProblemItem.toggle && tagSwitch)}
+                    
                     >
-                        {children.probs.map((item : any, i : number)=>{
+                        {children.rival.map((item : any, i : number)=>{
                             return(
-                                <MainSlickItems key={`${i}`}>
-                                    <div className='item'>
+                                <MainSlickItems key={i}>
+                                    <RivalItemContainer key = {i} rival = {item} />
+                                    {/* <div className='item'>
                                         <div style={{display:'flex'}}>
                                             <h3>{item.tier}</h3>
                                             <h2>
@@ -187,7 +282,7 @@ const RivalSlide = (children : any) => {
                                         <div>rating : {item.rating}</div>
                                         <div>rank : {item.rank}</div>
 
-                                    </div>
+                                    </div> */}
                                 </MainSlickItems>
                             )
                         })}

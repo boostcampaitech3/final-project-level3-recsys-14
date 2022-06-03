@@ -1,15 +1,18 @@
 import React, { ChangeEvent, FormEvent, useState } from "react";
 import { API } from "../utils/axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { Form } from 'react-bootstrap';
 import styled from 'styled-components';
 import svgIcon from "./svgIcon";
+import { useLocation } from "react-router-dom";
 import { 
     primary_purple,
+    light_purple,
     light_blue,
     light_sky_gray,
     bright_purple,
     deep_purple,
-} from "./color";
+} from "../constants/color";
 
 const UserSearchStyledForm = styled.form`
     border-radius: 20px;
@@ -17,13 +20,26 @@ const UserSearchStyledForm = styled.form`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 60%;
+    width: 65%;
     min-width: 120px;
     max-width: 720px;
     padding: 6px 6px;
     background-color: #fff;
-    box-shadow: 0 2px 6px 0 rgba(136,148,171,.2),0 24px 20px -24px rgba(71,82,107,.1);
+    box-shadow: 
+        0 2px 6px 0 rgba(136,148,171,.2),
+        0 24px 20px -24px rgba(71,82,107,.1);
     overflow: hidden;
+    @media screen and (max-width: 480px){
+        width: 90% !important;
+    }
+    &:focus {
+        box-shadow:
+            0 2px 6px 0 rgb(22 10 204 / 20%), 
+            0 24px 20px -24px rgb(23 10 119 / 10%);
+    }
+    @media screen and (max-width: 800px){
+        width: 85%;
+    }
 `;
 
 const USerSearchStyledInput = styled.input`
@@ -41,6 +57,18 @@ const USerSearchStyledInput = styled.input`
     }
 `;
 
+const SearchSelectBox = styled(Form.Select)`
+    width: auto;
+    font-size: 0.5rem;
+    z-index: 10;
+    border-radius: 0.8rem;
+    &:focus {
+        border-color: ${light_purple};
+        box-shadow: 0 0 0 0.25rem ${light_purple}66;
+    }
+
+`;
+
 const UserSearchStyledButton = styled.button`
     color: #E4EBF5;
     padding: 0;
@@ -52,7 +80,7 @@ const UserSearchStyledButton = styled.button`
     box-shadow:
         inset .2rem .2rem 1rem ${light_blue},
         inset -.2rem -.2rem 1rem ${bright_purple},
-        .3rem .3rem .6rem ${light_sky_gray}
+        .3rem .3rem .6rem ${light_sky_gray};
     justify-self: center;
     justify-content: center;
     cursor: pointer;
@@ -69,7 +97,16 @@ const SearchSvgIcon = styled(svgIcon)`
 `;
 
 const UserSearchInput = ({onInput} : any)=>{
+    const params = useParams();
+    const pathname = useLocation().pathname;
+    //params.userHandle
     const [userId, setUserId] = useState('');
+    const [selectedMenu, setSelected] = useState('problem');
+
+    const selectMenu = (e: any) => {
+        setSelected(e.target.value);
+    }
+
     let navigate = useNavigate();
     
     const fetchUserCheck = async() =>{
@@ -90,26 +127,42 @@ const UserSearchInput = ({onInput} : any)=>{
     //React.KeyboardEvent<HTMLInputElement>
     const onSubmit = (e : FormEvent) => {
         e.preventDefault();
-        onInput(userId);
-        setUserId('');
-
-        navigate(`/user/${userId}`);
+        
+        // onInput(userId);
+        // setUserId('');
+        if (selectedMenu == 'problem'){
+            navigate(`/user/${userId}`);
+        }
+        else {
+            navigate(`/user/${userId}/rival`);
+        }
+        // setUserId('');
     };
     const onEnter = (e : React.KeyboardEvent<HTMLInputElement>) =>{
         if(e.key === 'Enter'){
-            onInput(userId);
-            setUserId('');
+            // onInput(userId);
+            // setUserId('');
             
-            navigate(`/user/${userId}`);
+            if (selectedMenu == 'problem'){
+                navigate(`/user/${userId}`);
+            }
+            else {
+                navigate(`/user/${userId}/rival`);
+            }
+            // setUserId('');
         }
     }
 
 
     return(
         <UserSearchStyledForm onSubmit={onSubmit}>
+            <SearchSelectBox onChange={selectMenu} value={selectedMenu} size="sm">
+                <option value="problem">문제 추천</option>
+                <option value="rival">라이벌 추천</option>
+            </SearchSelectBox>
             <USerSearchStyledInput
                 name="userId"
-                placeholder="사용자의 아이디(handle)를 입력하세요."
+                placeholder="아이디(handle)를 입력하세요."
                 value={userId}
                 onChange={onChange}
                 onKeyPress = {onEnter}
