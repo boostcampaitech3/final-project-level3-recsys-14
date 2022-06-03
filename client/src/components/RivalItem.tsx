@@ -41,7 +41,7 @@ const RivalLinkButton = styled.button`
 `;
 
 const RivalItem = ({rival, onToggle}:any) => {
-    console.log(rival);
+    // console.log(rival);
     const onClick = () =>{
         onToggle(rival);
     }

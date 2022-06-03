@@ -28,30 +28,8 @@ const NavBar = ({pathname} : any) => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  if (show) {
-    return (
-      <Modal
-        show={show}
-        onHide={handleClose}
-        backdrop="static"
-        keyboard={false}
-      >
-        <Modal.Header closeButton>
-          <Modal.Title>검색창을 이용해주세요.</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          검색창에 handle을 입력하고 검색 버튼을 누르면 원하는 페이지로 이동할 수 있습니다.
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            닫기
-          </Button>
-        </Modal.Footer>
-      </Modal>
-    );
-  }
-
   return (
+    <>
         <div>
           <StyledNavBar expand="lg" variant="dark" sticky="top">
             <Container fluid>
@@ -91,6 +69,27 @@ const NavBar = ({pathname} : any) => {
             </Container>
           </StyledNavBar>
         </div>
+        {show &&
+          <Modal
+          show={show}
+          onHide={handleClose}
+          backdrop="static"
+          keyboard={false}
+        >
+          <Modal.Header closeButton>
+            <Modal.Title>검색창을 이용해주세요.</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            검색창에 handle을 입력하고 검색 버튼을 누르면 원하는 페이지로 이동할 수 있습니다.
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              닫기
+            </Button>
+          </Modal.Footer>
+        </Modal>
+        }
+      </>
     );
 }
 

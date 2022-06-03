@@ -132,7 +132,7 @@ function Userpage() {
     // dispatch(search(params.userHandle));
 
     const userHandle = useSelector((state: RootState) => state.userSearchInput.userHandle);
-    const problemItem = useSelector((state: RootState) => state.problemItem)
+    const problemItem = useSelector((state: RootState) => state.problemItem);
     const tagSwitch = useSelector((state : RootState) => state.tagSwitch.toggle);
 
     console.log(userHandle); //두 번째 '', 일곱 번째 juk1329
