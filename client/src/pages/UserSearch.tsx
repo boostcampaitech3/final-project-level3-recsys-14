@@ -116,12 +116,13 @@ function Usersearch() {
         user : '',
         flag : false});
     let search_flag = false;
-    
+
     const onChange = (e : React.ChangeEvent<HTMLInputElement>) => {
         const {value, name} = e.target;
 
         setUser({...user, [name]: value});
     };
+
     const fetchvalid = async() =>{
         try{
             console.log(user)

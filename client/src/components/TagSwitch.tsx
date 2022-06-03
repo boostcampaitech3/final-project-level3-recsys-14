@@ -1,6 +1,9 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Overlay, Tooltip } from "react-bootstrap";
 import styled, { css } from "styled-components";
+import { RootState } from "../modules";
+import {useSelector, useDispatch} from 'react-redux';
+
 interface Btnprops {
     toggle : boolean;
 }
@@ -37,6 +40,18 @@ const Ball = styled.div<Btnprops>`
 const TagSwitch = ({onTagSwitch} : any) =>{
     const [ isChecked, setIsChecked ] = useState(false);
     const [ show, setShow ] = useState(false);
+    
+    const problemItem = useSelector((state: RootState) => state.problemItem);
+    const rivalProblem = useSelector((state:RootState) => state.rivalProblemItem)
+    
+
+    useEffect(()=>{
+        if(isChecked == false){
+            setShow(true);
+            setTimeout(()=>setShow(false), 2000);
+        }
+    }, [problemItem, rivalProblem])
+
     const target = useRef(null);
     const onClick = () => {
         setIsChecked((prev) => !prev);

@@ -177,18 +177,23 @@ const RivalSlide = (children : any) => {
     const [pagingSlick, setPagingSlick] = useState<any>(null);
     const mainSlickRef = useRef<Slick>(null);
     const pagingSlickRef = useRef(null);
-    const problemItem = useSelector((state: RootState) => state.problemItem)
+
+    const rivalProblemItem = useSelector((state: RootState) => state.rivalProblemItem)
     const tagSwitch = useSelector((state : RootState) => state.tagSwitch.toggle);
 
     const controllAutoPlay = ()=>{
         console.log(mainSlickRef);
-        console.log(problemItem.toggle);
-        
-        if (problemItem.toggle && tagSwitch){
+        console.log(rivalProblemItem.toggle);
+        console.log('flag : ', (rivalProblemItem.toggle && tagSwitch))
+
+        if (rivalProblemItem.toggle && tagSwitch){
             mainSlickRef.current?.slickPause();
+            // mainSettings = {...mainSettings, autoplay: false}
         }
         else {
             mainSlickRef.current?.slickPlay();
+            // mainSettings = {...mainSettings, autoplay: true}
+
         }
     };
     
@@ -197,13 +202,22 @@ const RivalSlide = (children : any) => {
         setPagingSlick(pagingSlickRef.current);
     }, []);
 
+    // useEffect(()=>{
+    //     if(rivalProblemItem.toggle&& tagSwitch){
+    //         mainSettings = {...mainSettings, autoplay: false}
+    //     }
+    //     else{
+    //         mainSettings = {...mainSettings, autoplay: true}
+    //     }
+    // }, [rivalProblemItem, tagSwitch])
+    
     const mainSettings = {
         infinite: true,
         centerMode: true,
         swipeToSlide: true,
         slidesToShow: 3.68,
         slidesToScroll: 1,
-        autoplay: true,
+        autoplay : true,
         pauseOnHover: true,
         autoplaySpeed: 5000,
         beforeChange: controllAutoPlay,
@@ -251,6 +265,8 @@ const RivalSlide = (children : any) => {
                     ref = {mainSlickRef}
                     asNavFor = {pagingSlick}
                     {...mainSettings}
+                    // autoplay = {!(rivalProblemItem.toggle && tagSwitch)}
+                    
                     >
                         {children.rival.map((item : any, i : number)=>{
                             return(
