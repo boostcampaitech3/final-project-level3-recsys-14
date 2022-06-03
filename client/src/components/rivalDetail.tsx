@@ -103,18 +103,17 @@ const RivalClass = styled.h4`
 const RivalInfoBoxWrapper = styled.div`
     display: inline-block;
     width: 49%;
-    margin: 10px 1% 10px 0;
     @media screen and (max-width: 640px){
         width: 100%;
     }
 `;
 
 const RivalInfoLeftBoxWrapper = styled(RivalInfoBoxWrapper)`
-    margin: 10px 1% 10px 0;
+    margin: 10px 1% 0px 0;
 `;
 
 const RivalInfoRightBoxWrapper = styled(RivalInfoBoxWrapper)`
-    margin: 10px 0 10px 1%;
+    margin: 10px 0 0px 1%;
 `;
 
 const RivalInfoBox = styled.div`
@@ -154,7 +153,8 @@ const RivalDetail = ({rival}:any) =>{
     if (rawTier > 0){
         switch(Math.floor((rawTier - 1) / 5)){
             case 0:
-                tier = "브론즈"; break;
+                tier = "브론즈"; 
+                break;
             case 1: 
                 tier = "실버";
                 break;
@@ -171,9 +171,12 @@ const RivalDetail = ({rival}:any) =>{
                 tier = "루비";
                 break;
             default:
+                tier = "마스터"
                 break;
-        }  
-        tier = tier + " " + (6 - ((rawTier - 1) % 5 + 1));
+        } 
+        if (tier != "마스터"){
+            tier = tier + " " + (6 - ((rawTier - 1) % 5 + 1));
+        }
     }
 
     return(

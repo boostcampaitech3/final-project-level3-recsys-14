@@ -37,14 +37,14 @@ const NavBar = ({pathname} : any) => {
         keyboard={false}
       >
         <Modal.Header closeButton>
-          <Modal.Title>검색창에 handle을 입력해주세요.</Modal.Title>
+          <Modal.Title>검색창을 이용해주세요.</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          검색창에 handle을 입력해야 원하는 페이지로 갈 수 있습니다.
+          검색창에 handle을 입력하고 검색 버튼을 누르면 원하는 페이지로 이동할 수 있습니다.
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
-            Close
+            닫기
           </Button>
         </Modal.Footer>
       </Modal>

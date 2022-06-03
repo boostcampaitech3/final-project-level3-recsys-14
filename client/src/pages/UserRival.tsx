@@ -40,8 +40,8 @@ const RivalIntroStyledDiv = styled.div`
     color: #fff;
     text-align: center;
     text-shadow:
-        1px 1px 14px rgb(0 0 0 / 18%), 
-        2px 2px 28px rgb(0 0 0 / 32%);
+        1px 1px 14px rgb(0 0 0 / 14%), 
+        2px 2px 28px rgb(0 0 0 / 28%);
     font-size: min(max(calc(16px + 3.6vmin), 20px), 54px);
     font-weight: 800;
     margin: 2.5rem 0;
@@ -174,8 +174,8 @@ function Userrival() {
             <RivalIntroBox>
                 <RivalBackgroundStyledDiv />
                 <RivalIntroStyledDiv>
+                    지피지기면 백전백승.<br/>
                     너의 실력이 곧 나의 실력.<br/>
-                    함께 발맞추어 성장하는 우리.
                 </RivalIntroStyledDiv>
                 <RivalIntroStyledSpan>
                     {userHandle} 님과 비슷한 실력을 가진 라이벌을 추천해 드릴게요.<br/>

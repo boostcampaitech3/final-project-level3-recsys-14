@@ -1,7 +1,8 @@
 import React, {useCallback, useEffect, useRef, useState} from 'react';
 import Slick from 'react-slick';
 import styled, {css} from 'styled-components';
-
+import {useSelector} from 'react-redux';
+import { RootState } from "../modules";
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import {Nav} from "react-bootstrap"
@@ -174,9 +175,23 @@ const NextIcon = styled(ArrowForwardIosIcon)`
 const RivalSlide = (children : any) => {
     const [mainSlick, setMainSlick] = useState<any>(null);
     const [pagingSlick, setPagingSlick] = useState<any>(null);
-    const mainSlickRef = useRef(null);
+    const mainSlickRef = useRef<Slick>(null);
     const pagingSlickRef = useRef(null);
+    const problemItem = useSelector((state: RootState) => state.problemItem)
+    const tagSwitch = useSelector((state : RootState) => state.tagSwitch.toggle);
 
+    const controllAutoPlay = ()=>{
+        console.log(mainSlickRef);
+        console.log(problemItem.toggle);
+        
+        if (problemItem.toggle && tagSwitch){
+            mainSlickRef.current?.slickPause();
+        }
+        else {
+            mainSlickRef.current?.slickPlay();
+        }
+    };
+    
     useEffect(()=>{
         setMainSlick(mainSlickRef.current);
         setPagingSlick(pagingSlickRef.current);
@@ -191,6 +206,7 @@ const RivalSlide = (children : any) => {
         autoplay: true,
         pauseOnHover: true,
         autoplaySpeed: 5000,
+        beforeChange: controllAutoPlay,
         responsive: [
             {
                 breakpoint: 1200,
