@@ -154,6 +154,5 @@ export const AlgorithmSlideHeader = styled.div`
     padding: 10px 0;
     z-index: 10;
     text-align: center;
-    background-color: rgba(234, 234, 234, 0.4);
     border-radius: 1.5rem 1.5rem 0 0;
 `;

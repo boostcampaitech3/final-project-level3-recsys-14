@@ -19,8 +19,6 @@ const StyledAccordianButton = styled(Accordion.Button)`
     &:not(.collapsed) {
         background-color: ${light_pink_white}66;
         color: ${dark_purple_blue};
-
-        
     }
 
     &::after {

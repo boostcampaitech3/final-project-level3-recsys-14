@@ -37,7 +37,10 @@ export const CarouselTitle = styled.h4`
     color: #323232;
     font-weight: 600;
     font-size: 1.5rem;
-    margin: 10px 0;
+    margin: 10px 20px;
+    @media screen and (max-width: 480px){
+        display: block;
+    }
 `;
 
 export const CarouselItem = styled.div`

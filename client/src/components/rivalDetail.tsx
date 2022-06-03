@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useSelector } from "react-redux";
 import { RootState } from "../modules";
 import specWrapperImage from "../assets/images/spec_background_large.png";
+import { bright_purple } from "../constants/color";
 
 const RivalItemPage = styled.div`
 position: relative;
@@ -100,6 +101,16 @@ const RivalClass = styled.h4`
     }
 `;
 
+const RivalLink = styled.a`
+    color: #595959;
+    text-decoration: none;
+    &:hover{
+        color: ${bright_purple};
+        font-weight: 600;
+    }
+`;
+
+
 const RivalInfoBoxWrapper = styled.div`
     display: inline-block;
     width: 49%;
@@ -147,6 +158,8 @@ const RivalRightInfo = styled(RivalInfo)`
 const RivalDetail = ({rival}:any) =>{
     // const tagSwitch = useSelector((state : RootState) => state.tagSwitch.toggle);
 
+    const numberFormatter = Intl.NumberFormat('en-US');
+
     const rawTier = rival.tier as number;
     let tier = "난이도 정보 없음";
 
@@ -185,7 +198,9 @@ const RivalDetail = ({rival}:any) =>{
             <WhiteBox>
             <WhiteHandleBox>
                 <RivalHandle>
+                    <RivalLink href = {`https://solved.ac/profile/${rival.handle}`} target='_blank'>
                     {rival.handle}
+                    </RivalLink>
                 </RivalHandle>
             </WhiteHandleBox>
             <WhiteTierBox>
@@ -201,20 +216,20 @@ const RivalDetail = ({rival}:any) =>{
             <RivalInfoLeftBoxWrapper>
             <RivalInfoBox>
                 <RivalLeftInfo>
-                    해결한 문제 수: {rival.solved_count}
+                    해결한 문제 수: {numberFormatter.format(rival.solved_count)}
                 </RivalLeftInfo>
                 <RivalRightInfo>
-                    레이팅: {rival.rating}
+                    레이팅: {numberFormatter.format(rival.rating)}
                 </RivalRightInfo>
             </RivalInfoBox>
             </RivalInfoLeftBoxWrapper>
             <RivalInfoRightBoxWrapper>
             <RivalInfoBox>
                 <RivalLeftInfo>
-                    경험치 : {rival.exp}
+                    경험치 : {numberFormatter.format(rival.exp)}
                 </RivalLeftInfo>
                 <RivalRightInfo>
-                    랭크 : {rival.rank}
+                    랭크 : {numberFormatter.format(rival.rank)}
                 </RivalRightInfo>
             {/* {tagSwitch && item.tags.split(',').map((tag : string, i : number) => <div key={i}>{tag}</div>)} */}
             </RivalInfoBox>

@@ -5,6 +5,10 @@ import ItemSlide from "./itemCarousel";
 import { useSelector } from "react-redux";
 import { RootState } from "../modules";
 
+import {
+    bright_purple,
+} from "../constants/color";
+
 const ProblemItemPage = styled.div`
     position: relative;
     background: 
@@ -61,6 +65,15 @@ const ProblemTitle = styled.h2`
     font-size: 1.6rem;
     text-align: center;
     margin: 10px 20px;
+`;
+
+const ProblemLink = styled.a`
+    color: #595959;
+    text-decoration: none;
+    &:hover{
+        color: ${bright_purple};
+        font-weight: 600;
+    }
 `;
 
 const ProblemLevel = styled.h4`
@@ -136,6 +149,7 @@ const SolvedInfo = styled.h4`
 `;
 
 const ProblemDetail = ({item}:any) =>{
+    const numberFormatter = Intl.NumberFormat('en-US');
     const rawLevel = item.level as number;
     let tier = "난이도 정보 없음";
 
@@ -171,8 +185,11 @@ const ProblemDetail = ({item}:any) =>{
             <WhiteBox>
             <WhiteTitleBox>
                 <ProblemTitle>
+                <ProblemLink href = {`https://www.acmicpc.net/problem/${item.problem_id}`} target='_blank'>
                     {item.title}
+                </ProblemLink>
                 </ProblemTitle>
+                
             </WhiteTitleBox>
             <WhiteLevelBox>
                 <ProblemLevel>
@@ -183,17 +200,21 @@ const ProblemDetail = ({item}:any) =>{
             <TagBox>
                 {item.tags.split(',').map(
                     (tag : string, i : number) => 
-                    <TagItemWrapper key={i}>#{tag}</TagItemWrapper>
+                    <TagItemWrapper key={i}>
+                        <ProblemLink href = {`https://solved.ac/problems/tags/${tag}`} target='_blank'>
+                            #{tag}
+                        </ProblemLink>
+                    </TagItemWrapper>
                 )}
             </TagBox>
             </TagBoxWrapper>
             <SolvedInfoBoxWrapper>
             <SolvedInfoBox>
                 <SolvedInfo>
-                    {"평균 시도: " + item.average_tries + "회"}
+                    {"평균 시도: " + numberFormatter.format(item.average_tries) + "회"}
                 </SolvedInfo>
                 <SolvedInfo>
-                    {"맞힌 사람: " + item.accepted_user_count + "명"}
+                    {"맞힌 사람: " + numberFormatter.format(item.accepted_user_count) + "명"}
                 </SolvedInfo>
             </SolvedInfoBox>
             </SolvedInfoBoxWrapper>
