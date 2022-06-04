@@ -1,7 +1,7 @@
 import React, { ChangeEvent, FormEvent, useState } from "react";
 import { API } from "../utils/axios";
 import { useNavigate, useParams } from "react-router-dom";
-import { Form } from 'react-bootstrap';
+import { Form, Modal, Button} from 'react-bootstrap';
 import styled from 'styled-components';
 import svgIcon from "./svgIcon";
 import { useLocation } from "react-router-dom";
@@ -103,6 +103,12 @@ const UserSearchInput = ({onInput} : any)=>{
     const [userId, setUserId] = useState('');
     const [selectedMenu, setSelected] = useState('problem');
 
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+
     const selectMenu = (e: any) => {
         setSelected(e.target.value);
     }
@@ -113,11 +119,19 @@ const UserSearchInput = ({onInput} : any)=>{
         try{
             const {data} = await API.get(`/user/check?handle=${userId}`);
             console.log(data);
+            if (selectedMenu == 'problem'){
+                navigate(`/user/${userId}`);
+            }
+            else {
+                navigate(`/user/${userId}/rival`);
+            }
+            // setValidUserFound(true);
         }
         catch(e){
-            console.error(e);
-            alert("Wrong User !");
-            navigate('/');
+            handleShow();
+            console.log(show)
+            console.error(e);  
+
         }
     }
     
@@ -127,34 +141,39 @@ const UserSearchInput = ({onInput} : any)=>{
     //React.KeyboardEvent<HTMLInputElement>
     const onSubmit = (e : FormEvent) => {
         e.preventDefault();
-        
+        fetchUserCheck();
+
         // onInput(userId);
         // setUserId('');
-        if (selectedMenu == 'problem'){
-            navigate(`/user/${userId}`);
-        }
-        else {
-            navigate(`/user/${userId}/rival`);
-        }
+
+        // if (selectedMenu == 'problem'){
+        //     navigate(`/user/${userId}`);
+        // }
+        // else {
+        //     navigate(`/user/${userId}/rival`);
+        // }
+
         // setUserId('');
     };
     const onEnter = (e : React.KeyboardEvent<HTMLInputElement>) =>{
         if(e.key === 'Enter'){
             // onInput(userId);
             // setUserId('');
-            
-            if (selectedMenu == 'problem'){
-                navigate(`/user/${userId}`);
-            }
-            else {
-                navigate(`/user/${userId}/rival`);
-            }
+            fetchUserCheck();
+            // if (selectedMenu == 'problem'){
+            //     navigate(`/user/${userId}`);
+            // }
+            // else {
+            //     navigate(`/user/${userId}/rival`);
+            // }
+
             // setUserId('');
         }
     }
 
 
     return(
+        <>
         <UserSearchStyledForm onSubmit={onSubmit}>
             <SearchSelectBox onChange={selectMenu} value={selectedMenu} size="sm">
                 <option value="problem">문제 추천</option>
@@ -178,6 +197,28 @@ const UserSearchInput = ({onInput} : any)=>{
                 </SearchSvgIcon>
             </UserSearchStyledButton>
         </UserSearchStyledForm>
+
+        {show && //추가
+            <Modal
+            show={show}
+            onHide={handleClose}
+            backdrop="static"
+            keyboard={false}
+          >
+            <Modal.Header closeButton>
+              <Modal.Title>유효한 핸들(handle)을 입력해주세요.</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              유저의 핸들이 존재하지 않거나 잘못된 핸들을 입력했습니다.
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={handleClose}>
+                닫기
+              </Button>
+            </Modal.Footer>
+          </Modal>
+        }
+        </>
     );
 };
 
