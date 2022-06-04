@@ -188,7 +188,7 @@ function Userrival() {
             <RivalIntroBox>
                 <RivalBackgroundStyledDiv />
                 <RivalIntroStyledDiv>
-                    지피지기면 백전백승.<br/>
+                    지피지기면 백전불태.<br/>
                     너의 실력이 곧 나의 실력.<br/>
                 </RivalIntroStyledDiv>
                 <RivalIntroStyledSpan>

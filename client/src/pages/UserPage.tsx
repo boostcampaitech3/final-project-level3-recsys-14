@@ -8,7 +8,6 @@ import MainFooter from "../components/footer";
 import {useSelector, useDispatch} from 'react-redux';
 import { API } from "../utils/axios";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
-
 import { search } from "../modules/userSearchInput";
 import { toggleSwitch } from "../modules/tagSwitch";
 

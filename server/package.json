@@ -8,7 +8,8 @@
     "test": "cross-env NODE_ENV=development nodemon --delay 500ms src/app.ts",
     "dev": "cross-env NODE_ENV=production tsc-watch --onSuccess \"ts-node --files -r tsconfig-paths/register dist/app.js\"",
     "prod": "cross-env NODE_ENV=production pm2 start --name recjoon-server ts-node -- --files -r tsconfig-paths/register dist/app.js",
-    "docker": "cross-env NODE_ENV=production pm2-runtime start --name recjoon-server ts-node -- --files src/app.ts"
+    "docker-test": "cross-env NODE_ENV=production pm2-runtime start --name recjoon-server ts-node -- --files src/app.ts",
+    "docker": "cross-env NODE_ENV=production pm2-runtime start --name recjoon-server pm2.json"
   },
   "author": "",
   "license": "ISC",

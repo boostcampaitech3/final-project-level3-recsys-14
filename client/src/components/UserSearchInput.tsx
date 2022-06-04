@@ -1,7 +1,7 @@
 import React, { ChangeEvent, FormEvent, useState } from "react";
 import { API } from "../utils/axios";
 import { useNavigate, useParams } from "react-router-dom";
-import { Form, Modal, Button} from 'react-bootstrap';
+import { Form, Modal, Button } from 'react-bootstrap';
 import styled from 'styled-components';
 import svgIcon from "./svgIcon";
 import { useLocation } from "react-router-dom";
@@ -102,12 +102,11 @@ const UserSearchInput = ({onInput} : any)=>{
     //params.userHandle
     const [userId, setUserId] = useState('');
     const [selectedMenu, setSelected] = useState('problem');
-
+    const [validUserFound, setValidUserFound] = useState(false);
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-
 
     const selectMenu = (e: any) => {
         setSelected(e.target.value);
@@ -116,6 +115,7 @@ const UserSearchInput = ({onInput} : any)=>{
     let navigate = useNavigate();
     
     const fetchUserCheck = async() =>{
+        let userFound = false;
         try{
             const {data} = await API.get(`/user/check?handle=${userId}`);
             console.log(data);
@@ -133,6 +133,7 @@ const UserSearchInput = ({onInput} : any)=>{
             console.error(e);  
 
         }
+        console.log(validUserFound);
     }
     
     const onChange = (e : ChangeEvent<HTMLInputElement>) => {
