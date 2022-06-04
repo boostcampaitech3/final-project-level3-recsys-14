@@ -172,7 +172,7 @@ const RivalItemSlide = (children : any) => {
     const mainSlickRef = useRef(null);
 
     const mainSettings = {
-        infinite: true,
+        infinite: children.rivalprobs.length > 3.5,
         centerMode: true,
         swipeToSlide: true,
         slidesToShow: 3.68,
@@ -183,6 +183,7 @@ const RivalItemSlide = (children : any) => {
             {
                 breakpoint: 1200,
                 settings: {
+                    infinite: children.rivalprobs.length > 2.5,
                     slidesToShow: 2.34,
                     slidesToScroll: 1,
                 }
@@ -190,6 +191,7 @@ const RivalItemSlide = (children : any) => {
             {
               breakpoint: 800,
               settings: {
+                infinite: children.rivalprobs.length > 1.5,                
                 slidesToShow: 1.67,
                 slidesToScroll: 1,
               }
@@ -197,6 +199,7 @@ const RivalItemSlide = (children : any) => {
             {
               breakpoint: 480,
               settings: {
+                infinite: children.rivalprobs.length > 1,                
                 autoplay: false,
                 pauseOnHover: false,
                 slidesToShow: 1,

@@ -20,6 +20,7 @@ import rivalRecImage from "../assets/images/rival_rec_large.png";
 import RivalRecFAQ from "../components/rivalRecFAQ";
 import { initialRival } from "../modules/rivalItem";
 import { initialRivalProblem } from "../modules/rivalProblemItem";
+import { autoUserInitial } from "../modules/autoSearch";
 
 const RivalIntroBox = styled.div`
     display : flex;
@@ -137,6 +138,8 @@ function Userrival() {
     const onTagSwitch = useCallback(() => dispatch(toggleSwitch()), [dispatch]);
     const initialUserRival = useCallback(()=>dispatch(initialRival()), [dispatch]);
     const initialUserRivalProblem = useCallback(()=>dispatch(initialRivalProblem()), [dispatch]);
+    const autoSearchInitialDispatch = useCallback(() => dispatch(autoUserInitial()), [dispatch]);
+
 
     const userHandle = useSelector((state: RootState) => state.userSearchInput.userHandle);
     const rivalItem = useSelector((state : RootState) => state.rivalItem)
@@ -174,6 +177,7 @@ function Userrival() {
         userHandleDispatch(params.userHandle);
         initialUserRival();
         initialUserRivalProblem();
+        autoSearchInitialDispatch();
     }, [params]);
 
     useEffect(()=>{

@@ -1,11 +1,15 @@
-import React, { ChangeEvent, FormEvent, useState } from "react";
+import React, { ChangeEvent, FormEvent, useCallback, useRef, useState } from "react";
 import { API } from "../utils/axios";
 import { useNavigate, useParams } from "react-router-dom";
 import { Form, Modal, Button } from 'react-bootstrap';
 import styled from 'styled-components';
 import svgIcon from "./svgIcon";
 import { useLocation } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { autoUserInitial, autoUserSearch } from "../modules/autoSearch";
 import AutoSearch from "./AutoSearch";
+import _ from 'lodash';
+
 import { 
     primary_purple,
     light_purple,
@@ -107,6 +111,13 @@ const UserSearchInput = ({onInput} : any)=>{
     const [validUserFound, setValidUserFound] = useState(false);
     const [show, setShow] = useState(false);
 
+    const inputRef = useRef<HTMLInputElement>(null);
+
+    const dispatch = useDispatch();
+    const autoSearchDispatch = useCallback((handles : Array<any>) => dispatch(autoUserSearch(handles)), [dispatch]);
+    const autoSearchInitialDispatch = useCallback(() => dispatch(autoUserInitial()), [dispatch]);
+    
+
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
@@ -137,10 +148,31 @@ const UserSearchInput = ({onInput} : any)=>{
         }
         console.log(validUserFound);
     }
-    
+    const sendAPI = async (query : string) => {
+        if(query.length === 0) {
+            autoSearchInitialDispatch();
+            return;
+        }
+        try{
+            const {data} = await API.get(`/user/search?handle=${query}`);
+
+            //const userlist = await API.get(`/user/lookup?handles=${data.join()}`)
+
+            autoSearchDispatch(data);
+            console.log(query);
+        }catch(e){
+            console.log(e);
+        }
+        
+    }
+
+    const delayedAPICall = useRef(_.debounce((q) => sendAPI(q), 750)).current;
+
     const onChange = (e : ChangeEvent<HTMLInputElement>) => {
         setUserId(e.target.value);
+        delayedAPICall(e.target.value);
     };
+
     //React.KeyboardEvent<HTMLInputElement>
     const onSubmit = (e : FormEvent) => {
         e.preventDefault();
@@ -184,6 +216,7 @@ const UserSearchInput = ({onInput} : any)=>{
             </SearchSelectBox>
             <USerSearchStyledInput
                 name="userId"
+                ref={inputRef}
                 placeholder="아이디(handle)를 입력하세요."
                 value={userId}
                 onChange={onChange}
@@ -200,7 +233,7 @@ const UserSearchInput = ({onInput} : any)=>{
                 </SearchSvgIcon>
             </UserSearchStyledButton>
 
-            {/* <AutoSearch /> */}
+            <AutoSearch selectedMenu = {selectedMenu}/>
 
         </UserSearchStyledForm>
 

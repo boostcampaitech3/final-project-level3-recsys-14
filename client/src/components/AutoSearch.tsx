@@ -72,10 +72,19 @@ const SearchSvgIcon = styled(svgIcon)`
     height: min(max(calc(10px + 1vmin), 10px), 18px);
 `;
 
-const AutoSearch = () =>{
+const AutoSearch = ({selectedMenu} : any) =>{
+
   const navigate = useNavigate();
   const searchHandles = useSelector((state : RootState)=> state.autoSearch.handles);
 
+  const onClickUser = (userId : string) => {
+    if (selectedMenu == 'problem'){
+      navigate(`/user/${userId}`);
+    }
+    else {
+      navigate(`/user/${userId}/rival`);
+    }
+  }
 
   const tierScaling = (tier : number) => {
   let scaledTier = "티어 정보 없음";
@@ -116,12 +125,22 @@ const AutoSearch = () =>{
           <AutoSearchWrap>
             {searchHandles.map((user : any, i : number) => {
               return(
-              <AutoSearchData key = {i} onClick= {() => navigate(`/user/${user.handle}`)}>
+              <AutoSearchData key = {i} onClick= {() => onClickUser(user.handle)}>
+              
+              {selectedMenu == 'problem' ? 
               <Link to={`/user/${user.handle}`}>
                 <UserTier>
                 {tierScaling(user.tier)}
                 </UserTier>
-                {user.handle}</Link>
+                {user.handle}
+              </Link> : 
+              <Link to={`/user/${user.handle}/rival`}>
+                <UserTier>
+                {tierScaling(user.tier)}
+                </UserTier>
+                {user.handle}
+              </Link>
+              }
               <SearchSvgIcon className="searchicon"
                 fill='none'
                 stroke='currentColor'
@@ -130,7 +149,8 @@ const AutoSearch = () =>{
                 <circle cx="11" cy="11" r="8"></circle>
                 <path d="M21 21l-4.35-4.35"></path>
               </SearchSvgIcon>
-            </AutoSearchData>
+              
+              </AutoSearchData>
               )
             })}
             
