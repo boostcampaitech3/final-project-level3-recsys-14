@@ -36,7 +36,7 @@ export const getUsersStartWithHandle = async (req: Request, res: Response) => {
     const handle = req.query.handle as string;
 
     const usersServiceInstance = Container.get(UsersService);
-    const handles = await usersServiceInstance.getUsersStartWithHandle(handle);
+    const usersInfo = await usersServiceInstance.getUsersStartWithHandle(handle);
 
-    res.status(200).send(handles);
+    res.status(200).send(usersInfo);
 }
