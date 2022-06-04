@@ -5,6 +5,7 @@ import { Form, Modal, Button} from 'react-bootstrap';
 import styled from 'styled-components';
 import svgIcon from "./svgIcon";
 import { useLocation } from "react-router-dom";
+import AutoSearch from "./AutoSearch";
 import { 
     primary_purple,
     light_purple,
@@ -15,6 +16,7 @@ import {
 } from "../constants/color";
 
 const UserSearchStyledForm = styled.form`
+    /* position: relative; */
     border-radius: 20px;
     padding-right: 12px;
     display: flex;
@@ -196,6 +198,9 @@ const UserSearchInput = ({onInput} : any)=>{
                     <path d="M21 21l-4.35-4.35"></path>
                 </SearchSvgIcon>
             </UserSearchStyledButton>
+
+            {/* <AutoSearch /> */}
+
         </UserSearchStyledForm>
 
         {show && //추가
