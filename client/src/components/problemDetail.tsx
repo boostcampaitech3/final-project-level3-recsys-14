@@ -198,7 +198,7 @@ const ProblemDetail = ({item}:any) =>{
             </WhiteLevelBox>
             <TagBoxWrapper>
             <TagBox>
-                {item.tags == null ? item.tags.split(',').map(
+                {item.tags != null ? item.tags.split(',').map(
                     (tag : string, i : number) => 
                     <TagItemWrapper key={i}>
                         <ProblemLink href = {`https://solved.ac/problems/tags/${tag}`} target='_blank'>
