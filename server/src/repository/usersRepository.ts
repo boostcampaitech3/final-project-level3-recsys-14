@@ -20,4 +20,18 @@ export class UsersRepository extends BaseRepository<Users> {
 
         return { rowInfo };
     }
+
+    public async fetchRowStartWithHandle(
+        entity: EntityTarget<unknown>,
+        handle: string
+    ): Promise<any> {
+        const rowsInfo = await this.repository
+        .createQueryBuilder()
+        .where("handle like :handle", { handle: `${handle}%`})
+        .orderBy("handle", "ASC")
+        .limit(5)
+        .getMany();
+
+        return { rowsInfo };
+    }
 }
