@@ -11,11 +11,15 @@ import { API } from "../utils/axios";
 import { useNavigate } from "react-router-dom";
 
 import { search } from "../modules/userSearchInput";
+import { toggleSwitch } from "../modules/tagSwitch";
+
 import { RootState } from "../modules";
 import RivalProblem from "../components/rivalProblem";
 import rivalBackgroundImage from "../assets/images/rival_background_large.png";
 import rivalRecImage from "../assets/images/rival_rec_large.png";
 import RivalRecFAQ from "../components/rivalRecFAQ";
+import { initialRival } from "../modules/rivalItem";
+import { initialRivalProblem } from "../modules/rivalProblemItem";
 
 const RivalIntroBox = styled.div`
     display : flex;
@@ -130,7 +134,9 @@ function Userrival() {
 
     const dispatch = useDispatch();
     const userHandleDispatch = useCallback((userHandle : string | undefined)=> dispatch(search(userHandle)), [dispatch])
-
+    const onTagSwitch = useCallback(() => dispatch(toggleSwitch()), [dispatch]);
+    const initialUserRival = useCallback(()=>dispatch(initialRival()), [dispatch]);
+    const initialUserRivalProblem = useCallback(()=>dispatch(initialRivalProblem()), [dispatch]);
 
     const userHandle = useSelector((state: RootState) => state.userSearchInput.userHandle);
     const rivalItem = useSelector((state : RootState) => state.rivalItem)
@@ -166,7 +172,15 @@ function Userrival() {
     useEffect(()=>{
         fetchUserCheck();
         userHandleDispatch(params.userHandle);
+        initialUserRival();
+        initialUserRivalProblem();
     }, [params]);
+
+    useEffect(()=>{
+        if(tagSwitch == true){
+            onTagSwitch();
+        }
+    }, []);
 
     return(
         <div>
@@ -174,7 +188,7 @@ function Userrival() {
             <RivalIntroBox>
                 <RivalBackgroundStyledDiv />
                 <RivalIntroStyledDiv>
-                    지피지기면 백전백승.<br/>
+                    지피지기면 백전불태.<br/>
                     너의 실력이 곧 나의 실력.<br/>
                 </RivalIntroStyledDiv>
                 <RivalIntroStyledSpan>

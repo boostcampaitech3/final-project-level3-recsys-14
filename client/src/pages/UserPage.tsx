@@ -8,12 +8,14 @@ import MainFooter from "../components/footer";
 import {useSelector, useDispatch} from 'react-redux';
 import { API } from "../utils/axios";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
-
 import { search } from "../modules/userSearchInput";
+import { toggleSwitch } from "../modules/tagSwitch";
+
 import { RootState } from "../modules";
 import userBackgroundImage from '../assets/images/user_background_large.png';
 import userRecImage from "../assets/images/problem_rec_large.png";
 import ProblemRecFAQ from "../components/problemRecFAQ";
+import { initialProblem } from "../modules/problemItem";
 
 const Box = styled.div`
     display : flex;
@@ -128,7 +130,11 @@ function Userpage() {
     // console.log(location.pathname);
 
     const dispatch = useDispatch();
-    const userHandleDispatch = useCallback((userHandle : string | undefined)=> dispatch(search(userHandle)), [dispatch])
+    const userHandleDispatch = useCallback((userHandle : string | undefined)=> dispatch(search(userHandle)), [dispatch]);
+    const onTagSwitch = useCallback(() => dispatch(toggleSwitch()), [dispatch]);
+
+    const initialUserpage = useCallback(() => dispatch(initialProblem()),[dispatch]);
+
     // dispatch(search(params.userHandle));
 
     const userHandle = useSelector((state: RootState) => state.userSearchInput.userHandle);
@@ -155,8 +161,14 @@ function Userpage() {
         // userHandleDispatch(params.userHandle);
         fetchUserCheck();
         userHandleDispatch(params.userHandle);
+        initialUserpage();
     }, [params]);
-    
+    useEffect(()=>{
+        if(tagSwitch == true){
+            onTagSwitch();
+        }
+        // initialUserpage();
+    }, []);
     
     //NavBar 세 번째, 8번쨰
     //individual 네 번째 9번째

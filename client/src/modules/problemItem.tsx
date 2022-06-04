@@ -1,11 +1,15 @@
 const TOGGLE = 'problemItem/TOGGLE' as const;
+const INITIAL ='problemItem/INITIAL' as const;
 
 export const itemToggle = (item : any) => ({
     type : TOGGLE,
     payload : item
-})
+});
+export const initialProblem = () => ({
+    type : INITIAL
+});
 
-type problemItemAction = | ReturnType<typeof itemToggle>;
+type problemItemAction = | ReturnType<typeof itemToggle> | ReturnType<typeof initialProblem>;
 
 export type problemItemState = {
     toggle : boolean,
@@ -42,6 +46,8 @@ function problemItem(state: problemItemState = initialState,
                     return {...state, toggle : true, item : action.payload}
                 }
                 // return {...state, toggle : !state.toggle, item : action.payload}
+            case INITIAL:
+                return {...state, toggle : initialState.toggle, item : initialState.item};
             default:
                 return state;
         }

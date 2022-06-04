@@ -31,3 +31,12 @@ export const getUsersByHandles = async (req: Request, res: Response) => {
 
     res.status(200).send(userInfo);
 }
+
+export const getUsersStartWithHandle = async (req: Request, res: Response) => {
+    const handle = req.query.handle as string;
+
+    const usersServiceInstance = Container.get(UsersService);
+    const usersInfo = await usersServiceInstance.getUsersStartWithHandle(handle);
+
+    res.status(200).send(usersInfo);
+}
