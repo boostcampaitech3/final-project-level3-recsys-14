@@ -1,7 +1,7 @@
 import React, { ChangeEvent, FormEvent, useState } from "react";
 import { API } from "../utils/axios";
 import { useNavigate, useParams } from "react-router-dom";
-import { Form } from 'react-bootstrap';
+import { Form, Modal, Button } from 'react-bootstrap';
 import styled from 'styled-components';
 import svgIcon from "./svgIcon";
 import { useLocation } from "react-router-dom";
@@ -102,6 +102,11 @@ const UserSearchInput = ({onInput} : any)=>{
     //params.userHandle
     const [userId, setUserId] = useState('');
     const [selectedMenu, setSelected] = useState('problem');
+    const [validUserFound, setValidUserFound] = useState(false);
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     const selectMenu = (e: any) => {
         setSelected(e.target.value);
@@ -110,15 +115,25 @@ const UserSearchInput = ({onInput} : any)=>{
     let navigate = useNavigate();
     
     const fetchUserCheck = async() =>{
+        let userFound = false;
         try{
             const {data} = await API.get(`/user/check?handle=${userId}`);
-            console.log(data);
+            
+            switch(data.message){
+                case `User ${userId} exists.`:
+                    console.log(data.message);
+                    setValidUserFound(true);
+                    break;
+
+                default:
+                    setValidUserFound(false);
+                    break;
+            }
         }
         catch(e){
-            console.error(e);
-            alert("Wrong User !");
-            navigate('/');
+            setValidUserFound(false);
         }
+        console.log(validUserFound);
     }
     
     const onChange = (e : ChangeEvent<HTMLInputElement>) => {
@@ -127,16 +142,13 @@ const UserSearchInput = ({onInput} : any)=>{
     //React.KeyboardEvent<HTMLInputElement>
     const onSubmit = (e : FormEvent) => {
         e.preventDefault();
-        
-        // onInput(userId);
-        // setUserId('');
+
         if (selectedMenu == 'problem'){
             navigate(`/user/${userId}`);
         }
         else {
             navigate(`/user/${userId}/rival`);
         }
-        // setUserId('');
     };
     const onEnter = (e : React.KeyboardEvent<HTMLInputElement>) =>{
         if(e.key === 'Enter'){
