@@ -35,4 +35,17 @@ export default class UsersService {
         
         return rowsInfo;
     }
+
+    public async getUsersStartWithHandle(handle: string){
+        const { rowsInfo } = await this.usersRepository.fetchRowStartWithHandle(Users, handle);
+        
+        let handles = []
+        await Promise.all(rowsInfo.map(
+            async rowInfo => {
+                handles.push(rowInfo.handle);
+            }
+        ));
+        
+        return handles;
+    }
 }
