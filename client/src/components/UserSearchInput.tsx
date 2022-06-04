@@ -118,20 +118,20 @@ const UserSearchInput = ({onInput} : any)=>{
         let userFound = false;
         try{
             const {data} = await API.get(`/user/check?handle=${userId}`);
-            
-            switch(data.message){
-                case `User ${userId} exists.`:
-                    console.log(data.message);
-                    setValidUserFound(true);
-                    break;
-
-                default:
-                    setValidUserFound(false);
-                    break;
+            console.log(data);
+            if (selectedMenu == 'problem'){
+                navigate(`/user/${userId}`);
             }
+            else {
+                navigate(`/user/${userId}/rival`);
+            }
+            // setValidUserFound(true);
         }
         catch(e){
-            setValidUserFound(false);
+            handleShow();
+            console.log(show)
+            console.error(e);  
+
         }
         console.log(validUserFound);
     }
@@ -142,31 +142,39 @@ const UserSearchInput = ({onInput} : any)=>{
     //React.KeyboardEvent<HTMLInputElement>
     const onSubmit = (e : FormEvent) => {
         e.preventDefault();
+        fetchUserCheck();
 
-        if (selectedMenu == 'problem'){
-            navigate(`/user/${userId}`);
-        }
-        else {
-            navigate(`/user/${userId}/rival`);
-        }
+        // onInput(userId);
+        // setUserId('');
+
+        // if (selectedMenu == 'problem'){
+        //     navigate(`/user/${userId}`);
+        // }
+        // else {
+        //     navigate(`/user/${userId}/rival`);
+        // }
+
+        // setUserId('');
     };
     const onEnter = (e : React.KeyboardEvent<HTMLInputElement>) =>{
         if(e.key === 'Enter'){
             // onInput(userId);
             // setUserId('');
-            
-            if (selectedMenu == 'problem'){
-                navigate(`/user/${userId}`);
-            }
-            else {
-                navigate(`/user/${userId}/rival`);
-            }
+            fetchUserCheck();
+            // if (selectedMenu == 'problem'){
+            //     navigate(`/user/${userId}`);
+            // }
+            // else {
+            //     navigate(`/user/${userId}/rival`);
+            // }
+
             // setUserId('');
         }
     }
 
 
     return(
+        <>
         <UserSearchStyledForm onSubmit={onSubmit}>
             <SearchSelectBox onChange={selectMenu} value={selectedMenu} size="sm">
                 <option value="problem">문제 추천</option>
@@ -190,6 +198,28 @@ const UserSearchInput = ({onInput} : any)=>{
                 </SearchSvgIcon>
             </UserSearchStyledButton>
         </UserSearchStyledForm>
+
+        {show && //추가
+            <Modal
+            show={show}
+            onHide={handleClose}
+            backdrop="static"
+            keyboard={false}
+          >
+            <Modal.Header closeButton>
+              <Modal.Title>유효한 핸들(handle)을 입력해주세요.</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              유저의 핸들이 존재하지 않거나 잘못된 핸들을 입력했습니다.
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={handleClose}>
+                닫기
+              </Button>
+            </Modal.Footer>
+          </Modal>
+        }
+        </>
     );
 };
 

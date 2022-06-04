@@ -52,6 +52,10 @@ const TagSwitch = ({onTagSwitch} : any) =>{
         }
     }, [problemItem, rivalProblem])
 
+    // useEffect(()=>{
+    //     onTagSwitch(isChecked);
+    // }, [])
+
     const target = useRef(null);
     const onClick = () => {
         setIsChecked((prev) => !prev);
