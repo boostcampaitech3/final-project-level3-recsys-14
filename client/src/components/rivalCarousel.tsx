@@ -212,7 +212,7 @@ const RivalSlide = (children : any) => {
     // }, [rivalProblemItem, tagSwitch])
     
     const mainSettings = {
-        infinite: true,
+        infinite: children.rival.length > 3.5,
         centerMode: true,
         swipeToSlide: true,
         slidesToShow: 3.68,
@@ -220,11 +220,12 @@ const RivalSlide = (children : any) => {
         autoplay : true,
         pauseOnHover: true,
         autoplaySpeed: 5000,
-        beforeChange: controllAutoPlay,
+        // beforeChange: controllAutoPlay,
         responsive: [
             {
                 breakpoint: 1200,
                 settings: {
+                    infinite: children.rival.length > 2.5,
                     slidesToShow: 2.34,
                     slidesToScroll: 1,
                 }
@@ -232,6 +233,7 @@ const RivalSlide = (children : any) => {
             {
               breakpoint: 800,
               settings: {
+                infinite: children.rival.length > 1.5,
                 slidesToShow: 1.67,
                 slidesToScroll: 1,
               }
@@ -239,6 +241,7 @@ const RivalSlide = (children : any) => {
             {
               breakpoint: 480,
               settings: {
+                infinite: children.rival.length > 1,
                 autoplay: false,
                 pauseOnHover: false,
                 slidesToShow: 1,
