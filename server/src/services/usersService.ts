@@ -39,13 +39,16 @@ export default class UsersService {
     public async getUsersStartWithHandle(handle: string){
         const { rowsInfo } = await this.usersRepository.fetchRowStartWithHandle(Users, handle);
         
-        let handles = []
+        let usersInfo = []
         await Promise.all(rowsInfo.map(
             async rowInfo => {
-                handles.push(rowInfo.handle);
+                usersInfo.push({
+                    handle: rowInfo.handle,
+                    tier: rowInfo.tier
+                });
             }
         ));
         
-        return handles;
+        return usersInfo;
     }
 }
