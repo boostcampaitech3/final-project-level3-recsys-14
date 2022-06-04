@@ -1,11 +1,15 @@
 const TOGGLE = 'rivalItem/TOGGLE' as const;
+const INITIAL = 'rivalItem/INITIAL' as const;
 
 export const rivalToggle = (rival:any) => ({
     type : TOGGLE,
     payload : rival
 });
+export const initialRival = () =>({
+    type : INITIAL
+})
 
-type rivalItemAction = | ReturnType<typeof rivalToggle>;
+type rivalItemAction = | ReturnType<typeof rivalToggle> | ReturnType<typeof initialRival>;
 
 export type rivalItemState = {
     toggle : boolean,
@@ -55,6 +59,8 @@ function rivalItem(state : rivalItemState = initialState,
                 else{
                     return {...state, toggle : true, rival : action.payload}
                 }
+            case INITIAL:
+                return {...state, toggle : initialState.toggle, rival : initialState.rival}
             default:
                 return state;
         }

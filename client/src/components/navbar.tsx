@@ -1,6 +1,6 @@
 import { Navbar, Container, Nav, NavDropdown, Form, FormControl, Button} from "react-bootstrap"
 import React, { useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { API } from "../utils/axios";
 import styled from "styled-components";
@@ -23,6 +23,8 @@ const NavBar = ({pathname} : any) => {
   const userHandle = useSelector((state: RootState) => state.userSearchInput.userHandle);
   console.log(pathname, userHandle)
 
+  const navigate = useNavigate();
+  
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -40,13 +42,13 @@ const NavBar = ({pathname} : any) => {
                   className="me-auto my-2 my-lg-0"
                   style={{ maxHeight: '100px' }}
                   navbarScroll>
-                  {/* <Nav.Link href="/">Home</Nav.Link> */}
+                  {/* <Nav.Link href="/">Home</Nav.Link> href={'/user/' + userHandle}*/}
                   { pathname != undefined ?
-                    <Nav.Link href={'/user/' + userHandle}>문제 추천</Nav.Link>:
+                    <Nav.Link onClick={() => navigate(`/user/${userHandle}`)} > 문제 추천 </Nav.Link>:
                     <Nav.Link onClick={handleShow}>문제 추천</Nav.Link> 
                   }
                   { pathname != undefined ?
-                    <Nav.Link href={'/user/' + userHandle + '/rival'}>라이벌 기반 추천</Nav.Link>:
+                    <Nav.Link onClick={() => navigate(`/user/${userHandle}/rival`)}>라이벌 기반 추천</Nav.Link>:
                     <Nav.Link onClick={handleShow}>라이벌 기반 추천</Nav.Link>
                   }
                   {/* <Nav.Link href={pathname === `/user/${userHandle}` ? pathname + '/rival' : `/user/${userHandle}`}>
