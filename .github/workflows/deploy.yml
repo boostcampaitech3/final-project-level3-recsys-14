@@ -54,7 +54,7 @@ jobs:
       #   working-directory: ./server
 
       - name: Install client dependencies
-        run: npm run install
+        run: npm install
         working-directory: ./client
 
       # - name: Build server
