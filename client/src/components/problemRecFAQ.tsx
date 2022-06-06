@@ -32,23 +32,16 @@ const ProblemRecFAQ = () => {
         <Accordion alwaysOpen>
             <Accordion.Item eventKey="0">
                 <StyledAccordianButton>
-                    RECJOON은 어떤 웹 사이트인가요?
+                    이미 이전에 풀었던 문제가 추천돼요.
                 </StyledAccordianButton>
                 <Accordion.Body>
-                RECJOON은 solved.ac API로 수집한 Baekjoon Online Judge 데이터를 바탕으로 solved.ac 유저 개개인에 맞는 문제를 추천하는 웹 서비스입니다. 
-                또한 개인의 실력과 비슷한 유저를 라이벌로 추천하고, 라이벌이 풀었던 문제 중에서 자신이 풀지 않았던 문제도 추천해 드립니다.
+                    본 웹 서비스는 유저별로 문제를 추천하기 위해 solved.ac에서 데이터를 주기마다 자동으로 가져오고 있으며, Baekjoon Online Judge 또는 solved.ac의 데이터와 실시간으로 연동되지 않습니다. 이로 인해 다음과 같은 원인으로 추정할 수 있습니다.
+                    1. 데이터를 업데이트 한 시점 이후에 푼 문제인 경우 
+                    2. solved.ac API에서 데이터를 제대로 가져오지 못한 경우 
+                    3. Baekjoon Online Judge와 solved.ac에서의 문제 푼 기록이 일치하지 않은 상태
                 </Accordion.Body>
             </Accordion.Item>
             <Accordion.Item eventKey="1">
-                <StyledAccordianButton>
-                    Baekjoon Online Judge 또는 solved.ac와 관련된 사이트인가요?
-                </StyledAccordianButton>
-                <Accordion.Body>
-                본 웹사이트는 네이버 커넥트재단 부스트캠프 AI Tech 3기의 RecSys Track의 14조인 RECognizer 팀의 최종 프로젝트의 일환으로 제작되었습니다.
-                Baekjoon Online Judge 또는 solved.ac와 일절 관련이 없으며, 어떠한 영리 목적으로도 운영되지 않는 팀 프로젝트 결과물입니다.
-                </Accordion.Body>
-            </Accordion.Item>
-            <Accordion.Item eventKey="2">
                 <StyledAccordianButton>
                     Baekjoon Online Judge 유저와 문제에 관한 데이터는 어떻게 수집되나요?
                 </StyledAccordianButton>
