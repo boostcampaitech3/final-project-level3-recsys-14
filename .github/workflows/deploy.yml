@@ -50,19 +50,19 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       # - name: Install server dependencies
-      #   run: yarn install --frozen-lockfile
+      #   run: npm run install
       #   working-directory: ./server
 
       - name: Install client dependencies
-        run: yarn install --frozen-lockfile
+        run: npm run install
         working-directory: ./client
 
       # - name: Build server
-      #   run: CI=false && yarn build
+      #   run: CI=false && npm run build
       #   working-directory: ./server
 
       - name: Build client
-        run: CI=false && yarn build
+        run: CI=false && npm run build
         working-directory: ./client
 
       - name: Create zip
