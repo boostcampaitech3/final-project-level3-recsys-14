@@ -25,6 +25,7 @@
     "env-cmd": "^10.1.0",
     "express": "^4.18.1",
     "immer": "^9.0.14",
+    "lodash": "^4.17.21",
     "nginx": "^1.0.7",
     "package.json": "^2.0.1",
     "react": "^18.1.0",
@@ -72,6 +73,7 @@
     ]
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.182",
     "@types/redux-actions": "^2.6.2",
     "@types/styled-components": "^5.1.25"
   }

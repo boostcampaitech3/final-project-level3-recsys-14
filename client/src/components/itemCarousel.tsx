@@ -166,12 +166,27 @@ const NextIcon = styled(ArrowForwardIosIcon)`
     ${defaultIconStyle}
 `;
 
+const ErrorBox = styled.div`
+    position: relative;
+    background: white;
+    box-shadow: 0 0 8px 0 rgba(0,0,0,0.04);
+
+    min-height: 150px;
+
+    margin: 0 auto;
+    border-radius: 1rem;
+
+    /* cursor: pointer; */
+    transition: all 0.6s cubic-bezier(.25,.8,.25,1) 0.3s;
+`;
+
 const ItemSlide = (children : any) => {
+    // console.log("아이템 개수 : ", children.probs.length);
 
     const mainSlickRef = useRef(null);
 
     const mainSettings = {
-        infinite: true,
+        infinite: children.probs.length > 3.5,
         centerMode: true,
         swipeToSlide: true,
         slidesToShow: 3.68,
@@ -183,6 +198,7 @@ const ItemSlide = (children : any) => {
             {
                 breakpoint: 1200,
                 settings: {
+                    infinite: children.probs.length > 2.5,
                     slidesToShow: 2.34,
                     slidesToScroll: 1,
                 }
@@ -190,6 +206,7 @@ const ItemSlide = (children : any) => {
             {
               breakpoint: 800,
               settings: {
+                infinite: children.probs.length > 1.5,
                 slidesToShow: 1.67,
                 slidesToScroll: 1,
               }
@@ -197,6 +214,7 @@ const ItemSlide = (children : any) => {
             {
               breakpoint: 480,
               settings: {
+                infinite: children.probs.length > 1,
                 autoplay: false,
                 pauseOnHover: false,
                 slidesToShow: 1,
@@ -216,22 +234,18 @@ const ItemSlide = (children : any) => {
                     ref = {mainSlickRef}
                     {...mainSettings}
                     >
-                        {children.probs.map((item : any, i : number)=>{
+                        {children.validAPI ? children.probs.map((item : any, i : number)=>{
                             return(
                                 <MainSlickItems key={i}>
                                     <ProblemItemContatiner key = {i} item = {item}/>
-                                    {/* <div className='item'>
-                                        <div style={{display:'flex'}}>
-                                            <h3>{item.level}</h3>
-                                            <h2>
-                                                <Nav.Link href = {`https://www.acmicpc.net/problem/${item.problem_id}`} target='_blank'> {item.problem_id} </Nav.Link>
-                                            </h2>
-                                        </div>
-                                        {item.tags.split(',').map((tag : string) => <div>{tag}</div>)}
-                                    </div> */}
                                 </MainSlickItems>
                             )
-                        })}
+                        }) : 
+                            <ErrorBox>
+                                사용자님의 문제 풀이 이력이 너무 적거나, 현재 데이터가 업데이트 중입니다.
+                            </ErrorBox>
+                            
+                        }
                 </Slick>
                 <>
                         <PrevButton onClick={onClickPrev(mainSlickRef)} property='mainButton'>

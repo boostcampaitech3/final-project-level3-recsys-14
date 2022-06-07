@@ -4,13 +4,15 @@ import problemItem from "./problemItem";
 import tagSwitch from "./tagSwitch";
 import rivalItem from "./rivalItem";
 import rivalProblemItem from "./rivalProblemItem";
+import autoSearch from "./autoSearch";
 
 const rootReducer = combineReducers({
     userSearchInput,
     problemItem,
     tagSwitch,
     rivalItem,
-    rivalProblemItem
+    rivalProblemItem,
+    autoSearch
 });
 
 export default rootReducer;

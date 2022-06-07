@@ -58,7 +58,9 @@ export const CarouselBtn = styled.div`
 
 
 function RivalProblem(){
-    const [rivalprob, setRivalprob] = React.useState([]);    
+    const [rivalprob, setRivalprob] = React.useState([]);
+    const [validAPI, setValidAPI] = React.useState(false);
+
     const userHandle = useSelector((state: RootState) => state.userSearchInput.userHandle);
 
     console.log(userHandle) //13번째
@@ -77,8 +79,10 @@ function RivalProblem(){
             console.log(problist);//12번째
 
             setRivalprob(problist.data);
+            setValidAPI(true);
         }
         catch(e){
+            setValidAPI(false);
             console.error(e); //10번째
         }
     }
@@ -89,7 +93,7 @@ function RivalProblem(){
     return(
         <Box>
                 <CarouselTitle>라이벌이 푼 문제도 같이 풀어볼까요?<TagSwitchContainer /></CarouselTitle>
-                <RivalItemSlide rivalprobs = {rivalprob} />
+                <RivalItemSlide validAPI = {validAPI} rivalprobs = {rivalprob} />
        </Box>
     );
 }
