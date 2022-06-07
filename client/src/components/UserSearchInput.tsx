@@ -120,6 +120,8 @@ const UserSearchInput = ({onInput} : any)=>{
     const [validUserFound, setValidUserFound] = useState(false);
     const [show, setShow] = useState(false);
 
+    const [auto, setAuto] = useState(false);
+
     const inputRef = useRef<HTMLInputElement>(null);
 
     const dispatch = useDispatch();
@@ -160,6 +162,7 @@ const UserSearchInput = ({onInput} : any)=>{
     const sendAPI = async (query : string) => {
         if(query.length === 0) {
             autoSearchInitialDispatch();
+            setAuto(false);
             return;
         }
         try{
@@ -168,6 +171,7 @@ const UserSearchInput = ({onInput} : any)=>{
             //const userlist = await API.get(`/user/lookup?handles=${data.join()}`)
 
             autoSearchDispatch(data);
+            setAuto(true);
             console.log(query);
         }catch(e){
             console.log(e);
@@ -175,7 +179,7 @@ const UserSearchInput = ({onInput} : any)=>{
         
     }
 
-    const delayedAPICall = useRef(_.debounce((q) => sendAPI(q), 750)).current;
+    const delayedAPICall = useRef(_.debounce((q) => sendAPI(q), 700)).current;
 
     const onChange = (e : ChangeEvent<HTMLInputElement>) => {
         setUserId(e.target.value);
@@ -218,7 +222,7 @@ const UserSearchInput = ({onInput} : any)=>{
 
     return(
         <>
-        <UserSearchStyledForm onSubmit={onSubmit}>
+        <UserSearchStyledForm onSubmit={onSubmit} onFocus={()=>setAuto(true)} onBlur = {()=>setAuto(false)}>
             <SearchSelectBox onChange={selectMenu} value={selectedMenu} size="sm">
                 <option value="problem">문제 추천</option>
                 <option value="rival">라이벌 추천</option>
@@ -226,6 +230,7 @@ const UserSearchInput = ({onInput} : any)=>{
             <UserSearchStyledInput
                 name="userId"
                 ref={inputRef}
+                // onBlur={()=>setAuto(false)}
                 placeholder="아이디(handle)를 입력하세요."
                 value={userId}
                 onChange={onChange}
@@ -241,7 +246,7 @@ const UserSearchInput = ({onInput} : any)=>{
                     <path d="M21 21l-4.35-4.35"></path>
                 </SearchSvgIcon>
             </UserSearchStyledButton>
-            <AutoSearch selectedMenu = {selectedMenu}/>
+            {auto && <AutoSearch selectedMenu = {selectedMenu}/>}
         </UserSearchStyledForm>
         
 
