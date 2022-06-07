@@ -114,9 +114,10 @@ const TagBox = styled.div`
     background-color:
         rgba(230, 230, 230, 0.43);
     border-radius: 1.2rem;
+    padding: 0 5px;
     overflow-x: scroll;
     @media screen and (max-width: 640px){
-        padding-left: 5%;
+        padding: 0 5%;
     }
 `;
 

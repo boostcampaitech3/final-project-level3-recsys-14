@@ -20,21 +20,17 @@ import {
 } from "../constants/color";
 
 const UserSearchStyledForm = styled.form`
-    /* position: relative; */
+    position: relative;
+    display: block;
     border-radius: 20px;
-    padding-right: 12px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 65%;
+    width: 60%;
     min-width: 120px;
     max-width: 720px;
-    padding: 6px 6px;
+    padding: 6px 8px;
     background-color: #fff;
     box-shadow: 
         0 2px 6px 0 rgba(136,148,171,.2),
         0 24px 20px -24px rgba(71,82,107,.1);
-    overflow: hidden;
     @media screen and (max-width: 480px){
         width: 90% !important;
     }
@@ -43,15 +39,22 @@ const UserSearchStyledForm = styled.form`
             0 2px 6px 0 rgb(22 10 204 / 20%), 
             0 24px 20px -24px rgb(23 10 119 / 10%);
     }
-    @media screen and (max-width: 800px){
+    @media screen and (max-width: 480px){
         width: 85%;
+    }
+    @media screen and (max-width: 800px){
+        width: 75%;
+    }
+    @media screen and (max-width: 1024px){
+        width: 70%;
     }
 `;
 
-const USerSearchStyledInput = styled.input`
+const UserSearchStyledInput = styled.input`
+    display: inline-block;
     border: none;
-    flex: 1;
     outline: none;
+    min-width: 75%;
     height: 100%;
     padding: 0 20px;
     background-color: #fff;
@@ -61,11 +64,18 @@ const USerSearchStyledInput = styled.input`
         color: #323232;
         opacity: .6;
     }
+    @media screen and (max-width: 480px){
+        max-width: 60%;
+    }
+    @media screen and (max-width: 800px){
+        min-width: 65%;
+    }
 `;
 
 const SearchSelectBox = styled(Form.Select)`
+    display: inline-block;
     width: auto;
-    font-size: 0.5rem;
+    font-size: 0.65rem;
     z-index: 10;
     border-radius: 0.8rem;
     &:focus {
@@ -76,19 +86,18 @@ const SearchSelectBox = styled(Form.Select)`
 `;
 
 const UserSearchStyledButton = styled.button`
+    position: absolute;
+    right: 10px;
     color: #E4EBF5;
+    width: 1.6rem;
+    height: 1.6rem;
     padding: 0;
     border: 0;
-    padding: 4px 4px;
-    display: flex;
-    align-items: center;
     border-radius: 1rem;
     box-shadow:
         inset .2rem .2rem 1rem ${light_blue},
         inset -.2rem -.2rem 1rem ${bright_purple},
         .3rem .3rem .6rem ${light_sky_gray};
-    justify-self: center;
-    justify-content: center;
     cursor: pointer;
     transition: .3s ease;
     background: ${primary_purple};
@@ -214,7 +223,7 @@ const UserSearchInput = ({onInput} : any)=>{
                 <option value="problem">문제 추천</option>
                 <option value="rival">라이벌 추천</option>
             </SearchSelectBox>
-            <USerSearchStyledInput
+            <UserSearchStyledInput
                 name="userId"
                 ref={inputRef}
                 placeholder="아이디(handle)를 입력하세요."
@@ -232,10 +241,9 @@ const UserSearchInput = ({onInput} : any)=>{
                     <path d="M21 21l-4.35-4.35"></path>
                 </SearchSvgIcon>
             </UserSearchStyledButton>
-
             <AutoSearch selectedMenu = {selectedMenu}/>
-
         </UserSearchStyledForm>
+        
 
         {show && //추가
             <Modal

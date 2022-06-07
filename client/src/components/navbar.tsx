@@ -66,7 +66,8 @@ const NavBar = ({pathname} : any) => {
                   />
                   <Button variant="outline-success" onClick={fetchvalid} >Search</Button>
                 </div> */}
-                <UserSearchInputContainer />
+                { pathname != undefined ? <UserSearchInputContainer /> : <></>}
+                
               </Navbar.Collapse>
             </Container>
           </StyledNavBar>

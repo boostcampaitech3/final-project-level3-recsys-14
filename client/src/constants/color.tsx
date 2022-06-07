@@ -17,3 +17,5 @@ export const almost_black = "#595959";
 
 export const light_gray = "#f7f5f8";
 export const dawn_gray = "#817e82";
+
+export const light_green = "#edf5f5";
