@@ -19,13 +19,25 @@ import {
     deep_purple,
 } from "../constants/color";
 
+const UserSearchWrapper = styled.div`
+    width: 60%;
+    min-width: 120px;
+    max-width: 720px;
+    @media screen and (max-width: 480px){
+        width: 85%;
+    }
+    @media screen and (max-width: 800px){
+        width: 75%;
+    }
+    @media screen and (max-width: 1024px){
+        width: 70%;
+    }
+`;
+
 const UserSearchStyledForm = styled.form`
     position: relative;
     display: block;
     border-radius: 20px;
-    width: 60%;
-    min-width: 120px;
-    max-width: 720px;
     padding: 6px 8px;
     background-color: #fff;
     box-shadow: 
@@ -39,15 +51,7 @@ const UserSearchStyledForm = styled.form`
             0 2px 6px 0 rgb(22 10 204 / 20%), 
             0 24px 20px -24px rgb(23 10 119 / 10%);
     }
-    @media screen and (max-width: 480px){
-        width: 85%;
-    }
-    @media screen and (max-width: 800px){
-        width: 75%;
-    }
-    @media screen and (max-width: 1024px){
-        width: 70%;
-    }
+    
 `;
 
 const UserSearchStyledInput = styled.input`
@@ -221,8 +225,8 @@ const UserSearchInput = ({onInput} : any)=>{
 
 
     return(
-        <>
-        <UserSearchStyledForm onSubmit={onSubmit} onFocus={()=>setAuto(true)} onBlur = {()=>setAuto(false)}>
+        <UserSearchWrapper tabIndex={0} onFocus={()=>setAuto(true)} onBlur={() => setAuto(false)}>
+        <UserSearchStyledForm onSubmit={onSubmit}>
             <SearchSelectBox onChange={selectMenu} value={selectedMenu} size="sm">
                 <option value="problem">문제 추천</option>
                 <option value="rival">라이벌 추천</option>
@@ -246,7 +250,7 @@ const UserSearchInput = ({onInput} : any)=>{
                     <path d="M21 21l-4.35-4.35"></path>
                 </SearchSvgIcon>
             </UserSearchStyledButton>
-            {auto && <AutoSearch selectedMenu = {selectedMenu}/>}
+            { auto && <AutoSearch selectedMenu = {selectedMenu}/> }
         </UserSearchStyledForm>
         
 
@@ -270,7 +274,7 @@ const UserSearchInput = ({onInput} : any)=>{
             </Modal.Footer>
           </Modal>
         }
-        </>
+        </UserSearchWrapper>
     );
 };
 
