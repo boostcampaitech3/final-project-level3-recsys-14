@@ -1,4 +1,5 @@
 
 export const stats = {
-    warnings: false
+    warnings: false,
+    node:'empty',
 };
