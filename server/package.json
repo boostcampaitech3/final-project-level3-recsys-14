@@ -9,7 +9,8 @@
     "dev": "cross-env NODE_ENV=production tsc-watch --onSuccess \"ts-node --files -r tsconfig-paths/register dist/app.js\"",
     "prod": "cross-env NODE_ENV=production pm2 start --name recjoon-server ts-node -- --files -r tsconfig-paths/register dist/app.js",
     "docker-test": "cross-env NODE_ENV=production pm2-runtime start --name recjoon-server ts-node -- --files src/app.ts",
-    "docker": "cross-env NODE_ENV=production pm2-runtime start --name recjoon-server pm2.json"
+    "docker-dev": "cross-env NODE_ENV=production pm2-runtime start --name recjoon-server pm2.json",
+    "docker": "cross-env NODE_ENV=production ts-node src/app.ts"
   },
   "author": "",
   "license": "ISC",
