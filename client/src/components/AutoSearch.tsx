@@ -86,7 +86,6 @@ const SearchSvgIcon = styled(svgIcon)`
 `;
 
 const AutoSearch = ({selectedMenu} : any) =>{
-
   const navigate = useNavigate();
   const searchHandles = useSelector((state : RootState)=> state.autoSearch.handles);
 
@@ -136,24 +135,15 @@ const AutoSearch = ({selectedMenu} : any) =>{
   return (
       <AutoSearchContainer>
           <AutoSearchWrap>
-            {searchHandles.map((user : any, i : number) => {
+            {searchHandles.length > 0 ? searchHandles.map((user : any, i : number) => {
               return(
               <AutoSearchData key = {i} onClick= {() => onClickUser(user.handle)}>
               
-              {selectedMenu == 'problem' ? 
-              <SearchResult to={`/user/${user.handle}`}>
-                <UserTier>
+              <UserTier>
                 {tierScaling(user.tier)}
                 </UserTier>
-                {user.handle}
-              </SearchResult> : 
-              <SearchResult to={`/user/${user.handle}/rival`}>
-                <UserTier>
-                {tierScaling(user.tier)}
-                </UserTier>
-                {user.handle}
-              </SearchResult>
-              }
+              {user.handle}
+
               <SearchSvgIcon className="searchicon"
                 fill-rule="evenodd" 
                 fill= "#fff"
@@ -166,10 +156,11 @@ const AutoSearch = ({selectedMenu} : any) =>{
               
               </AutoSearchData>
               )
-            })}
+            }): "사용자 검색 결과가 없습니다."}
             
           </AutoSearchWrap>
       </AutoSearchContainer>
   )
 }
+
 export default AutoSearch;

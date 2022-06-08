@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FormEvent, useCallback, useRef, useState } from "react";
+import React, { ChangeEvent, FormEvent, useCallback, useEffect, useRef, useState, createRef } from "react";
 import { API } from "../utils/axios";
 import { useNavigate, useParams } from "react-router-dom";
 import { Form, Modal, Button } from 'react-bootstrap';
@@ -19,13 +19,25 @@ import {
     deep_purple,
 } from "../constants/color";
 
+const UserSearchWrapper = styled.div`
+    width: 60%;
+    min-width: 120px;
+    max-width: 720px;
+    @media screen and (max-width: 480px){
+        width: 85%;
+    }
+    @media screen and (max-width: 800px){
+        width: 75%;
+    }
+    @media screen and (max-width: 1024px){
+        width: 70%;
+    }
+`;
+
 const UserSearchStyledForm = styled.form`
     position: relative;
     display: block;
     border-radius: 20px;
-    width: 60%;
-    min-width: 120px;
-    max-width: 720px;
     padding: 6px 8px;
     background-color: #fff;
     box-shadow: 
@@ -39,15 +51,7 @@ const UserSearchStyledForm = styled.form`
             0 2px 6px 0 rgb(22 10 204 / 20%), 
             0 24px 20px -24px rgb(23 10 119 / 10%);
     }
-    @media screen and (max-width: 480px){
-        width: 85%;
-    }
-    @media screen and (max-width: 800px){
-        width: 75%;
-    }
-    @media screen and (max-width: 1024px){
-        width: 70%;
-    }
+    
 `;
 
 const UserSearchStyledInput = styled.input`
@@ -57,6 +61,7 @@ const UserSearchStyledInput = styled.input`
     min-width: 75%;
     height: 100%;
     padding: 0 20px;
+    vertical-align: middle;
     background-color: #fff;
     color: #323232;
     font-size: min(max(calc(10px + 1vmin), 10px), 18px);
@@ -120,12 +125,26 @@ const UserSearchInput = ({onInput} : any)=>{
     const [validUserFound, setValidUserFound] = useState(false);
     const [show, setShow] = useState(false);
 
+    const [auto, setAuto] = useState(false);
+
     const inputRef = useRef<HTMLInputElement>(null);
 
     const dispatch = useDispatch();
     const autoSearchDispatch = useCallback((handles : Array<any>) => dispatch(autoUserSearch(handles)), [dispatch]);
     const autoSearchInitialDispatch = useCallback(() => dispatch(autoUserInitial()), [dispatch]);
     
+    const handleOuterClick = (e:any) => {
+        if (!inputRef.current?.contains(e.target)) {
+            setAuto(false);
+        }
+        else {
+            setAuto(true);
+        }
+      };
+
+    useEffect(() => {
+        document.addEventListener("click", handleOuterClick)
+    }, []);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -160,6 +179,7 @@ const UserSearchInput = ({onInput} : any)=>{
     const sendAPI = async (query : string) => {
         if(query.length === 0) {
             autoSearchInitialDispatch();
+            setAuto(false);
             return;
         }
         try{
@@ -168,6 +188,7 @@ const UserSearchInput = ({onInput} : any)=>{
             //const userlist = await API.get(`/user/lookup?handles=${data.join()}`)
 
             autoSearchDispatch(data);
+            setAuto(true);
             console.log(query);
         }catch(e){
             console.log(e);
@@ -175,7 +196,7 @@ const UserSearchInput = ({onInput} : any)=>{
         
     }
 
-    const delayedAPICall = useRef(_.debounce((q) => sendAPI(q), 750)).current;
+    const delayedAPICall = useRef(_.debounce((q) => sendAPI(q), 700)).current;
 
     const onChange = (e : ChangeEvent<HTMLInputElement>) => {
         setUserId(e.target.value);
@@ -217,8 +238,8 @@ const UserSearchInput = ({onInput} : any)=>{
 
 
     return(
-        <>
-        <UserSearchStyledForm onSubmit={onSubmit}>
+        <UserSearchWrapper>
+        <UserSearchStyledForm onSubmit={onSubmit} autoComplete="off">
             <SearchSelectBox onChange={selectMenu} value={selectedMenu} size="sm">
                 <option value="problem">문제 추천</option>
                 <option value="rival">라이벌 추천</option>
@@ -226,6 +247,7 @@ const UserSearchInput = ({onInput} : any)=>{
             <UserSearchStyledInput
                 name="userId"
                 ref={inputRef}
+                // onBlur={()=>setAuto(false)}
                 placeholder="아이디(handle)를 입력하세요."
                 value={userId}
                 onChange={onChange}
@@ -241,7 +263,7 @@ const UserSearchInput = ({onInput} : any)=>{
                     <path d="M21 21l-4.35-4.35"></path>
                 </SearchSvgIcon>
             </UserSearchStyledButton>
-            <AutoSearch selectedMenu = {selectedMenu}/>
+            { auto && <AutoSearch selectedMenu = {selectedMenu}/> }
         </UserSearchStyledForm>
         
 
@@ -265,7 +287,7 @@ const UserSearchInput = ({onInput} : any)=>{
             </Modal.Footer>
           </Modal>
         }
-        </>
+        </UserSearchWrapper>
     );
 };
 
