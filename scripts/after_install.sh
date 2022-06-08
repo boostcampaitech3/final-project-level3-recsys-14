@@ -11,5 +11,7 @@ export RECJOON_RDS_DATABASE=$(aws ssm get-parameters --region ap-northeast-2 --n
 export RECJOON_SERVER_HOST=$(aws ssm get-parameters --region ap-northeast-2 --names RECJOON_SERVER_HOST --query Parameters[0].Value | sed 's/"//g')
 export RECJOON_SERVER_PORT=$(aws ssm get-parameters --region ap-northeast-2 --names RECJOON_SERVER_PORT --query Parameters[0].Value | sed 's/"//g')
 
+export RECJOON_APP_API=$(aws ssm get-parameters --region ap-northeast-2 --names RECJOON_APP_API --query Parameters[0].Value | sed 's/"//g')
+
 sudo docker-compose down --rmi all
 sudo docker-compose up -d --build

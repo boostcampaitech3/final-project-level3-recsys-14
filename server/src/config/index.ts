@@ -15,11 +15,11 @@ export default {
 
     database: {
         mysql: {
-          host: process.env.HOST || "3.36.32.133",
-          port: process.env.PORT || 3306,
-          username: process.env.USERNAME || "root",
-          password: process.env.PASSWORD || "",
-          database: process.env.DATABASE || "recjoon",
+          host: process.env.HOST,
+          port: process.env.PORT,
+          username: process.env.USERNAME,
+          password: process.env.PASSWORD,
+          database: process.env.DATABASE,
           entities: [
             `${process.env.NODE_ENV === 'development' ? 'src' : 'dist'}/database/entity/**/*{.ts,.js}`
           ],
@@ -40,14 +40,4 @@ export default {
           subscribers: ["src/database/subscriber/**/*.ts"],
         },
     },
-
-    crawler: {
-      solvedAc: {
-        host: "https://solved.ac/api/v3",
-      },
-
-      boj: {
-        host: "https://www.acmicpc.net",
-      }
-  },
 }

@@ -7,6 +7,7 @@ const connection = async() => {
     try {
         console.log("before createConnection ... ")
         const connection = await createConnection(connectionOption);
+        console.log(connectionOption);
         console.log("after createConnection, before entities ... ")
         const entities = connection["entityMetadatas"].map(
             (entity: any) => (entity = entity.name)
