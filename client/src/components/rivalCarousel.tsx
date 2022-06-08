@@ -172,6 +172,20 @@ const NextIcon = styled(ArrowForwardIosIcon)`
     ${defaultIconStyle}
 `;
 
+const ErrorBox = styled.div`
+    position: relative;
+    background: white;
+    box-shadow: 0 0 8px 0 rgba(0,0,0,0.04);
+
+    min-height: 150px;
+
+    margin: 0 auto;
+    border-radius: 1rem;
+
+    /* cursor: pointer; */
+    transition: all 0.6s cubic-bezier(.25,.8,.25,1) 0.3s;
+`;
+
 const RivalSlide = (children : any) => {
     const [mainSlick, setMainSlick] = useState<any>(null);
     const [pagingSlick, setPagingSlick] = useState<any>(null);
@@ -212,7 +226,7 @@ const RivalSlide = (children : any) => {
     // }, [rivalProblemItem, tagSwitch])
     
     const mainSettings = {
-        infinite: true,
+        infinite: children.rival.length > 3.5,
         centerMode: true,
         swipeToSlide: true,
         slidesToShow: 3.68,
@@ -220,11 +234,12 @@ const RivalSlide = (children : any) => {
         autoplay : true,
         pauseOnHover: true,
         autoplaySpeed: 5000,
-        beforeChange: controllAutoPlay,
+        // beforeChange: controllAutoPlay,
         responsive: [
             {
                 breakpoint: 1200,
                 settings: {
+                    infinite: children.rival.length > 2.5,
                     slidesToShow: 2.34,
                     slidesToScroll: 1,
                 }
@@ -232,6 +247,7 @@ const RivalSlide = (children : any) => {
             {
               breakpoint: 800,
               settings: {
+                infinite: children.rival.length > 1.5,
                 slidesToShow: 1.67,
                 slidesToScroll: 1,
               }
@@ -239,6 +255,7 @@ const RivalSlide = (children : any) => {
             {
               breakpoint: 480,
               settings: {
+                infinite: children.rival.length > 1,
                 autoplay: false,
                 pauseOnHover: false,
                 slidesToShow: 1,
@@ -268,24 +285,17 @@ const RivalSlide = (children : any) => {
                     // autoplay = {!(rivalProblemItem.toggle && tagSwitch)}
                     
                     >
-                        {children.rival.map((item : any, i : number)=>{
+                        {children.validAPI ? children.rival.map((item : any, i : number)=>{
                             return(
                                 <MainSlickItems key={i}>
                                     <RivalItemContainer key = {i} rival = {item} />
-                                    {/* <div className='item'>
-                                        <div style={{display:'flex'}}>
-                                            <h3>{item.tier}</h3>
-                                            <h2>
-                                                <Nav.Link href = {`https://solved.ac/profile/${item.handle}`} target='_blank'> {item.handle} </Nav.Link>
-                                            </h2>
-                                        </div>
-                                        <div>rating : {item.rating}</div>
-                                        <div>rank : {item.rank}</div>
-
-                                    </div> */}
                                 </MainSlickItems>
                             )
-                        })}
+                        }) : 
+                            <ErrorBox>
+                                사용자님의 정보가 없거나, 현재 데이터가 업데이트 중입니다.
+                            </ErrorBox>
+                        }
                 </Slick>
                 <>
                         <PrevButton onClick={onClickPrev(mainSlickRef)} property='mainButton'>
@@ -297,33 +307,6 @@ const RivalSlide = (children : any) => {
                 </>
             </Inner>
 
-            {/* <Inner property ='subInner'>
-                <Slick
-                    ref = {pagingSlickRef}
-                    asNavFor={mainSlick}
-                    {...pagingSettings}
-                >
-                    {children.probs.map((item : any, i: number) =>{
-                        return(
-                            <PagingItems key = {`${i}`} className="paging_items">
-                                <div className='item'>
-                                    <h2>
-                                        {item.probId}
-                                    </h2>
-                                </div>
-                            </PagingItems>
-                        )
-                    })}
-                </Slick>
-                <>
-                    <PrevButton onClick={onClickPrev(pagingSlickRef)} property='subButton'>
-                        <PrevIcon />
-                    </PrevButton>
-                    <NextButton onClick={onClickNext(pagingSlickRef)} property='subButton'>
-                        <NextIcon />
-                    </NextButton>
-                </>
-            </Inner> */}
         </Wrap>
     );
 };

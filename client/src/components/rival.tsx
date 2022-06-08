@@ -58,6 +58,8 @@ export const CarouselBtn = styled.div`
 
 function Rival(){
     const [rival, setRival] = React.useState([]);
+    const [validAPI, setValidAPI] = React.useState(false);
+
     const userHandle = useSelector((state: RootState) => state.userSearchInput.userHandle);
     console.log(userHandle)
     const fetchprob = async() =>{
@@ -68,8 +70,10 @@ function Rival(){
             console.log(rivallist);
 
             setRival(rivallist.data);
+            setValidAPI(true);
         }
         catch(e){
+            setValidAPI(false);
             console.error(e);
         }
     }
@@ -80,7 +84,7 @@ function Rival(){
     return(
         <Box>
                 <CarouselTitle>{userHandle}님의 라이벌로 추천합니다.</CarouselTitle>
-                <RivalSlide rival = {rival} />
+                <RivalSlide validAPI = {validAPI} rival = {rival} />
        </Box>
     );
 }

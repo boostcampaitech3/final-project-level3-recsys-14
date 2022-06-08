@@ -16,6 +16,7 @@ import userBackgroundImage from '../assets/images/user_background_large.png';
 import userRecImage from "../assets/images/problem_rec_large.png";
 import ProblemRecFAQ from "../components/problemRecFAQ";
 import { initialProblem } from "../modules/problemItem";
+import { autoUserInitial } from "../modules/autoSearch";
 
 const Box = styled.div`
     display : flex;
@@ -132,6 +133,8 @@ function Userpage() {
     const dispatch = useDispatch();
     const userHandleDispatch = useCallback((userHandle : string | undefined)=> dispatch(search(userHandle)), [dispatch]);
     const onTagSwitch = useCallback(() => dispatch(toggleSwitch()), [dispatch]);
+    const autoSearchInitialDispatch = useCallback(() => dispatch(autoUserInitial()), [dispatch]);
+
 
     const initialUserpage = useCallback(() => dispatch(initialProblem()),[dispatch]);
 
@@ -162,6 +165,7 @@ function Userpage() {
         fetchUserCheck();
         userHandleDispatch(params.userHandle);
         initialUserpage();
+        autoSearchInitialDispatch();
     }, [params]);
     useEffect(()=>{
         if(tagSwitch == true){

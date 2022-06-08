@@ -2,6 +2,7 @@ import { elementTypeAcceptingRef } from "@mui/utils";
 import React, { ChangeEvent, FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { oh_purple } from "../constants/color";
 
 const ProblemItemBox = styled.div`
     position: relative;
@@ -30,7 +31,7 @@ const ProblemLinkButton = styled.button`
     font-weight: 700;
     font-size: 1.2rem;
     letter-spacing: 1.15px;
-    background-color: #6539dc;
+    background-color: ${oh_purple};
     color: #f9f9f9;
     box-shadow: 8px 8px 16px #d1d9e6, -8px -8px 16px #f9f9f9;
     border: none;

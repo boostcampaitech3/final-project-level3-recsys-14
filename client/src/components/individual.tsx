@@ -61,7 +61,9 @@ export const CarouselBtn = styled.div`
 
 
 function Individual(){
-    const [indvdprob, setIndvprob] = React.useState([]);    
+    const [indvdprob, setIndvprob] = React.useState([]);
+    const [validAPI, setValidAPI] = React.useState(false);
+
     const userHandle = useSelector((state: RootState) => state.userSearchInput.userHandle);
 
     console.log(userHandle) //13번째
@@ -80,8 +82,10 @@ function Individual(){
             console.log(problist);//12번째
 
             setIndvprob(problist.data);
+            setValidAPI(true);
         }
         catch(e){
+            setValidAPI(false);
             console.error(e); //10번째
         }
     }
@@ -92,7 +96,7 @@ function Individual(){
     return(
         <Box>
                 <CarouselTitle>{userHandle} 님을 위한 추천 문제 리스트<TagSwitchContainer /></CarouselTitle>
-                <ItemSlide probs = {indvdprob} />
+                <ItemSlide validAPI = {validAPI} probs = {indvdprob} />
        </Box>
     );
 }
