@@ -34,30 +34,39 @@ const RivalRecFAQ = () => {
         <Accordion alwaysOpen>
             <Accordion.Item eventKey="0">
                 <StyledAccordianButton>
-                    RECJOON은 어떤 웹 사이트인가요?
+                왜 저는 라이벌 추천이 안되나요?
                 </StyledAccordianButton>
                 <Accordion.Body>
-                RECJOON은 solved.ac API로 수집한 Baekjoon Online Judge 데이터를 바탕으로 solved.ac 유저 개개인에 맞는 문제를 추천하는 웹 서비스입니다. 
-                또한 개인의 실력과 비슷한 유저를 라이벌로 추천하고, 라이벌이 풀었던 문제 중에서 자신이 풀지 않았던 문제도 추천해 드립니다.
+                라이벌 추천은 유저의 정보와 문제풀이 기록을 기반으로 이루어지므로 
+                문제 풀이 기록이 부족하거나 없는 경우 추천이 이뤄질 수 없는 점 양해 부탁드립니다.
                 </Accordion.Body>
             </Accordion.Item>
             <Accordion.Item eventKey="1">
                 <StyledAccordianButton>
-                    Baekjoon Online Judge 또는 solved.ac와 관련된 사이트인가요?
+                라이벌 문제 추천이 일반 문제 추천과 다른 점이 뭔가요?
                 </StyledAccordianButton>
                 <Accordion.Body>
-                본 웹사이트는 네이버 커넥트재단 부스트캠프 AI Tech 3기의 RecSys Track의 14조인 RECognizer 팀의 최종 프로젝트의 일환으로 제작되었습니다.
-                Baekjoon Online Judge 또는 solved.ac와 일절 관련이 없으며, 어떠한 영리 목적으로도 운영되지 않는 팀 프로젝트 결과물입니다.
+                라이벌 문제 추천은 자신에게 추천된 라이벌은 풀었지만 자신은 풀지 않은 문제를 최대 30개까지 추천해드리는 서비스입니다. 
+                일반 문제 추천에서는 개인의 티어와 문제 풀이 이력을 바탕으로 풀 만한 문제를 추천받을 수 있으며, 
+                유저 개개인의 데이터에 따라 두 서비스의 만족도에 차이가 있을 수 있습니다.
                 </Accordion.Body>
             </Accordion.Item>
             <Accordion.Item eventKey="2">
                 <StyledAccordianButton>
-                    Baekjoon Online Judge 유저와 문제에 관한 데이터는 어떻게 수집되나요?
+                라이벌 문제 추천 방법이 궁금해요.
                 </StyledAccordianButton>
                 <Accordion.Body>
-                Baekjoon Online Judge는 원칙적으로 웹 스크래핑이 금지되어 있으므로 solved.ac API를 이용하여 데이터를 수집하고 있습니다.
-                데이터 수집은 정해진 주기에 따라 자동으로 진행되며, 수집된 데이터를 바탕으로 유저별로 문제 또는 라이벌 추천 데이터가 생성됩니다.
-                데이터 수집 과정에서 발생한 오류 또는 데이터 부재로 인해 만족스러운 추천 결과가 나오지 못할 수 있는 점 양해 바랍니다.
+                만일 라이벌은 풀었지만 나는 풀지 않은 문제가 30개 이상이라면 문제 풀이 이력을 기반으로 풀 만한 문제를 우선적으로 추천해줍니다.
+                라이벌이 풀었던 문제와 내가 풀었던 문제가 완전히 동일하면 문제 추천이 이뤄지지 않을 수 있습니다.
+                </Accordion.Body>
+            </Accordion.Item>
+            <Accordion.Item eventKey="3">
+                <StyledAccordianButton>
+                이미 등록한 라이벌이 추천돼요.
+                </StyledAccordianButton>
+                <Accordion.Body>
+                본 서비스 과정에서 추천되는 라이벌은 solved.ac에서 등록한 라이벌과 연동되지 않습니다. 
+                개인별 라이벌 정보는 solved.ac의 token을 필요로 하므로 유저별로 어떠한 라이벌이 이미 등록되어 있는지 확인할 수 없습니다.
                 </Accordion.Body>
             </Accordion.Item>
         </Accordion>
