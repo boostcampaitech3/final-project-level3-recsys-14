@@ -35,20 +35,35 @@ const ProblemRecFAQ = () => {
                     이미 이전에 풀었던 문제가 추천돼요.
                 </StyledAccordianButton>
                 <Accordion.Body>
-                    본 웹 서비스는 유저별로 문제를 추천하기 위해 solved.ac에서 데이터를 주기마다 자동으로 가져오고 있으며, Baekjoon Online Judge 또는 solved.ac의 데이터와 실시간으로 연동되지 않습니다. 이로 인해 다음과 같은 원인으로 추정할 수 있습니다.
-                    1. 데이터를 업데이트 한 시점 이후에 푼 문제인 경우 
-                    2. solved.ac API에서 데이터를 제대로 가져오지 못한 경우 
+                    본 웹 서비스는 유저별로 문제를 추천하기 위해 solved.ac에서 데이터를 주기마다 자동으로 가져오고 있으며, 
+                    Baekjoon Online Judge 또는 solved.ac의 데이터와 실시간으로 연동되지 않습니다. 
+                    이로 인해 다음과 같은 원인으로 추정할 수 있습니다.<br/><br/>
+                    1. 데이터를 업데이트 한 시점 이후에 푼 문제인 경우<br/>
+                    2. solved.ac API에서 데이터를 제대로 가져오지 못한 경우<br/>
                     3. Baekjoon Online Judge와 solved.ac에서의 문제 푼 기록이 일치하지 않은 상태
                 </Accordion.Body>
             </Accordion.Item>
             <Accordion.Item eventKey="1">
                 <StyledAccordianButton>
-                    Baekjoon Online Judge 유저와 문제에 관한 데이터는 어떻게 수집되나요?
+                추천되는 문제가 만족스럽지 못해요.
                 </StyledAccordianButton>
                 <Accordion.Body>
-                Baekjoon Online Judge는 원칙적으로 웹 스크래핑이 금지되어 있으므로 solved.ac API를 이용하여 데이터를 수집하고 있습니다.
-                데이터 수집은 정해진 주기에 따라 자동으로 진행되며, 수집된 데이터를 바탕으로 유저별로 문제 또는 라이벌 추천 데이터가 생성됩니다.
-                데이터 수집 과정에서 발생한 오류 또는 데이터 부재로 인해 만족스러운 추천 결과가 나오지 못할 수 있는 점 양해 바랍니다.
+                문제 추천 서비스는 유저가 푼 문제를 기반으로 여러 딥 러닝 모델을 학습시키고, 
+                검증 결과에 따라 미리 정의된 평가 지표 중 가장 결과가 잘 나온 모델을 선택합니다. 
+                이후 선택된 모델을 바탕으로 문제 후보를 선정하고 필터링을 통해 최종 문제 추천 결과가 출력됩니다. 
+                일부 유저 또는 문제에게 만족스러운 추천 결과를 제공해드릴 수 없는 점 양해 부탁드리며, 
+                앞으로 지속하여 모델을 고도화하고 필터링 방법을 수정해 나갈 예정입니다. 
+                혹여 문제 추천 결과가 만족스럽지 못할 경우 추후 서비스 발전에 더 큰 도움이 되도록 
+                귀하의 서비스 경험에 관한 피드백을 남겨주시면 감사하겠습니다.
+                </Accordion.Body>
+            </Accordion.Item>
+            <Accordion.Item eventKey="2">
+                <StyledAccordianButton>
+                어떠한 딥 러닝 모델을 사용하나요?
+                </StyledAccordianButton>
+                <Accordion.Body>
+                본 서비스는 기본적으로 autoencoder 기반의 딥 러닝과 머신러닝 모델을 사용합니다. 
+                서비스 개시일 기준(22.06.12) 라이벌 추천에서 사용하는 모델과 다르며, 추후 사용 모델이 변경될 수 있습니다.
                 </Accordion.Body>
             </Accordion.Item>
         </Accordion>
