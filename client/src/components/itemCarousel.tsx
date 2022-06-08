@@ -7,8 +7,7 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import {Nav} from "react-bootstrap"
 
 import ProblemItemContatiner from '../container/problemItemContainer';
-
-import { height } from '@mui/system';
+import { oh_purple, so_gray } from '../constants/color';
 
 const Wrap = styled.div`
     overflow: hidden;
@@ -167,17 +166,39 @@ const NextIcon = styled(ArrowForwardIosIcon)`
 `;
 
 const ErrorBox = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
     position: relative;
     background: white;
-    box-shadow: 0 0 8px 0 rgba(0,0,0,0.04);
-
+    width: 90%;
+    padding: 1.2rem;
+    font-weight: 500;
+    color: ${so_gray};
     min-height: 150px;
-
-    margin: 0 auto;
+    margin: 20px auto 60px;
     border-radius: 1rem;
-
-    /* cursor: pointer; */
+    box-shadow: 0px 15px 35px -5px rgb(50 88 130 / 32%);
     transition: all 0.6s cubic-bezier(.25,.8,.25,1) 0.3s;
+    & p{
+        width: 100%;
+        text-align: center;
+    }
+`;
+
+const SproutLinkButton = styled.button`
+    border-radius: 20px;
+    margin-top: 10px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 1.15px;
+    padding: 5px 10px;
+    background-color: ${oh_purple};
+    color: #f9f9f9;
+    box-shadow: 8px 8px 16px #d1d9e6, -8px -8px 16px #f9f9f9;
+    border: none;
+    outline: none;
 `;
 
 const ItemSlide = (children : any) => {
@@ -230,31 +251,43 @@ const ItemSlide = (children : any) => {
     return(
         <Wrap className='wrap'>
             <Inner property='mainInner'>
+            {children.validAPI ? 
                 <Slick
                     ref = {mainSlickRef}
                     {...mainSettings}
                     >
-                        {children.validAPI ? children.probs.map((item : any, i : number)=>{
+                        {children.probs.map((item : any, i : number)=>{
                             return(
                                 <MainSlickItems key={i}>
                                     <ProblemItemContatiner key = {i} item = {item}/>
                                 </MainSlickItems>
-                            )
-                        }) : 
-                            <ErrorBox>
-                                사용자님의 문제 풀이 이력이 너무 적거나, 현재 데이터가 업데이트 중입니다.
-                            </ErrorBox>
-                            
+                                )
+                            }) 
                         }
                 </Slick>
-                <>
+                :
+                <ErrorBox>
+                    <p>사용자님의 문제 풀이 이력이 너무 적거나, 현재 데이터가 업데이트 중입니다.</p>
+                    <a href = {`https://solved.ac/problems/sprout`} target='_blank'>
+                    <SproutLinkButton>
+                        새싹 문제부터 풀러 가기 
+                    </SproutLinkButton>
+                    </a>
+                </ErrorBox>
+                }
+                 
+                    {children.validAPI ? 
+                    <> 
                         <PrevButton onClick={onClickPrev(mainSlickRef)} property='mainButton'>
                             <PrevIcon />
                         </PrevButton>
                         <NextButton onClick={onClickNext(mainSlickRef)} property='mainButton'>
                             <NextIcon />
                         </NextButton>
-                </>
+                        </>
+                        :
+                        <></>
+                    }
             </Inner>
         </Wrap>
     );

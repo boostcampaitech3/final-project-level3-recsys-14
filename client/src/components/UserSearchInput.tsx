@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FormEvent, useCallback, useRef, useState } from "react";
+import React, { ChangeEvent, FormEvent, useCallback, useEffect, useRef, useState, createRef } from "react";
 import { API } from "../utils/axios";
 import { useNavigate, useParams } from "react-router-dom";
 import { Form, Modal, Button } from 'react-bootstrap';
@@ -61,6 +61,7 @@ const UserSearchStyledInput = styled.input`
     min-width: 75%;
     height: 100%;
     padding: 0 20px;
+    vertical-align: middle;
     background-color: #fff;
     color: #323232;
     font-size: min(max(calc(10px + 1vmin), 10px), 18px);
@@ -132,6 +133,18 @@ const UserSearchInput = ({onInput} : any)=>{
     const autoSearchDispatch = useCallback((handles : Array<any>) => dispatch(autoUserSearch(handles)), [dispatch]);
     const autoSearchInitialDispatch = useCallback(() => dispatch(autoUserInitial()), [dispatch]);
     
+    const handleOuterClick = (e:any) => {
+        if (!inputRef.current?.contains(e.target)) {
+            setAuto(false);
+        }
+        else {
+            setAuto(true);
+        }
+      };
+
+    useEffect(() => {
+        document.addEventListener("click", handleOuterClick)
+    }, []);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -225,8 +238,8 @@ const UserSearchInput = ({onInput} : any)=>{
 
 
     return(
-        <UserSearchWrapper tabIndex={0} onFocus={()=>setAuto(true)} onBlur={() => setAuto(false)}>
-        <UserSearchStyledForm onSubmit={onSubmit}>
+        <UserSearchWrapper>
+        <UserSearchStyledForm onSubmit={onSubmit} autoComplete="off">
             <SearchSelectBox onChange={selectMenu} value={selectedMenu} size="sm">
                 <option value="problem">문제 추천</option>
                 <option value="rival">라이벌 추천</option>

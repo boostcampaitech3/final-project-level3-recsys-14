@@ -139,20 +139,11 @@ const AutoSearch = ({selectedMenu} : any) =>{
               return(
               <AutoSearchData key = {i} onClick= {() => onClickUser(user.handle)}>
               
-              {selectedMenu == 'problem' ? 
-              <SearchResult to={`/user/${user.handle}`}>
-                <UserTier>
+              <UserTier>
                 {tierScaling(user.tier)}
                 </UserTier>
-                {user.handle}
-              </SearchResult> : 
-              <SearchResult to={`/user/${user.handle}/rival`}>
-                <UserTier>
-                {tierScaling(user.tier)}
-                </UserTier>
-                {user.handle}
-              </SearchResult>
-              }
+              {user.handle}
+
               <SearchSvgIcon className="searchicon"
                 fill-rule="evenodd" 
                 fill= "#fff"
