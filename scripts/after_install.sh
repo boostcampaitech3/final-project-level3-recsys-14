@@ -11,5 +11,32 @@ export RECJOON_RDS_DATABASE=$(aws ssm get-parameters --region ap-northeast-2 --n
 export RECJOON_SERVER_HOST=$(aws ssm get-parameters --region ap-northeast-2 --names RECJOON_SERVER_HOST --query Parameters[0].Value | sed 's/"//g')
 export RECJOON_SERVER_PORT=$(aws ssm get-parameters --region ap-northeast-2 --names RECJOON_SERVER_PORT --query Parameters[0].Value | sed 's/"//g')
 
-sudo docker-compose down --rmi all
-sudo docker-compose up -d --build
+DOCKER_APP_NAME=server
+
+DOCKER_APP_NAME=server
+
+EXIST_PROXY=$(docker-compose -p proxy -f docker-compose.nginx.yml ps | grep Up)
+
+if [ -z "$EXIST_PROXY" ]; then
+    docker-compose -p proxy -f docker-compose.nginx.yml up -d build
+fi
+
+EXIST_BLUE=$(docker-compose -p ${DOCKER_APP_NAME}-blue -f docker-compose.blue.yml ps | grep Up)
+
+if [ -z "$EXIST_BLUE" ]; then
+    docker-compose -p ${DOCKER_APP_NAME}-blue -f docker-compose.blue.yml pull
+    docker-compose -p ${DOCKER_APP_NAME}-blue -f docker-compose.blue.yml up -d
+
+    sleep 10
+
+    docker-compose -p ${DOCKER_APP_NAME}-green -f docker-compose.green.yml down
+    docker image prune -af
+else
+    docker-compose -p ${DOCKER_APP_NAME}-green -f docker-compose.green.yml pull
+    docker-compose -p ${DOCKER_APP_NAME}-green -f docker-compose.green.yml up -d
+
+    sleep 10
+
+    docker-compose -p ${DOCKER_APP_NAME}-blue -f docker-compose.blue.yml down
+    docker image prune -af
+fi

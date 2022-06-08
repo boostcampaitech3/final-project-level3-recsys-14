@@ -6,7 +6,6 @@ WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH
 
 RUN npm i -g ts-node
-RUN npm i -g pm2
 
 COPY package*.json ./
 COPY tsconfig.json ./
@@ -16,8 +15,6 @@ RUN npm install
 COPY . .
 
 RUN ts-node -v
-
-EXPOSE 8080
 
 ENTRYPOINT ["ts-node"]
 CMD ["./src/app.ts"]

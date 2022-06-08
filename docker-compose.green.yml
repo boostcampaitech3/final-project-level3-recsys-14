@@ -1,21 +1,7 @@
 version: '3.7'
 
 services:
-  nginx_proxy:
-    image: nginx:latest
-    restart: "on-failure"
-    ports:
-      - 80:80
-    volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
-      - ./client/build:/usr/share/nginx/html
-    container_name: nginx_proxy
-    networks:
-      - default
-    depends_on:
-      - server
-
-  server:
+  server-green:
     image: recjoon-server:latest
     build:
       context: ./server/
@@ -31,14 +17,13 @@ services:
       - RECJOON_SERVER_PORT
     networks:
       - default
-    container_name: server
-    expose: 
-      - "8080"
+    ports: 
+      - 8081:8080
     volumes:
       - './server:/app'
       - '/app/node_modules'
     stdin_open: true
     tty: true
-
+      
 networks:
   default:
