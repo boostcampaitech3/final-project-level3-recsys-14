@@ -17,6 +17,7 @@ import userRecImage from "../assets/images/problem_rec_large.png";
 import ProblemRecFAQ from "../components/problemRecFAQ";
 import { initialProblem } from "../modules/problemItem";
 import { autoUserInitial } from "../modules/autoSearch";
+import RatingStar from "../components/RatingStar";
 
 const Box = styled.div`
     display : flex;
@@ -116,7 +117,18 @@ const SectionTitle = styled.h2`
         text-align: center !important;
     }
 `;
+const RatingTitle = styled.h2`
+    display: block;
+    font-weight: 800;
+    font-size: 1.5em;
+    letter-spacing: -0.02ch;
+    margin: 1.5rem 0;
+    text-align: left !important;
 
+    @media screen and (max-width: 800px){
+        text-align: center !important;
+    }
+`;
 const BlankBox = styled.div`
     display: block;
     weight: 100%;
@@ -182,12 +194,12 @@ function Userpage() {
         <div>
             <NavBar pathname = {location.pathname}/>
             <UserIntroBox>
-            <UserBackgroundStyledDiv />
-            <UserIntroStyledDiv>
-                내가 모르던 나를 위한 문제.<br/>
-                한눈에 모아보다.
-            </UserIntroStyledDiv>
-            <UserIntroStyledSpan>
+                <UserBackgroundStyledDiv />
+                    <UserIntroStyledDiv>
+                        내가 모르던 나를 위한 문제.<br/>
+                        한눈에 모아보다.
+                    </UserIntroStyledDiv>
+                <UserIntroStyledSpan>
                 {userHandle} 님에게 맞는 문제를 영역별로 추천해 드릴게요.<br/>
                 본인의 목적에 맞는 문제를 찾아 풀어보세요.<br/>
             </UserIntroStyledSpan>
@@ -199,11 +211,16 @@ function Userpage() {
             </SliderWrap>
             <ContentContainer>
                 <ContentInnerContainer>
-                <BlankBox/>
-                <SectionTitle>
-                    문제 추천에 관한 궁금증을 정리했어요.
-                </SectionTitle>
-                <ProblemRecFAQ/>
+                    <BlankBox/>
+                        <RatingTitle>
+                            추천된 문제들의 만족도를 남겨주세요!
+                        </RatingTitle>
+                        <RatingStar/>
+
+                        <SectionTitle>
+                            문제 추천에 관한 궁금증을 정리했어요.
+                        </SectionTitle>
+                    <ProblemRecFAQ/>
                 </ContentInnerContainer>
             </ContentContainer>
             <MainFooter />
