@@ -3,7 +3,7 @@ version: '3.7'
 services:
   nginx_proxy:
     image: nginx:latest
-    restart: "on-failure"
+    restart: always
     ports:
       - 80:80
     volumes:
