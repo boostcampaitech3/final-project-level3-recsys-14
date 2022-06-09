@@ -4,6 +4,7 @@ import { Rating } from "@mui/material";
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 
+import { API } from "../utils/axios";
 import StarIcon from '@mui/icons-material/Star';
 import Box from '@mui/material/Box';
 import styled from "styled-components";
@@ -80,28 +81,47 @@ const RatingStar = () => {
             setInputvalue(e.target.value);
         }
     };
+    
+    const feedBack = async(body : any) =>{
+        try{
+            const res = await API.post(`/feedback/send`, body);
+            console.log(res); //11번째
+        }
+        catch(e){
+            console.error(e);
+
+        }
+    } 
 
     const onClick = () =>{
         if(location.pathname == `/user/${userHandle}`){
+            const body = {handle : userHandle, problem_rating : value, problem_feedback : inputvalue};
             console.log('page : user', 'handle : ', userHandle, 'hover : ', value, 'feedback : ', inputvalue);
+            feedBack(body)
         }
         else{
+            const body = {handle : userHandle, rival_rating : value, rival_feedback : inputvalue};
             console.log('page : rival', 'handle : ', userHandle, 'hover : ', value, 'feedback : ', inputvalue);
+            feedBack(body)
         }
         setFlag(false);
     }
+
     const onEnter = (e : any) =>{
         if(e.key === 'Enter'){
             if(location.pathname == `/user/${userHandle}`){
+                const body = {handle : userHandle, problem_rating : value, problem_feedback : inputvalue};
                 console.log('page : user', 'handle : ', userHandle, 'hover : ', value, 'feedback : ', inputvalue);
+                feedBack(body)
             }
             else{
+                const body = {handle : userHandle, rival_rating : value, rival_feedback : inputvalue};
                 console.log('page : rival', 'handle : ', userHandle, 'hover : ', value, 'feedback : ', inputvalue);
+                feedBack(body)
             }
             setFlag(false);
         }
-    }
-    
+    }  
     return(
         <>
         {flag ?
