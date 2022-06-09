@@ -1,5 +1,5 @@
 import { Service } from "typedi";
-import { Problems } from "../database/entity/problems";
+import { Problems } from "../database/entityReadOnly/problems";
 import { ProblemsRepository } from "../repository/problemsRepository";
 import { problemsFilter } from "./filters/problemsFilters"
 import { filterProperites } from "../helper/utils/filterProperties";

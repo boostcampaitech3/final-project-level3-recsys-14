@@ -62,7 +62,7 @@ const ProblemRecFAQ = () => {
                 어떠한 딥 러닝 모델을 사용하나요?
                 </StyledAccordianButton>
                 <Accordion.Body>
-                본 서비스는 기본적으로 autoencoder 기반의 딥 러닝과 머신러닝 모델을 사용합니다. 
+                본 서비스는 기본적으로 Autoencoder 기반의 딥 러닝과 머신 러닝 모델을 사용합니다. 
                 서비스 개시일 기준(22.06.12) 라이벌 추천에서 사용하는 모델과 다르며, 추후 사용 모델이 변경될 수 있습니다.
                 </Accordion.Body>
             </Accordion.Item>

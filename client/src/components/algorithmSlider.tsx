@@ -118,7 +118,7 @@ export const AlgorithmSlide = styled.div`
     height: min(calc(120px + 5vmin), 200px);
     margin: 0px 20px;
     border-radius: 1.5rem;
-    background-color: #fffbff66;
+    background-color: rgb(254 254 254 / 40%);
     transition: transform .5s ease-out;
     box-shadow:
         0 2px 6px 0 rgb(136 148 171 / 20%), 0 24px 20px -24px rgb(71 82 107 / 10%);

@@ -43,6 +43,15 @@ const RivalRecFAQ = () => {
             </Accordion.Item>
             <Accordion.Item eventKey="1">
                 <StyledAccordianButton>
+                이미 등록한 라이벌이 추천돼요.
+                </StyledAccordianButton>
+                <Accordion.Body>
+                본 서비스 과정에서 추천되는 라이벌은 solved.ac에서 등록한 라이벌과 연동되지 않습니다. 
+                개인별 라이벌 정보는 solved.ac의 token을 필요로 하므로 유저별로 어떠한 라이벌이 이미 등록되어 있는지 확인할 수 없습니다.
+                </Accordion.Body>
+            </Accordion.Item>
+            <Accordion.Item eventKey="2">
+                <StyledAccordianButton>
                 라이벌 문제 추천이 일반 문제 추천과 다른 점이 뭔가요?
                 </StyledAccordianButton>
                 <Accordion.Body>
@@ -51,22 +60,13 @@ const RivalRecFAQ = () => {
                 유저 개개인의 데이터에 따라 두 서비스의 만족도에 차이가 있을 수 있습니다.
                 </Accordion.Body>
             </Accordion.Item>
-            <Accordion.Item eventKey="2">
+            <Accordion.Item eventKey="3">
                 <StyledAccordianButton>
                 라이벌 문제 추천 방법이 궁금해요.
                 </StyledAccordianButton>
                 <Accordion.Body>
                 만일 라이벌은 풀었지만 나는 풀지 않은 문제가 30개 이상이라면 문제 풀이 이력을 기반으로 풀 만한 문제를 우선적으로 추천해줍니다.
                 라이벌이 풀었던 문제와 내가 풀었던 문제가 완전히 동일하면 문제 추천이 이뤄지지 않을 수 있습니다.
-                </Accordion.Body>
-            </Accordion.Item>
-            <Accordion.Item eventKey="3">
-                <StyledAccordianButton>
-                이미 등록한 라이벌이 추천돼요.
-                </StyledAccordianButton>
-                <Accordion.Body>
-                본 서비스 과정에서 추천되는 라이벌은 solved.ac에서 등록한 라이벌과 연동되지 않습니다. 
-                개인별 라이벌 정보는 solved.ac의 token을 필요로 하므로 유저별로 어떠한 라이벌이 이미 등록되어 있는지 확인할 수 없습니다.
                 </Accordion.Body>
             </Accordion.Item>
         </Accordion>

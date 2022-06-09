@@ -15,15 +15,9 @@ services:
       - RECJOON_RDS_DATABASE
       - RECJOON_SERVER_HOST
       - RECJOON_SERVER_PORT
-    networks:
-      - default
     ports: 
       - 8081:8080
     volumes:
       - './server:/app'
       - '/app/node_modules'
     stdin_open: true
-    tty: true
-      
-networks:
-  default:

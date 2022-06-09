@@ -1,0 +1,5 @@
+FROM nginx
+COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
+COPY ./client/build /usr/share/nginx/html
+
+CMD ["nginx", "-g", "daemon off;"]

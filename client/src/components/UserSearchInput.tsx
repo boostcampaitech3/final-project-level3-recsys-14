@@ -62,7 +62,7 @@ const UserSearchStyledInput = styled.input`
     height: 100%;
     padding: 0 20px;
     vertical-align: middle;
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0);
     color: #323232;
     font-size: min(max(calc(10px + 1vmin), 10px), 18px);
     &:placeholder {
