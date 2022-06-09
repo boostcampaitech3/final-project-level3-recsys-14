@@ -5,6 +5,8 @@ import config from "./config";
 
 const server = async() => {
     const app = express();
+    console.log(process.env.RECJOON_RDS_HOST)
+
     const port = process.env.PORT || config.server.AWS_EC2.port;
     const host = process.env.HOST || config.server.AWS_EC2.host;
 

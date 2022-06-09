@@ -1,5 +1,5 @@
 import axios from 'axios'
 
 export const API = axios.create({
-    baseURL: process.env.REACT_APP_API || "http://0.0.0.0:8080/api"
+    baseURL: process.env.NODE_ENV == 'development' ?  "http://localhost:8080/api": "/api"
 })

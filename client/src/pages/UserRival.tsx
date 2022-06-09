@@ -21,6 +21,7 @@ import RivalRecFAQ from "../components/rivalRecFAQ";
 import { initialRival } from "../modules/rivalItem";
 import { initialRivalProblem } from "../modules/rivalProblemItem";
 import { autoUserInitial } from "../modules/autoSearch";
+import RatingStar from "../components/RatingStar";
 
 const RivalIntroBox = styled.div`
     display : flex;
@@ -124,7 +125,18 @@ const MyProfileTitle = styled.h4`
     font-size: 1.5rem;
     margin: 10px 0;
 `;
+const RatingTitle = styled.h2`
+    display: block;
+    font-weight: 800;
+    font-size: 1.5em;
+    letter-spacing: -0.02ch;
+    margin: 1.5rem 0;
+    text-align: left !important;
 
+    @media screen and (max-width: 800px){
+        text-align: center !important;
+    }
+`;
 function Userrival() {
     const [profile, setProfile] = useState({});
 
@@ -218,6 +230,11 @@ function Userrival() {
                 <ContentContainer>
                     <ContentInnerContainer>
                     <BlankBox/>
+                        <RatingTitle>
+                            추천된 문제들의 만족도를 남겨주세요!
+                        </RatingTitle>
+                        <RatingStar/>
+
                     <SectionTitle>
                         라이벌 추천에 관한 궁금증을 정리했어요.
                     </SectionTitle>
