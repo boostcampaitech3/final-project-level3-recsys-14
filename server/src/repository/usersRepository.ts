@@ -1,6 +1,6 @@
 import { Service } from "typedi";
 import { EntityTarget } from "typeorm";
-import { Users } from "../database/entity/users";
+import { Users } from "../database/entityReadOnly/users";
 import { BaseRepository } from "./baseRepository";
 
 @Service()

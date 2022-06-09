@@ -1,5 +1,5 @@
 import { Service } from "typedi";
-import { RecommendRivals } from "../database/entity/recommendRivals";
+import { RecommendRivals } from "../database/entityReadOnly/recommendRivals";
 import { RecommendRivalsRepository } from "../repository/recommendRivalsRepository";
 import { recommendRivalsFilter } from "./filters/recommendRivalsFilters";
 import { filterProperites } from "../helper/utils/filterProperties";
