@@ -1,5 +1,5 @@
 import { Service } from "typedi";
-import { RecommendGeneralProblems } from "../database/entity/recommendGeneralProblems";
+import { RecommendGeneralProblems } from "../database/entityReadOnly/recommendGeneralProblems";
 import { RecommendGeneralProblemsRepository } from "../repository/recommendGeneralProblemsRepository";
 import { recommendGeneralProblemsFilter } from "./filters/recommendGeneralProblemsFilters";
 import { filterProperites } from "../helper/utils/filterProperties";

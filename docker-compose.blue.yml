@@ -21,4 +21,3 @@ services:
       - './server:/app'
       - '/app/node_modules'
     stdin_open: true
-    tty: true
