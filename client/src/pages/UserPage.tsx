@@ -18,6 +18,10 @@ import ProblemRecFAQ from "../components/problemRecFAQ";
 import { initialProblem } from "../modules/problemItem";
 import { autoUserInitial } from "../modules/autoSearch";
 import RatingStar from "../components/RatingStar";
+import svgIcon from "../components/svgIcon";
+import {
+    light_purple
+} from "../constants/color";
 
 const Box = styled.div`
     display : flex;
@@ -129,6 +133,38 @@ const RatingTitle = styled.h2`
         text-align: center !important;
     }
 `;
+
+const ProblemDescription = styled.p`
+    display: block;
+    font-size: 1em;
+    font-weight: 400;
+    margin: 1.2rem 0;
+    text-align: left !important;
+
+    @media screen and (max-width: 800px){
+        text-align: center !important;
+    }
+`;
+
+
+const LinkSvgIcon = styled(svgIcon)` 
+    width: min(max(calc(10px + 1vmin), 10px), 18px); 
+    height: min(max(calc(10px + 1vmin), 10px), 18px);
+    position: relative;
+    top: 6px;
+    left: 6px;
+    overflow: overlay;
+    stroke: ${light_purple};
+    cursor: pointer;
+    transform: 
+      translateY(-50%)
+      rotate(-90deg);
+`;
+
+const LinkSvgIconWrapper = styled.div`
+    display: inline-block;
+`;
+
 const BlankBox = styled.div`
     display: block;
     weight: 100%;
@@ -192,38 +228,61 @@ function Userpage() {
 
     return(
         <div>
-            <NavBar pathname = {location.pathname}/>
+            <NavBar pathname={location.pathname} />
             <UserIntroBox>
                 <UserBackgroundStyledDiv />
-                    <UserIntroStyledDiv>
-                        내가 모르던 나를 위한 문제.<br/>
-                        한눈에 모아보다.
-                    </UserIntroStyledDiv>
+                <UserIntroStyledDiv>
+                    내가 모르던 나를 위한 문제.<br />
+                    한눈에 모아보다.
+                </UserIntroStyledDiv>
                 <UserIntroStyledSpan>
-                {userHandle} 님에게 맞는 문제를 영역별로 추천해 드릴게요.<br/>
-                본인의 목적에 맞는 문제를 찾아 풀어보세요.<br/>
-            </UserIntroStyledSpan>
-            <UserIntroImage/>
+                    {userHandle} 님에게 맞는 문제를 영역별로 추천해 드릴게요.<br />
+                    본인의 목적에 맞는 문제를 찾아 풀어보세요.<br />
+                </UserIntroStyledSpan>
+                <UserIntroImage />
             </UserIntroBox>
             <SliderWrap>
                 <Individual />
-                {problemItem.toggle && tagSwitch && <ProblemDetail item = {problemItem.item}/>}
+                {problemItem.toggle && tagSwitch && <ProblemDetail item={problemItem.item} />}
             </SliderWrap>
             <ContentContainer>
                 <ContentInnerContainer>
-                    <BlankBox/>
-                        <RatingTitle>
-                            추천된 문제들의 만족도를 남겨주세요!
-                        </RatingTitle>
-                        <RatingStar/>
-
-                        <SectionTitle>
-                            문제 추천에 관한 궁금증을 정리했어요.
-                        </SectionTitle>
-                    <ProblemRecFAQ/>
-                </ContentInnerContainer>
-            </ContentContainer>
-            <MainFooter />
+                    <BlankBox />
+                    <SectionTitle>
+                        라이벌이 푼 문제도 보러 가 볼까요?
+                    </SectionTitle>
+                    <ProblemDescription>
+                        나는 풀지 않았지만 실력이 비슷한 내 라이벌은 푼 문제는 무엇인지 궁금하지 않으신가요?<br />
+                        지금 바로 이동해서 더 풀 만한 문제가 없는지 찾아보세요.
+                        <LinkSvgIconWrapper>
+                            <LinkSvgIcon
+                            onClick={() => { navigate(`/user/${userHandle}/rival`)}}
+                            className="searchicon"
+                            fill-rule="evenodd"
+                            fill= "#fff"
+                            clip-rule="evenodd"
+                            viewBox="0 0 28 28"
+                            strokeWidth="2"
+                            width="18" height="18">
+                            <path d="M12 0c6.623 0 12 5.377 12 12s-5.377 12-12 12-12-5.377-12-12 5.377-12 12-12zm0 1c6.071 0 11 4.929 11 11s-4.929 11-11 11-11-4.929-11-11 4.929-11 11-11zm5.247 8l-5.247 6.44-5.263-6.44-.737.678 6 7.322 6-7.335-.753-.665z" />
+                            </LinkSvgIcon>
+                        </LinkSvgIconWrapper>
+                    </ProblemDescription>
+                <BlankBox />
+                <BlankBox />
+                <RatingTitle>
+                    추천된 문제가 만족스러우신가요?
+                </RatingTitle>
+                <RatingStar />
+                <BlankBox />
+                <BlankBox />
+                <SectionTitle>
+                    문제 추천에 관한 궁금증을 정리했어요.
+                </SectionTitle>
+                <ProblemRecFAQ />
+                <BlankBox />
+            </ContentInnerContainer>
+        </ContentContainer><MainFooter />
         </div>
     );
 }

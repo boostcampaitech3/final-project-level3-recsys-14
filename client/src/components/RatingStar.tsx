@@ -13,6 +13,12 @@ import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { RootState } from "../modules";
 import { useSelector } from "react-redux";
 
+const RatingWrapper = styled(Box)`
+    @media screen and (max-width: 800px){
+        text-align: center !important;
+    }
+`;
+
 const ResBox = styled.div`
     display: flex;
     justify-content: center;
@@ -31,9 +37,12 @@ const ResBox = styled.div`
     transition: all 0.6s cubic-bezier(.25,.8,.25,1) 0.3s;
     & p{
         width: 100%;
+        margin: 1rem auto;
         text-align: center;
     }
 `;
+
+
 const SubmitButton = styled.button`
     width: 80px;
     height: 40px;
@@ -44,9 +53,19 @@ const SubmitButton = styled.button`
     letter-spacing: 1.15px;
     background-color: ${oh_purple};
     color: #f9f9f9;
-    box-shadow: 8px 8px 16px #d1d9e6, -8px -8px 16px #f9f9f9;
+    box-shadow: 4px 4px 8px #d1d9e6, -8px -8px 16px #f9f9f9;
     border: none;
     outline: none;
+    transition: transform .5s ease-out;
+    &:hover{
+        transform: scale(1.1, 1.1);
+        cursor: pointer;
+    }
+`;
+
+const AutocompleteWrapper = styled.div`
+    width: 100%;
+    margin: 1.2rem 0;
 `;
 
 const inputOptions = ['너무 쉬워요!', '제 수준에 맞아요!', '너무 어려워요!'];
@@ -125,11 +144,11 @@ const RatingStar = () => {
     return(
         <>
         {flag ?
-        <Box>
+        <RatingWrapper>
             <Rating
                 name="hover-feedback"
                 value={value}
-                precision={0.5}
+                precision={1}
                 onChange={(e,newValue) =>{
                     setValue(newValue);
                 }}
@@ -140,6 +159,7 @@ const RatingStar = () => {
                 emptyIcon={<StarIcon style={{opacity:0.55}} fontSize="inherit" />}
                 //onClick={() => StarClick(value, hover)}
                 />
+                <AutocompleteWrapper>
                 <Autocomplete
                 id="free-solo-demo"
                 freeSolo
@@ -154,13 +174,14 @@ const RatingStar = () => {
                     }
                 }}
                 options={inputOptions.map((option : string) => option)}
-                renderInput={(params) => <TextField {...params} label="의견도 적어주시면 더욱 맞춤된 문제로 찾아갑니다!" 
+                renderInput={(params) => <TextField {...params} label="의견도 함께 적어주시면 저희에게 더 큰 도움이 됩니다!" 
                                             onKeyDown={onEnter} value={inputvalue} onChange={onChange} />}
                 />
+                </AutocompleteWrapper>
                 <SubmitButton onClick={onClick}>
                     의견 보내기
                 </SubmitButton>
-        </Box>
+        </RatingWrapper>
         :
         <ResBox>
             <p>소중한 의견 감사합니다!</p>

@@ -1,6 +1,6 @@
 import { useState, useCallback, ChangeEvent } from 'react';
 import {tier_bronze, tier_silver, tier_gold, tier_pla, tier_dia, tier_ruby, tier_master,
-    tier_bronze_back, tier_silver_back, tier_gold_back, tier_pla_back, tier_dia_back, tier_ruby_back, tier_master_back} from '../constants/color';
+    tier_bronze_back, tier_silver_back, tier_gold_back, tier_pla_back, tier_dia_back, tier_ruby_back, tier_master_back, tier_default, tier_default_back} from '../constants/color';
 
 const tierColor = (value: string): any => {
     const stringToArray = value.split(" ");
@@ -37,10 +37,14 @@ const tierColor = (value: string): any => {
             backgroundColor = tier_ruby_back;
 
             break;
-        default:
+        case "마스터":
             Color = tier_master;
             backgroundColor = tier_master_back;
 
+            break;
+        default:
+            Color = tier_default;
+            backgroundColor = tier_default_back;
             break;
         }
     
