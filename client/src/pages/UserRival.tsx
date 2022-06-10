@@ -22,6 +22,10 @@ import { initialRival } from "../modules/rivalItem";
 import { initialRivalProblem } from "../modules/rivalProblemItem";
 import { autoUserInitial } from "../modules/autoSearch";
 import RatingStar from "../components/RatingStar";
+import svgIcon from "../components/svgIcon";
+import {
+    light_purple
+} from "../constants/color";
 
 const RivalIntroBox = styled.div`
     display : flex;
@@ -112,12 +116,6 @@ const SectionTitle = styled.h2`
     }
 `;
 
-const BlankBox = styled.div`
-    display: block;
-    weight: 100%;
-    height: 70px;
-`;
-
 const MyProfileTitle = styled.h4`
     display: flex;
     color: #323232;
@@ -125,6 +123,7 @@ const MyProfileTitle = styled.h4`
     font-size: 1.5rem;
     margin: 10px 0;
 `;
+
 const RatingTitle = styled.h2`
     display: block;
     font-weight: 800;
@@ -137,6 +136,44 @@ const RatingTitle = styled.h2`
         text-align: center !important;
     }
 `;
+
+const RivalDescription = styled.p`
+    display: block;
+    font-size: 1em;
+    font-weight: 400;
+    margin: 1.2rem 0;
+    text-align: left !important;
+
+    @media screen and (max-width: 800px){
+        text-align: center !important;
+    }
+`;
+
+
+const LinkSvgIcon = styled(svgIcon)` 
+    width: min(max(calc(10px + 1vmin), 10px), 18px); 
+    height: min(max(calc(10px + 1vmin), 10px), 18px);
+    position: relative;
+    top: 6px;
+    left: 6px;
+    overflow: overlay;
+    stroke: ${light_purple};
+    cursor: pointer;
+    transform: 
+      translateY(-50%)
+      rotate(-90deg);
+`;
+
+const LinkSvgIconWrapper = styled.div`
+    display: inline-block;
+`;
+
+const BlankBox = styled.div`
+    display: block;
+    weight: 100%;
+    height: 50px;
+`;
+
 function Userrival() {
     const [profile, setProfile] = useState({});
 
@@ -217,11 +254,13 @@ function Userrival() {
                     <RivalDetail rival = {profile} />
                 </RivalDetailWrapper>
                 <BlankBox/>
+                <BlankBox/>
                 </RivalIntroBox>
                 <SliderWrap>
                     <Rival />
                     {rivalItem.toggle && <RivalDetail rival = {rivalItem.rival} />}
                 </SliderWrap>
+                <BlankBox/>
                 <BlankBox/>
                 <SliderWrap>
                     <RivalProblem />
@@ -229,16 +268,40 @@ function Userrival() {
                 </SliderWrap>
                 <ContentContainer>
                     <ContentInnerContainer>
+                    <BlankBox />
+                    <SectionTitle>
+                        나의 실력을 기반으로 문제를 추천해드릴까요?
+                    </SectionTitle>
+                    <RivalDescription>
+                        라이벌 기반으로 추천된 문제에서 만족스러운 문제를 찾지 못하셨나요?<br/>
+                        그러면 나의 풀이 이력을 바탕으로 추천된 문제를 참고해보세요.
+                        <LinkSvgIconWrapper>
+                            <LinkSvgIcon
+                            onClick={() => { navigate(`/user/${userHandle}`)}}
+                            className="searchicon"
+                            fill-rule="evenodd"
+                            fill= "#fff"
+                            clip-rule="evenodd"
+                            viewBox="0 0 28 28"
+                            strokeWidth="2"
+                            width="18" height="18">
+                            <path d="M12 0c6.623 0 12 5.377 12 12s-5.377 12-12 12-12-5.377-12-12 5.377-12 12-12zm0 1c6.071 0 11 4.929 11 11s-4.929 11-11 11-11-4.929-11-11 4.929-11 11-11zm5.247 8l-5.247 6.44-5.263-6.44-.737.678 6 7.322 6-7.335-.753-.665z" />
+                            </LinkSvgIcon>
+                        </LinkSvgIconWrapper>
+                    </RivalDescription>
+                    <BlankBox/>
                     <BlankBox/>
                         <RatingTitle>
-                            추천된 문제들의 만족도를 남겨주세요!
+                            추천된 라이벌 또는 문제가 만족스러우신가요?
                         </RatingTitle>
                         <RatingStar/>
-
+                    <BlankBox/>
+                    <BlankBox/>
                     <SectionTitle>
                         라이벌 추천에 관한 궁금증을 정리했어요.
                     </SectionTitle>
                     <RivalRecFAQ/>
+                    <BlankBox/>
                     </ContentInnerContainer>
                     </ContentContainer>
                 <MainFooter />
