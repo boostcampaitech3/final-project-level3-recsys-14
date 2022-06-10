@@ -12,7 +12,7 @@ import "slick-carousel/slick/slick-theme.css";
 
 import RivalSlide from "./rivalCarousel";
 
-import {Nav} from "react-bootstrap"
+import {Alert, Nav} from "react-bootstrap"
 import { RootState } from "../modules";
 import { userSearchInputState } from "../modules/userSearchInput";
 import { API } from "../utils/axios";
@@ -59,6 +59,7 @@ export const CarouselBtn = styled.div`
 function Rival(){
     const [rival, setRival] = React.useState([]);
     const [validAPI, setValidAPI] = React.useState(false);
+    const [show, setShow] = React.useState(true);
 
     const userHandle = useSelector((state: RootState) => state.userSearchInput.userHandle);
     // console.log(userHandle)
@@ -84,6 +85,13 @@ function Rival(){
     return(
         <Box>
                 <CarouselTitle>{userHandle}님의 라이벌로 추천합니다.</CarouselTitle>
+                { show && <Alert variant="light"
+                    onClose={() => setShow(false)} dismissible>
+                    <p>
+                    잠깐, 라이벌 등록 페이지로 이동하기 전에 solved.ac 로그인이 되어 있나요? <br/>
+                    추천된 라이벌을 등록하러 가는 링크를 클릭하기 전에 <Alert.Link href="https://solved.ac/">solved.ac 로그인</Alert.Link>이 되어 있는지 우선 확인해주세요!
+                    </p>
+                </Alert> }
                 <RivalSlide validAPI = {validAPI} rival = {rival} />
        </Box>
     );
