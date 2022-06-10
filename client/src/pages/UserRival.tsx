@@ -264,7 +264,7 @@ function Userrival() {
                 <BlankBox/>
                 <SliderWrap>
                     <RivalProblem />
-                    {rivalProblem.toggle && tagSwitch && <ProblemDetail item = {rivalProblem.item} />}
+                    {rivalProblem.toggle && tagSwitch && <ProblemDetail item = {rivalProblem.item}/>}
                 </SliderWrap>
                 <ContentContainer>
                     <ContentInnerContainer>

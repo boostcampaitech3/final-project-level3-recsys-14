@@ -5,6 +5,7 @@ import tagSwitch from "./tagSwitch";
 import rivalItem from "./rivalItem";
 import rivalProblemItem from "./rivalProblemItem";
 import autoSearch from "./autoSearch";
+import alertClose from "./alertClose";
 
 const rootReducer = combineReducers({
     userSearchInput,
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
     tagSwitch,
     rivalItem,
     rivalProblemItem,
-    autoSearch
+    autoSearch,
+    alertClose
 });
 
 export default rootReducer;
