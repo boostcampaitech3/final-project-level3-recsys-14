@@ -21,3 +21,26 @@ export const dawn_gray = "#817e82";
 
 export const light_green = "#edf5f5";
 export const so_gray = "#595959";
+
+
+export const tier_master = "#5b0eeb";
+export const tier_master_back = "#9874aa";
+
+export const tier_ruby = "#5b0eeb";
+export const tier_ruby_back = "#9874aa";
+
+export const tier_dia ="#5b0eeb";
+export const tier_dia_back = "#9874aa";
+
+export const tier_pla ="#5b0eeb";
+export const tier_pla_back = "#9874aa";
+
+export const tier_gold ="#5b0eeb";
+export const tier_gold_back = "#9874aa";
+
+export const tier_silver ="#817e82";
+export const tier_silver_back = "#f7f5f8";
+
+export const tier_bronze ="#5b0eeb";
+export const tier_bronze_back = "#9874aa";
+

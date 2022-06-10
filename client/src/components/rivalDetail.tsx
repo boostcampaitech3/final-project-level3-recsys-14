@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../modules";
 import specWrapperImage from "../assets/images/spec_background_large.png";
 import { bright_purple } from "../constants/color";
+import tierColor from "../utils/useTierColor";
 
 const RivalItemPage = styled.div`
 position: relative;
@@ -81,8 +82,8 @@ const RivalTier = styled.h4`
     border-radius: 100px;
     padding: 4px 8px;
     font-size: 1.3rem;
-    color: #13854e;
-    background-color: #d6ede2;
+    /* color: #13854e; */
+    /* background-color: #d6ede2; */
     @media screen and (max-width: 640px){
         width: 70%;
     }
@@ -191,7 +192,7 @@ const RivalDetail = ({rival}:any) =>{
             tier = tier + " " + (6 - ((rawTier - 1) % 5 + 1));
         }
     }
-
+    const [Color, backgroundColor] = tierColor(tier);
     return(
         <>
         <RivalItemPage>
@@ -204,7 +205,7 @@ const RivalDetail = ({rival}:any) =>{
                 </RivalHandle>
             </WhiteHandleBox>
             <WhiteTierBox>
-                <RivalTier>
+                <RivalTier style={{color : Color, backgroundColor : backgroundColor}}>
                     {tier}
                 </RivalTier>
             </WhiteTierBox>

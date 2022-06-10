@@ -8,6 +8,7 @@ import { RootState } from "../modules";
 import {
     bright_purple,
 } from "../constants/color";
+import tierColor from "../utils/useTierColor";
 
 const ProblemItemPage = styled.div`
     position: relative;
@@ -82,8 +83,8 @@ const ProblemLevel = styled.h4`
     border-radius: 100px;
     padding: 4px 12px;
     font-size: 1.3rem;
-    color: #13854e;
-    background-color: #d6ede2;
+    /* color: #13854e; */
+    /* background-color: #d6ede2; */
 `;
 
 const TagBoxWrapper = styled.div`
@@ -179,6 +180,7 @@ const ProblemDetail = ({item}:any) =>{
         tier = tier + " " + (6 - ((rawLevel - 1) % 5 + 1));
     }
     const tagSwitch = useSelector((state : RootState) => state.tagSwitch.toggle);
+    const [Color, backgroundColor] = tierColor(tier);
 
     return(
         <>
@@ -193,7 +195,7 @@ const ProblemDetail = ({item}:any) =>{
                 
             </WhiteTitleBox>
             <WhiteLevelBox>
-                <ProblemLevel>
+                <ProblemLevel style={{color : Color, backgroundColor : backgroundColor}}>
                     {tier}
                 </ProblemLevel>
             </WhiteLevelBox>

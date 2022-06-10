@@ -8,6 +8,7 @@ import {
   light_purple,
   light_green,
 } from "../constants/color";
+import tierColor from "../utils/useTierColor";
 
 const WhiteTierBox = styled.div`
     display: inline-block;
@@ -28,8 +29,8 @@ const UserTier = styled.p`
     margin: 10px 12px 10px 5px;   
     border-radius: 100px;
     padding: 4px 8px;
-    color: #13854e;
-    background-color: #d6ede2;
+    /* color: #13854e; */
+    /* background-color: #d6ede2; */
 `;
 
 const AutoSearchContainer = styled.div`
@@ -139,7 +140,7 @@ const AutoSearch = ({selectedMenu} : any) =>{
               return(
               <AutoSearchData key = {i} onClick= {() => onClickUser(user.handle)}>
               
-              <UserTier>
+              <UserTier style={{color : tierColor(tierScaling(user.tier))[0], backgroundColor : tierColor(tierScaling(user.tier))[1]}}>
                 {tierScaling(user.tier)}
                 </UserTier>
               {user.handle}
