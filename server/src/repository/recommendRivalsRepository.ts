@@ -1,6 +1,6 @@
 import { Service } from "typedi";
 import { EntityTarget } from "typeorm";
-import { RecommendRivals } from "../database/entity/recommendRivals";
+import { RecommendRivals } from "../database/entityReadOnly/recommendRivals";
 import { BaseRepository } from "./baseRepository";
 
 @Service()

@@ -62,7 +62,7 @@ const UserSearchStyledInput = styled.input`
     height: 100%;
     padding: 0 20px;
     vertical-align: middle;
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0);
     color: #323232;
     font-size: min(max(calc(10px + 1vmin), 10px), 18px);
     &:placeholder {
@@ -118,7 +118,7 @@ const SearchSvgIcon = styled(svgIcon)`
 
 const UserSearchInput = ({onInput} : any)=>{
     const params = useParams();
-    const pathname = useLocation().pathname;
+    const location = useLocation();
     //params.userHandle
     const [userId, setUserId] = useState('');
     const [selectedMenu, setSelected] = useState('problem');
@@ -145,6 +145,15 @@ const UserSearchInput = ({onInput} : any)=>{
     useEffect(() => {
         document.addEventListener("click", handleOuterClick)
     }, []);
+    
+    useEffect(()=>{
+        if (location.pathname == `/user/${params.userHandle}/rival`){
+            setSelected('rival');
+        }
+        else {
+            setSelected('problem');
+        }
+    },[location])
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
