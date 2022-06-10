@@ -104,7 +104,7 @@ const RatingStar = () => {
     const feedBack = async(body : any) =>{
         try{
             const res = await API.post(`/feedback/send`, body);
-            console.log(res); //11번째
+            // console.log(res); //11번째
         }
         catch(e){
             console.error(e);
@@ -115,12 +115,12 @@ const RatingStar = () => {
     const onClick = () =>{
         if(location.pathname == `/user/${userHandle}`){
             const body = {handle : userHandle, problem_rating : value, problem_feedback : inputvalue};
-            console.log('page : user', 'handle : ', userHandle, 'hover : ', value, 'feedback : ', inputvalue);
+            // console.log('page : user', 'handle : ', userHandle, 'hover : ', value, 'feedback : ', inputvalue);
             feedBack(body)
         }
         else{
             const body = {handle : userHandle, rival_rating : value, rival_feedback : inputvalue};
-            console.log('page : rival', 'handle : ', userHandle, 'hover : ', value, 'feedback : ', inputvalue);
+            // console.log('page : rival', 'handle : ', userHandle, 'hover : ', value, 'feedback : ', inputvalue);
             feedBack(body)
         }
         setFlag(false);
@@ -130,12 +130,12 @@ const RatingStar = () => {
         if(e.key === 'Enter'){
             if(location.pathname == `/user/${userHandle}`){
                 const body = {handle : userHandle, problem_rating : value, problem_feedback : inputvalue};
-                console.log('page : user', 'handle : ', userHandle, 'hover : ', value, 'feedback : ', inputvalue);
+                // console.log('page : user', 'handle : ', userHandle, 'hover : ', value, 'feedback : ', inputvalue);
                 feedBack(body)
             }
             else{
                 const body = {handle : userHandle, rival_rating : value, rival_feedback : inputvalue};
-                console.log('page : rival', 'handle : ', userHandle, 'hover : ', value, 'feedback : ', inputvalue);
+                // console.log('page : rival', 'handle : ', userHandle, 'hover : ', value, 'feedback : ', inputvalue);
                 feedBack(body)
             }
             setFlag(false);

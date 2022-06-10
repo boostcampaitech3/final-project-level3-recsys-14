@@ -125,18 +125,18 @@ function Usersearch() {
 
     const fetchvalid = async() =>{
         try{
-            console.log(user)
+            // console.log(user)
             const {data} = await API.get(`/user/check?handle=${user.userId}`);
-            console.log(data, data.message);
+            // console.log(data, data.message);
 
             switch(data.message){
                 case `${user.userId} exists.`:
-                    console.log(true);
+                    // console.log(true);
                     search_flag = true;
                     break;
 
                 default:
-                    console.log(false);
+                    // console.log(false);
                     search_flag = false;
                     break;
             }
@@ -151,7 +151,7 @@ function Usersearch() {
             } */
         }
         catch(err){
-            console.log(err);
+            // console.log(err);
         }
         setUser({userId: ''});
     }

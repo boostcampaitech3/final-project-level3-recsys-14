@@ -168,7 +168,7 @@ const UserSearchInput = ({onInput} : any)=>{
         let userFound = false;
         try{
             const {data} = await API.get(`/user/check?handle=${userId}`);
-            console.log(data);
+            // console.log(data);
             if (selectedMenu == 'problem'){
                 navigate(`/user/${userId}`);
             }
@@ -179,11 +179,11 @@ const UserSearchInput = ({onInput} : any)=>{
         }
         catch(e){
             handleShow();
-            console.log(show)
+            // console.log(show)
             console.error(e);  
 
         }
-        console.log(validUserFound);
+        // console.log(validUserFound);
     }
     const sendAPI = async (query : string) => {
         if(query.length === 0) {
@@ -198,9 +198,9 @@ const UserSearchInput = ({onInput} : any)=>{
 
             autoSearchDispatch(data);
             setAuto(true);
-            console.log(query);
+            // console.log(query);
         }catch(e){
-            console.log(e);
+            // console.log(e);
         }
         
     }
