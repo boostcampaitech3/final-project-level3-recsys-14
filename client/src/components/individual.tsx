@@ -66,7 +66,7 @@ function Individual(){
 
     const userHandle = useSelector((state: RootState) => state.userSearchInput.userHandle);
 
-    console.log(userHandle) //13번째
+    // console.log(userHandle) //13번째
     const fetchprob = async() =>{
         try{
             const {data} = await API.get(`/recommend/problem/show?handle=${userHandle}`);
@@ -79,7 +79,7 @@ function Individual(){
             // });
 
             const problist = await API.get(`/problem/lookup?problemIds=${data.rec_problems.join()}`)
-            console.log(problist);//12번째
+            // console.log(problist);//12번째
 
             setIndvprob(problist.data);
             setValidAPI(true);

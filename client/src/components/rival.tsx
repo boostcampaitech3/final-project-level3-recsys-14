@@ -61,13 +61,13 @@ function Rival(){
     const [validAPI, setValidAPI] = React.useState(false);
 
     const userHandle = useSelector((state: RootState) => state.userSearchInput.userHandle);
-    console.log(userHandle)
+    // console.log(userHandle)
     const fetchprob = async() =>{
         try{
             const {data} = await API.get(`/recommend/rival/show?handle=${userHandle}`);
 
             const rivallist = await API.get(`/user/lookup?handles=${data.rec_rivals.join()}`)
-            console.log(rivallist);
+            // console.log(rivallist);
 
             setRival(rivallist.data);
             setValidAPI(true);
