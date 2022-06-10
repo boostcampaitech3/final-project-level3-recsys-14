@@ -15,6 +15,7 @@ services:
       - RECJOON_RDS_DATABASE
       - RECJOON_SERVER_HOST
       - RECJOON_SERVER_PORT
+      - RECJOON_RDS_MASTER_HOST
     ports: 
       - 8081:8080
     volumes:
