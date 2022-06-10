@@ -173,7 +173,7 @@ const BlankBox = styled.div`
 
 function Userpage() {
     const params = useParams();
-    console.log(params); // 첫 번째 userHandle : juk1329, 여섯 번째 userHandle : juk1329
+    // console.log(params); // 첫 번째 userHandle : juk1329, 여섯 번째 userHandle : juk1329
 
     const location = useLocation();
     // console.log(location.pathname);
@@ -192,14 +192,14 @@ function Userpage() {
     const problemItem = useSelector((state: RootState) => state.problemItem);
     const tagSwitch = useSelector((state : RootState) => state.tagSwitch.toggle);
 
-    console.log(userHandle); //두 번째 '', 일곱 번째 juk1329
+    // console.log(userHandle); //두 번째 '', 일곱 번째 juk1329
 
     let navigate = useNavigate();
 
     const fetchUserCheck = async() =>{
         try{
             const {data} = await API.get(`/user/check?handle=${params.userHandle}`);
-            console.log(data); //11번째
+            // console.log(data); //11번째
         }
         catch(e){
             console.error(e);

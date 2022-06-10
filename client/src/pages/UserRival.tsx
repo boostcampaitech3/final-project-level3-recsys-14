@@ -178,7 +178,7 @@ function Userrival() {
     const [profile, setProfile] = useState({});
 
     const params = useParams();
-    console.log(params);
+    // console.log(params);
 
     const location = useLocation();
 
@@ -195,7 +195,7 @@ function Userrival() {
     const rivalProblem = useSelector((state:RootState) => state.rivalProblemItem)
     const tagSwitch = useSelector((state:RootState) => state.tagSwitch.toggle);
 
-    console.log(userHandle);
+    // console.log(userHandle);
 
     let navigate = useNavigate();
 
@@ -205,7 +205,7 @@ function Userrival() {
             setProfile(data)
         }
         catch(e){
-            console.log(e);
+            // console.log(e);
         }
     }
 
@@ -213,7 +213,7 @@ function Userrival() {
         try{
             const {data} = await API.get(`/user/check?handle=${params.userHandle}`);
             fetchMyProfile();
-            console.log(data);
+            // console.log(data);
         }
         catch(e){
             console.error(e);
@@ -264,7 +264,7 @@ function Userrival() {
                 <BlankBox/>
                 <SliderWrap>
                     <RivalProblem />
-                    {rivalProblem.toggle && tagSwitch && <ProblemDetail item = {rivalProblem.item} />}
+                    {rivalProblem.toggle && tagSwitch && <ProblemDetail item = {rivalProblem.item}/>}
                 </SliderWrap>
                 <ContentContainer>
                     <ContentInnerContainer>

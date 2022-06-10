@@ -196,9 +196,9 @@ const RivalSlide = (children : any) => {
     const tagSwitch = useSelector((state : RootState) => state.tagSwitch.toggle);
 
     const controllAutoPlay = ()=>{
-        console.log(mainSlickRef);
-        console.log(rivalProblemItem.toggle);
-        console.log('flag : ', (rivalProblemItem.toggle && tagSwitch))
+        // console.log(mainSlickRef);
+        // console.log(rivalProblemItem.toggle);
+        // console.log('flag : ', (rivalProblemItem.toggle && tagSwitch))
 
         if (rivalProblemItem.toggle && tagSwitch){
             mainSlickRef.current?.slickPause();

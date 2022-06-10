@@ -21,7 +21,7 @@ const StyledNavbarBrand = styled(Navbar.Brand)`
 
 const NavBar = ({pathname} : any) => {
   const userHandle = useSelector((state: RootState) => state.userSearchInput.userHandle);
-  console.log(pathname, userHandle)
+  // console.log(pathname, userHandle)
 
   const navigate = useNavigate();
   

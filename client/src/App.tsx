@@ -12,7 +12,7 @@ import {Usersearch, Userpage, NotFound , Userrival} from './pages'
 
 function App() {
   const userHandle = useSelector((state: RootState) => state.userSearchInput.userHandle);
-  console.log(process.env.REACT_APP_API)
+  // console.log(process.env.REACT_APP_API)
   return (
     <BrowserRouter>
       <Routes>
