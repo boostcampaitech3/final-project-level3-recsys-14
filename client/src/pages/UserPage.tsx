@@ -135,7 +135,7 @@ const RatingTitle = styled.h2`
     }
 `;
 
-const ProblemDescription = styled.p`
+const ProblemDescription = styled.div`
     display: block;
     font-size: 1em;
     font-weight: 400;
@@ -203,7 +203,7 @@ function Userpage() {
             // console.log(data); //11번째
         }
         catch(e){
-            console.error(e);
+            //console.error(e);
             alert("Wrong User !");
             navigate('/');
         }
