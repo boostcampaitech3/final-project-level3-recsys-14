@@ -19,6 +19,7 @@ import {
 import introImage from '../assets/images/main_large.png';
 import mainBackgroundImage from '../assets/images/main_background_large.png';
 import MainFooter from "../components/footer";
+import { Phone } from "../constants/mediaQuery";
 
 const SearchBlock = styled.input`
     background-color: white;
@@ -216,19 +217,21 @@ function Usersearch() {
             </AlgorithmSlider>
             <ContentInnerContainer>
                 <IntroTitle>
-                    딥 러닝으로 당신에게 딱 맞는 문제를 찾아드려요.
+                    딥 러닝으로 당신에게 <Phone><br/></Phone>딱 맞는 문제를 찾아드려요.
                 </IntroTitle>
                 <IntroDescription>
-                    알고리즘 문제 풀이 실력을 늘리고 싶지만 어떤 문제를 풀어야 할지 몰라서 고민되시나요?<br/>
-                    더 이상 문제 탐색에 시간을 투자할 필요 없이 이곳에서 나에게 맞는 문제를 골라 풀어보세요.
+                    알고리즘 문제 풀이 실력을 늘리고 싶지만 <Phone><br/></Phone>어떤 문제를 풀어야 할지 몰라서 고민되시나요?<br/>
+                    <Phone><br/></Phone>
+                    더 이상 문제 탐색에 시간을 투자할 필요 없이 <Phone><br/></Phone>이곳에서 나에게 맞는 문제를 골라 풀어보세요.
                 </IntroDescription>
                 <BlankBox></BlankBox>
                 <IntroTitle>
-                    나에게 동기부여가 되는 라이벌과 함께 실력을 올려보세요.
+                    나에게 동기부여가 되는 <Phone><br/></Phone>라이벌과 함께 실력을 올려보세요.
                 </IntroTitle>
                 <IntroDescription>
-                    나와 비슷한 실력을 가진 라이벌이 누구인지 궁금하지 않으신가요?<br/>
-                    추천해 드리는 라이벌을 solved.ac에 등록하고 추천 문제를 풀면서 서로 경쟁해 보세요.
+                    나와 비슷한 실력을 가진 라이벌이 <Phone><br/></Phone>누구인지 궁금하지 않으신가요?<br/>
+                    <Phone><br/></Phone>
+                    추천해 드리는 라이벌을 solved.ac에 등록하고 <Phone><br/></Phone>추천 문제를 풀면서 서로 경쟁해 보세요.
                 </IntroDescription>
                 <BlankBox></BlankBox>
                 <IntroTitle>

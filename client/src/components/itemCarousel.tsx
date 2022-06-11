@@ -267,7 +267,7 @@ const ItemSlide = (children : any) => {
                 </Slick>
                 :
                 <ErrorBox>
-                    <p>사용자님의 문제 풀이 이력이 너무 적거나, 현재 데이터가 업데이트 중입니다.</p>
+                    <p>사용자님의 문제 풀이 이력이 너무 적거나, 업데이트 된 데이터에 관해 반영되지 않았습니다.</p>
                     <a href = {`https://solved.ac/problems/sprout`} target='_blank'>
                     <SproutLinkButton>
                         새싹 문제부터 풀러 가기 

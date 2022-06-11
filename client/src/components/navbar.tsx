@@ -83,7 +83,7 @@ const NavBar = ({pathname} : any) => {
             <Modal.Title>검색창을 이용해주세요.</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            검색창에 handle을 입력하고 검색 버튼을 누르면 원하는 페이지로 이동할 수 있습니다.
+            검색창에 아이디(handle)를 입력하고 검색 버튼을 누르면 원하는 페이지로 이동할 수 있습니다.
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>

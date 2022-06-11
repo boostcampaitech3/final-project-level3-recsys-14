@@ -18,18 +18,19 @@ import {
     bright_purple,
     deep_purple,
 } from "../constants/color";
+import { Phone } from "../constants/mediaQuery";
 
 const UserSearchWrapper = styled.div`
     width: 60%;
     min-width: 120px;
     max-width: 720px;
     @media screen and (max-width: 480px){
-        width: 85%;
+        width: 90%;
     }
-    @media screen and (max-width: 800px){
+    @media screen and (min-width: 480px) and (max-width: 800px){
         width: 75%;
     }
-    @media screen and (max-width: 1024px){
+    @media screen and (min-width: 800px) and (max-width: 1024px){
         width: 70%;
     }
 `;
@@ -37,6 +38,7 @@ const UserSearchWrapper = styled.div`
 const UserSearchStyledForm = styled.form`
     position: relative;
     display: block;
+    margin: 0 auto;
     border-radius: 20px;
     padding: 6px 8px;
     background-color: #fff;
@@ -44,7 +46,7 @@ const UserSearchStyledForm = styled.form`
         0 2px 6px 0 rgba(136,148,171,.2),
         0 24px 20px -24px rgba(71,82,107,.1);
     @media screen and (max-width: 480px){
-        width: 90% !important;
+        width: 100%;
     }
     &:focus {
         box-shadow:
@@ -70,9 +72,9 @@ const UserSearchStyledInput = styled.input`
         opacity: .6;
     }
     @media screen and (max-width: 480px){
-        max-width: 60%;
+        min-width: 60%;
     }
-    @media screen and (max-width: 800px){
+    @media screen and (min-width: 480px) and (max-width: 800px){
         min-width: 65%;
     }
 `;
@@ -229,6 +231,7 @@ const UserSearchInput = ({onInput} : any)=>{
 
         // setUserId('');
     };
+
     const onEnter = (e : React.KeyboardEvent<HTMLInputElement>) =>{
         if(e.key === 'Enter'){
             // onInput(userId);
@@ -245,7 +248,6 @@ const UserSearchInput = ({onInput} : any)=>{
         }
     }
 
-
     return(
         <UserSearchWrapper>
         <UserSearchStyledForm onSubmit={onSubmit} autoComplete="off">
@@ -257,7 +259,7 @@ const UserSearchInput = ({onInput} : any)=>{
                 name="userId"
                 ref={inputRef}
                 // onBlur={()=>setAuto(false)}
-                placeholder="아이디(handle)를 입력하세요."
+                placeholder="아이디(handle)를 검색하세요."
                 value={userId}
                 onChange={onChange}
                 onKeyPress = {onEnter}

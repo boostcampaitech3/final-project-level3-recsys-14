@@ -19,6 +19,7 @@ import { API } from "../utils/axios";
 import {useSelector} from 'react-redux';
 import TagSwitch from "./TagSwitch";
 import TagSwitchContainer from "../container/tagSwitchContainer";
+import { Mobile } from "../constants/mediaQuery";
 
 export const Box = styled.div`
     position: relative;
@@ -40,6 +41,7 @@ export const CarouselTitle = styled.h4`
     margin: 10px 20px;
     @media screen and (max-width: 480px){
         display: block;
+        text-align: center;
     }
 `;
 
@@ -95,7 +97,7 @@ function Individual(){
     
     return(
         <Box>
-                <CarouselTitle>{userHandle} 님을 위한 추천 문제 리스트<TagSwitchContainer /></CarouselTitle>
+                <CarouselTitle>{userHandle} 님을 위한 <Mobile><br/></Mobile>추천 문제 리스트<TagSwitchContainer /></CarouselTitle>
                 <ItemSlide validAPI = {validAPI} probs = {indvdprob} />
        </Box>
     );

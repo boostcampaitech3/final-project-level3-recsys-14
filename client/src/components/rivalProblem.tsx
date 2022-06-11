@@ -19,6 +19,7 @@ import { API } from "../utils/axios";
 import {useSelector} from 'react-redux';
 import TagSwitch from "./TagSwitch";
 import TagSwitchContainer from "../container/tagSwitchContainer";
+import { Phone } from "../constants/mediaQuery";
 
 export const Box = styled.div`
     position: relative;
@@ -34,10 +35,15 @@ export const Box = styled.div`
 
 export const CarouselTitle = styled.h4`
     display: flex;
+    text-align: center;
     color: #323232;
     font-weight: 600;
     font-size: 1.5rem;
     margin: 10px 0;
+    @media screen and (max-width: 480px){
+        display: block;
+        text-align: center;
+    }
 `;
 
 export const CarouselItem = styled.div`
@@ -92,7 +98,7 @@ function RivalProblem(){
     
     return(
         <Box>
-                <CarouselTitle>라이벌이 푼 문제도 같이 풀어볼까요?<TagSwitchContainer /></CarouselTitle>
+                <CarouselTitle>라이벌이 푼 문제도 <Phone><br/></Phone>같이 풀어볼까요?<TagSwitchContainer /></CarouselTitle>
                 <RivalItemSlide validAPI = {validAPI} rivalprobs = {rivalprob} />
        </Box>
     );
