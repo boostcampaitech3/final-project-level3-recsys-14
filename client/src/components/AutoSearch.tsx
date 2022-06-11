@@ -58,13 +58,10 @@ const AutoSearchData = styled.li`
   position: relative;
   .searchicon {
     position: absolute;
-    right: 5px;
+    right: 10px;
     width: 18px;
     overflow: overlay;
-    top: 50%;
-    transform: 
-      translateY(-50%)
-      rotate(-90deg);
+    top: 18px;
   }
   &:hover {
     background-color: ${light_gray};
@@ -81,6 +78,7 @@ const SearchSvgIcon = styled(svgIcon)`
     width: min(max(calc(10px + 1vmin), 10px), 18px); 
     height: min(max(calc(10px + 1vmin), 10px), 18px);
     stroke: ${light_purple};
+    fill: ${light_purple};
 `;
 
 const AutoSearch = ({selectedMenu} : any) =>{
@@ -143,13 +141,12 @@ const AutoSearch = ({selectedMenu} : any) =>{
               {user.handle}
 
               <SearchSvgIcon className="searchicon"
-                fill-rule="evenodd" 
-                fill= "#fff"
+                fill-rule="evenodd"
                 clip-rule="evenodd"
                 viewBox="0 0 28 28"
-                strokeWidth="2"
+                strokeWidth="1"
                 width="18" height="18">
-                <path d="M12 0c6.623 0 12 5.377 12 12s-5.377 12-12 12-12-5.377-12-12 5.377-12 12-12zm0 1c6.071 0 11 4.929 11 11s-4.929 11-11 11-11-4.929-11-11 4.929-11 11-11zm5.247 8l-5.247 6.44-5.263-6.44-.737.678 6 7.322 6-7.335-.753-.665z"/>
+                <path d="M 32.2664 12.9024 l -8.8992 -8.8992 c -0.8064 -0.8064 -2.1888 -0.8064 -2.9952 0 s -0.8064 2.1888 0 2.9952 l 5.2416 5.2704 h -19.3824 c -1.1808 0 -2.1312 0.9504 -2.1312 2.1312 s 0.9504 2.1312 2.1312 2.1312 h 19.4112 l -5.2704 5.2416 c -0.8064 0.8064 -0.8064 2.1888 0 2.9952 c 0.432 0.432 0.9792 0.6336 1.5264 0.6336 s 1.0944 -0.2016 1.5264 -0.6336 l 8.8416 -8.8416 c 0.4032 -0.4032 0.6336 -0.9504 0.6336 -1.5264 s -0.2016 -1.1232 -0.6336 -1.4976 z"></path>
               </SearchSvgIcon>
               
               </AutoSearchData>

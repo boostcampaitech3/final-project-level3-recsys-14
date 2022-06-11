@@ -36,6 +36,7 @@ export const Box = styled.div`
 export const CarouselTitle = styled.h4`
     display: flex;
     color: #323232;
+    text-align: center;
     font-weight: 600;
     font-size: 1.5rem;
     margin: 10px 20px;

@@ -25,7 +25,8 @@ const UserSearchWrapper = styled.div`
     min-width: 120px;
     max-width: 720px;
     @media screen and (max-width: 480px){
-        width: 90%;
+        width: 100%;
+        padding: 0 1%;
     }
     @media screen and (min-width: 480px) and (max-width: 800px){
         width: 75%;
