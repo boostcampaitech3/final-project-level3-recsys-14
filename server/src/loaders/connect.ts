@@ -7,7 +7,6 @@ export const readOnlyConnection = async() => {
     try {
         console.log("before create connection for read-only database ... ")
         const connection = await createConnection(readOnlyConfig);
-        console.log(readOnlyConfig);
         console.log("after create connection, before entities ... ")
         const entities = connection["entityMetadatas"].map(
             (entity: any) => (entity = entity.name)
@@ -25,7 +24,6 @@ export const writeableConnection = async() => {
     try {
         console.log("before create connection for writable database ... ")
         const connection = await createConnection(writableConfig);
-        console.log(writableConfig);
         console.log("after create connection, before entities ... ")
         const entities = connection["entityMetadatas"].map(
             (entity: any) => (entity = entity.name)

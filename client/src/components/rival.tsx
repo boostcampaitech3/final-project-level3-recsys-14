@@ -20,6 +20,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import TagSwitch from "./TagSwitch";
 import { clickClose } from "../modules/alertClose";
+import { Phone } from "../constants/mediaQuery";
 
 export const Box = styled.div`
     position: relative;
@@ -35,6 +36,7 @@ export const Box = styled.div`
 
 export const CarouselTitle = styled.h4`
     display: flex;
+    text-align: center;
     color: #323232;
     font-weight: 600;
     font-size: 1.5rem;
@@ -90,7 +92,7 @@ function Rival(){
     
     return(
         <Box>
-                <CarouselTitle>{userHandle}님의 라이벌로 추천합니다.</CarouselTitle>
+                <CarouselTitle>{userHandle}님의 <Phone><br/></Phone>라이벌로 추천합니다.</CarouselTitle>
                 { alertClose && <Alert variant="light"
                     onClose={onClickClose} dismissible>
                     <p>

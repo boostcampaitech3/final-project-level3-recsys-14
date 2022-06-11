@@ -135,6 +135,9 @@ const RivalInfoBox = styled.div`
 `;
 
 const RivalInfo = styled.h4`
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
     margin: 3% 0%;
     width: 49%;

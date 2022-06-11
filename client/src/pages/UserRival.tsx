@@ -26,6 +26,7 @@ import svgIcon from "../components/svgIcon";
 import {
     light_purple
 } from "../constants/color";
+import { Phone } from "../constants/mediaQuery";
 
 const RivalIntroBox = styled.div`
     display : flex;
@@ -118,6 +119,7 @@ const SectionTitle = styled.h2`
 
 const MyProfileTitle = styled.h4`
     display: flex;
+    text-align: center;
     color: #323232;
     font-weight: 600;
     font-size: 1.5rem;
@@ -249,7 +251,7 @@ function Userrival() {
                     그리고 라이벌이 풀었지만 내가 풀지 않았던 문제도 알려드려요. <br/>
                 </RivalIntroStyledSpan>
                 <RivalIntroImage/>
-                <MyProfileTitle>현재 {userHandle} 님의 데이터입니다.</MyProfileTitle>
+                <MyProfileTitle>현재 {userHandle} 님의 <Phone><br/></Phone>데이터입니다.</MyProfileTitle>
                 <RivalDetailWrapper>
                     <RivalDetail rival = {profile} />
                 </RivalDetailWrapper>
@@ -270,11 +272,12 @@ function Userrival() {
                     <ContentInnerContainer>
                     <BlankBox />
                     <SectionTitle>
-                        나의 실력을 기반으로 문제를 추천해드릴까요?
+                        나의 실력을 기반으로 <Phone><br/></Phone>문제를 추천해 드릴까요?
                     </SectionTitle>
                     <RivalDescription>
-                        라이벌 기반으로 추천된 문제에서 만족스러운 문제를 찾지 못하셨나요?<br/>
-                        그러면 나의 풀이 이력을 바탕으로 추천된 문제를 참고해보세요.
+                        라이벌 기반으로 추천된 문제에서 <Phone><br/></Phone>만족스러운 문제를 찾지 못하셨나요?<br/>
+                        <Phone><br/></Phone>
+                        그러면 나의 풀이 이력을 바탕으로 <Phone><br/></Phone>추천된 문제를 참고해보세요.
                         <LinkSvgIconWrapper>
                             <LinkSvgIcon
                             onClick={() => { navigate(`/user/${userHandle}`)}}
@@ -292,13 +295,13 @@ function Userrival() {
                     <BlankBox/>
                     <BlankBox/>
                         <RatingTitle>
-                            추천된 라이벌 또는 문제가 만족스러우신가요?
+                            추천된 라이벌 또는 <Phone><br/></Phone>문제가 만족스러우신가요?
                         </RatingTitle>
                         <RatingStar/>
                     <BlankBox/>
                     <BlankBox/>
                     <SectionTitle>
-                        라이벌 추천에 관한 궁금증을 정리했어요.
+                        라이벌 추천에 관한 <Phone><br/></Phone>궁금증을 정리했어요.
                     </SectionTitle>
                     <RivalRecFAQ/>
                     <BlankBox/>
