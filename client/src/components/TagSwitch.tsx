@@ -7,6 +7,12 @@ import {useSelector, useDispatch} from 'react-redux';
 interface Btnprops {
     toggle : boolean;
 }
+
+const SwitchButtonWrapper = styled.div`
+    display: inline-block;
+    vertical-align: middle;
+`
+
 const SwitchButton = styled.button<Btnprops>`
   width: 60px;
   height: 30px;
@@ -68,7 +74,7 @@ const TagSwitch = ({onTagSwitch} : any) =>{
         setShow(false)
     }
     return(
-        <div>
+        <SwitchButtonWrapper>
             <SwitchButton
                 ref={target}
                 toggle = {isChecked}
@@ -90,7 +96,7 @@ const TagSwitch = ({onTagSwitch} : any) =>{
                 )}
             </Overlay>
             {/* <h4>스포일러 {!isChecked ? "off" : "on"}</h4> */}
-        </div>
+        </SwitchButtonWrapper>
     )
 }
 

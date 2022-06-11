@@ -22,6 +22,7 @@ import svgIcon from "../components/svgIcon";
 import {
     light_purple
 } from "../constants/color";
+import { Phone } from "../constants/mediaQuery";
 
 const Box = styled.div`
     display : flex;
@@ -249,11 +250,12 @@ function Userpage() {
                 <ContentInnerContainer>
                     <BlankBox />
                     <SectionTitle>
-                        라이벌이 푼 문제도 보러 가 볼까요?
+                        라이벌이 푼 문제도 <Phone><br/></Phone>보러 가 볼까요?
                     </SectionTitle>
                     <ProblemDescription>
-                        나는 풀지 않았지만 실력이 비슷한 내 라이벌은 푼 문제는 무엇인지 궁금하지 않으신가요?<br />
-                        지금 바로 이동해서 더 풀 만한 문제가 없는지 찾아보세요.
+                        나는 풀지 않았지만 실력이 비슷한 내 라이벌이 <Phone><br/></Phone>푼 문제가 무엇인지 궁금하지 않으신가요?<br />
+                        <Phone><br/></Phone>
+                        지금 바로 이동해서 더 풀 만한 <Phone><br/></Phone>문제가 없는지 찾아보세요.
                         <LinkSvgIconWrapper>
                             <LinkSvgIcon
                             onClick={() => { navigate(`/user/${userHandle}/rival`)}}
@@ -271,13 +273,13 @@ function Userpage() {
                 <BlankBox />
                 <BlankBox />
                 <RatingTitle>
-                    추천된 문제가 만족스러우신가요?
+                    추천된 문제가 <Phone><br/></Phone>만족스러우신가요?
                 </RatingTitle>
                 <RatingStar />
                 <BlankBox />
                 <BlankBox />
                 <SectionTitle>
-                    문제 추천에 관한 궁금증을 정리했어요.
+                    문제 추천에 관한 <Phone><br/></Phone>궁금증을 정리했어요.
                 </SectionTitle>
                 <ProblemRecFAQ />
                 <BlankBox />

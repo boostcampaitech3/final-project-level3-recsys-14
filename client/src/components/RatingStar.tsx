@@ -44,11 +44,12 @@ const ResBox = styled.div`
 
 
 const SubmitButton = styled.button`
-    width: 80px;
+    width: auto;
     height: 40px;
     border-radius: 10px;
     margin-top: 10px;
     font-weight: 700;
+    padding: 0 10px;
     font-size: 0.8rem;
     letter-spacing: 1.15px;
     background-color: ${oh_purple};
