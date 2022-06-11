@@ -137,7 +137,7 @@ const RatingTitle = styled.h2`
     }
 `;
 
-const RivalDescription = styled.p`
+const RivalDescription = styled.div`
     display: block;
     font-size: 1em;
     font-weight: 400;
@@ -216,7 +216,7 @@ function Userrival() {
             // console.log(data);
         }
         catch(e){
-            console.error(e);
+            // console.error(e);
             alert("Wrong User !");
             navigate('/');
         }

@@ -83,7 +83,7 @@ function RivalProblem(){
         }
         catch(e){
             setValidAPI(false);
-            console.error(e); //10번째
+            // console.error(e); //10번째
         }
     }
     React.useEffect(()=>{

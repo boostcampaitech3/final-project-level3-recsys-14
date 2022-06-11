@@ -107,7 +107,7 @@ const RatingStar = () => {
             // console.log(res); //11번째
         }
         catch(e){
-            console.error(e);
+            // console.error(e);
 
         }
     } 
