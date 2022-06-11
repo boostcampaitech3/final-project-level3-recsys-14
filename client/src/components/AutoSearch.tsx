@@ -58,8 +58,8 @@ const AutoSearchData = styled.li`
   position: relative;
   .searchicon {
     position: absolute;
-    right: 10px;
-    width: 18px;
+    right: 5px;
+    width: 36px;
     overflow: overlay;
     top: 18px;
   }

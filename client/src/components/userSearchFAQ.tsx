@@ -60,6 +60,14 @@ const UserSearchFAQ = () => {
                 데이터 수집 과정에서 발생한 오류 또는 데이터 부재로 인해 만족스러운 추천 결과가 나오지 못할 수 있는 점 양해 바랍니다.
                 </Accordion.Body>
             </Accordion.Item>
+            <Accordion.Item eventKey="3">
+                <StyledAccordianButton>
+                    제 아이디(handle)가 검색되지 않아요.
+                </StyledAccordianButton>
+                <Accordion.Body>
+                    푼 문제 수가 너무 적어서 추천 목록에서 제외되거나, 유저 데이터를 solved.ac에서 가져오는 과정에서 문제가 발생했을 수 있습니다. 
+                </Accordion.Body>
+            </Accordion.Item>
         </Accordion>
     )
     
