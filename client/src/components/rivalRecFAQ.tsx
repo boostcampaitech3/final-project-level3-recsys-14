@@ -69,6 +69,19 @@ const RivalRecFAQ = () => {
                 라이벌이 풀었던 문제와 내가 풀었던 문제가 완전히 동일하면 문제 추천이 이뤄지지 않을 수 있습니다.
                 </Accordion.Body>
             </Accordion.Item>
+            <Accordion.Item eventKey="4">
+                <StyledAccordianButton>
+                    이미 이전에 풀었던 문제가 추천돼요.
+                </StyledAccordianButton>
+                <Accordion.Body>
+                    본 웹 서비스는 유저별로 문제를 추천하기 위해 solved.ac에서 데이터를 주기마다 자동으로 가져오고 있으며, 
+                    Baekjoon Online Judge 또는 solved.ac의 데이터와 실시간으로 연동되지 않습니다. 
+                    이로 인해 다음과 같은 원인으로 추정할 수 있습니다.<br/><br/>
+                    1. 데이터를 업데이트 한 시점 이후에 푼 문제인 경우<br/>
+                    2. solved.ac API에서 데이터를 제대로 가져오지 못한 경우<br/>
+                    3. Baekjoon Online Judge와 solved.ac에서의 문제 푼 기록이 일치하지 않은 상태
+                </Accordion.Body>
+            </Accordion.Item>
         </Accordion>
     )
     
