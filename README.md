@@ -14,6 +14,10 @@
 
 ※ 본 웹 서비스는 베타 버전이며 2022년 7월 31일까지 한시적으로 운영될 예정입니다.
 
+<img src="https://img.shields.io/badge/PyTorch-EE4C2C?style=flat-square&logo=PyTorch&logoColor=white"/>&nbsp;<img src="https://img.shields.io/badge/Apache_Airflow-018CEE?style=flat-square&logo=Apache Airflow&logoColor=white"/>&nbsp;<img src="https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=Node.js&logoColor=white"/>&nbsp;<img src="https://img.shields.io/badge/Express-20c997?style=flat-square&logo=Express&logoColor=white"/>&nbsp;<img src="https://img.shields.io/badge/React-0088cc?style=flat-square&logo=React&logoColor=white"/>&nbsp;<img src="https://img.shields.io/badge/Amazon_AWS-232F3E?style=flat-square&logo=Amazon-AWS&logoColor=white"/>&nbsp;<img src="https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=Docker&logoColor=white"/>
+
+<br/>
+
 <br/>
 
 ------
@@ -278,7 +282,7 @@ RECJOON에서는 정해진 주기에 따라 batch serving으로 데이터 수집
 
 
 
-🔖 **[발표 자료 보러 가기]()**
+🔖 **[발표 자료 보러 가기](https://github.com/boostcampaitech3/final-project-level3-recsys-14/blob/main/experiments/documents/RECJOON_Presentation.pdf)**
 
  주 사용 모델 실험•분석 결과와 프로젝트 진행에 관한 자세한 내용은 발표 자료를 참고해 주세요.
 
@@ -298,7 +302,7 @@ RECJOON에서는 정해진 주기에 따라 batch serving으로 데이터 수집
 
 <b id="f1">1.</b> Baekjoon Online Judge 사이트 유저 수와 공개된 문제 수 (2022.04.21) [↩](#a1)
 
-<b id="f2">2.</b> Baekjoon Online Judge 문제와 라이벌 추천 서비스 예상 선호도 조사 응답 결과 ('BOJ 문제를 선택하는 데 있어서 어느 정도의 어려움을 겪고 있으신가요?', 약 51.1%의 응답자 보통 이상 응답, 45명 참여, S 대학교 ICPC Team Slack 채널 등)[↩](#a2)
+<b id="f2">2.</b> Baekjoon Online Judge 문제와 라이벌 추천 서비스 예상 선호도 조사. 'BOJ 문제를 선택하는 데 있어서 어느 정도의 어려움을 겪고 있으신가요?'. 약 51.1%의 응답자 보통 이상 응답. (45명 참여, S 대학교 ICPC Team Slack 채널 등)[↩](#a2)
 
 <b id="f3">3.</b> EDA 분석 결과, '라이벌과 역라이벌 수 분석' (2022.04.21) [↩](#a3)
 
@@ -318,9 +322,7 @@ RECJOON에서는 정해진 주기에 따라 batch serving으로 데이터 수집
 
 ![라이벌추천지표2](https://cdn.jsdelivr.net/gh/Glanceyes/Image-Repository/2022/06/13/20220613_1655120195.svg)
 
-![라이벌추천지표3](https://cdn.jsdelivr.net/gh/Glanceyes/Image-Repository/2022/06/13/20220613_1655119880.svg)
-
-[↩](#a9)
+![라이벌추천지표3](https://cdn.jsdelivr.net/gh/Glanceyes/Image-Repository/2022/06/13/20220613_1655119880.svg)[↩](#a9)
 
 <b id="f10">10.</b> BPR(Bayesian Personalized Ranking), ALS(Alternating Least Squares) Matrix Factorization, item-based CF(Collaborative Filtering) [↩](#a10)
 
