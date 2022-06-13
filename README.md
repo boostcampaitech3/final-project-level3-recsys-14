@@ -220,13 +220,6 @@ RECJOON에서는 정해진 주기에 따라 batch serving으로 데이터 수집
 ## Team Members
 
 <table>
-   <tr>
-      <td align="center">김은선</td>
-      <td align="center">박정규</td>
-      <td align="center">이선호</td>
-      <td align="center">이서희</td>
-      <td align="center">진완혁</td>
-   </tr>
    <tr height="160px">
       <td align="center">
          <a href="https://github.com/sun1187">
