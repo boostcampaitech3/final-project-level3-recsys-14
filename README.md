@@ -6,11 +6,7 @@
 
 ## Baekjoon Online Judge 문제 추천과 solved.ac 라이벌 추천 서비스
 
-
-
 딥 러닝과 머신 러닝을 사용하여 BOJ(Baekjoon Online Judge)와 solved.ac 유저의 개인별 문제 풀이 이력을 바탕으로 본인의 수준에 맞는 문제와 라이벌을 추천하는 AI 모델 기반 서비스입니다.
-
-
 
 ![computers](https://cdn.jsdelivr.net/gh/Glanceyes/Image-Repository/2022/06/13/20220613_1655087579.png)
 
@@ -18,9 +14,7 @@
 
 ※ 본 웹 서비스는 베타 버전이며 2022년 7월 31일까지 한시적으로 운영될 예정입니다.
 
-
-
-
+<br/>
 
 ------
 
@@ -34,23 +28,19 @@ BOJ([https://www.acmicpc.net](https://www.acmicpc.net/))는 국내 대표 프로
 
 프로그래밍 실력을 향상시키기 위해서는 본인의 실력에 맞는 적절한 알고리즘 유형과 난도의 문제를 선택해 푸는 것이 중요하지만, 약 2만 여 개의 많은 문제 수로 인해 사용자가 이를 탐색하는 데 어려움을 겪는 사람이 적지 않습니다.<sup id="a2">[2](#f2)</sup>  또한 solved.ac에는 여러 사용자 중에서 자신이 원하는 사람을 라이벌로 등록할 수 있지만, 정작 라이벌 기능을 사용하는 유저 비율은 13%에 불과합니다.<sup id="a3">[3](#f3)</sup> 
 
-
+<br/>
 
 ### 기대 효과
 
 RECJOON 웹 서비스를 통해 개인의 실력에 맞는 알고리즘 문제를 추천하여 사용자의 문제 탐색 시간을 줄이고 효율성을 높여드리고자 합니다. 또한 개인의 수준과 풀이 이력이 비슷한 라이벌을 추천해줌으로써 경쟁 심리를 자극하여 문제 풀이 동기를 부여하고 학습 효율을 증대시킬 수 있는 효과를 기대해봅니다.
 
-
-
-
+<br/>
 
 ------
 
 
 
 ## Features
-
-
 
 ### 사용자 검색
 
@@ -64,7 +54,7 @@ RECJOON 웹 서비스를 통해 개인의 실력에 맞는 알고리즘 문제�
 
 
 
-
+<br/>
 
 ### 알고리즘 문제 추천
 
@@ -76,7 +66,7 @@ RECJOON 웹 서비스를 통해 개인의 실력에 맞는 알고리즘 문제�
 
 
 
-
+<br/>
 
 ### 라이벌 추천
 
@@ -90,6 +80,8 @@ RECJOON 웹 서비스를 통해 개인의 실력에 맞는 알고리즘 문제�
 
 
 
+<br/>
+
 ### 라이벌 기반 문제 추천
 
 > 나의 라이벌이 푼 문제는 무엇일까?
@@ -100,7 +92,7 @@ RECJOON 웹 서비스를 통해 개인의 실력에 맞는 알고리즘 문제�
 
 유저의 풀이 이력을 바탕으로 라이벌은 풀었지만 유저 자신은 풀지 않은 문제도 같이 추천해드려요.
 
-
+<br/>
 
 
 
@@ -116,7 +108,7 @@ RECJOON 웹 서비스를 통해 개인의 실력에 맞는 알고리즘 문제�
 
 데이터 분석 결과에 관한 자세한 내용은 EDA 파일을 참고해주세요.
 
-
+<br/>
 
 
 
@@ -128,7 +120,7 @@ RECJOON 웹 서비스를 통해 개인의 실력에 맞는 알고리즘 문제�
 
 RECJOON에서는 정해진 주기에 따라 batch serving으로 데이터 수집과 함께 모델 학습과 예측을 실행합니다. 모든 추천 서비스는 모델 학습 후 검증 과정에서 사전에 정의된 지표를 측정하고, 주기별로 가장 좋은 결과롤 보인 모델을 예측 모델로 선택합니다.
 
-
+<br/>
 
 ### 문제 추천 모델
 
@@ -138,13 +130,11 @@ RECJOON에서는 정해진 주기에 따라 batch serving으로 데이터 수집
 | Multi-VAE                        | [Dawen Liang, Rahul G. Krishnan, Matthew D. Hoffman, Tony Jebara. 2018. Variational Autoencoders for Collaborative Filtering', WWW '18: Proceedings of the 2018 World Wide Web Conference](https://dl.acm.org/doi/10.1145/3178876.3186150) |
 | Multi-DAE(Denoising AutoEncoder) | [Dawen Liang, Rahul G. Krishnan, Matthew D. Hoffman, Tony Jebara. 2018. Variational Autoencoders for Collaborative Filtering', WWW '18: Proceedings of the 2018 World Wide Web Conference](https://dl.acm.org/doi/10.1145/3178876.3186150) |
 
-
-
 유저가 푼 문제를 기반으로 Autoencoder 기반<sup id="a5">[5](#f5)</sup>의 딥 러닝 모델을 학습시키고, 검증 결과에 따라 미리 정의된 평가 지표<sup id="a6">[6](#f6)</sup> 값이 가장 결과가 잘 나온 모델을 선택합니다. 이후 선택된 모델을 바탕으로 문제 후보를 선정하고 필터링을 통해 최종 문제 추천 결과가 출력됩니다.
 
 특히 Multi-VAE와 Multi-DAE에서는 문제의 태그에 관한 임베딩을 encoder의 입력으로 같이 넣어서 문제에 관한 side information도 같이 학습할 수 있도록 하여 성능을 향상시키고자 했습니다.<sup id="a7">[7](#f7)</sup>
 
-
+<br/>
 
 
 
@@ -161,7 +151,7 @@ RECJOON에서는 정해진 주기에 따라 batch serving으로 데이터 수집
 
 
 
-
+<br/>
 
 ### 라이벌 기반 문제 추천 모델
 
@@ -177,7 +167,7 @@ RECJOON에서는 정해진 주기에 따라 batch serving으로 데이터 수집
 
 
 
-
+<br/>
 
 ------
 
@@ -193,7 +183,7 @@ RECJOON에서는 정해진 주기에 따라 batch serving으로 데이터 수집
 
 ※ 6월 15일 전후로 AI Stages Server에서 GCP(Google Cloud Platform) Instance로 전환할 예정입니다.
 
-
+<br/>
 
 #### **UML Sequence Diagram**
 
@@ -201,7 +191,7 @@ RECJOON에서는 정해진 주기에 따라 batch serving으로 데이터 수집
 
 
 
-
+<br/>
 
 #### **Airflow DAG Workflow**
 
@@ -209,7 +199,7 @@ RECJOON에서는 정해진 주기에 따라 batch serving으로 데이터 수집
 
 
 
-
+<br/>
 
 ------
 
@@ -223,7 +213,7 @@ RECJOON에서는 정해진 주기에 따라 batch serving으로 데이터 수집
 
  주 사용 모델과 프로젝트 진행에 관한 자세한 내용은 발표 자료를 참고해 주세요.
 
-
+<br/>
 
 
 
@@ -232,8 +222,6 @@ RECJOON에서는 정해진 주기에 따라 batch serving으로 데이터 수집
 
 
 ## Reference
-
-
 
 
 
