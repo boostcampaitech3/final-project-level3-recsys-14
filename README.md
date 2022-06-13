@@ -52,7 +52,6 @@ RECJOON 웹 서비스를 통해 개인의 실력에 맞는 알고리즘 문제�
 
 ![20220613_1655102630.gif](https://github.com/Glanceyes/Image-Repository/blob/main/2022/06/13/20220613_1655102630.gif?raw=true)
 
-![ezgif-3-c6d7533c49](https://cdn.jsdelivr.net/gh/Glanceyes/Image-Repository/2022/06/13/20220613_1655106073.gif)
 
 별도의 회원가입 없이 바로 검색창에 BOJ 핸들만 입력하세요. 사용자 검색 자동완성으로 본인의 핸들이 검색되는지도 한눈에 파악할 수 있습니다.
 
