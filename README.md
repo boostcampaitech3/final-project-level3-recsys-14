@@ -257,7 +257,7 @@ RECJOON에서는 정해진 주기에 따라 batch serving으로 데이터 수집
    <tr>
       <td align="center">라이벌 추천 모델링<br/>라이벌 문제 추천 모델링<br/>태스크 자동화<br/>모델 실행 코드 모듈화</td>
       <td align="center">데이터 EDA<br/>Front-end 개발<br/>GCP로 Airflow 이전</td>
-      <td align="center">라이벌 추천 모델링<br/>라이벌 문제추천 모델링<br/>온•오프라인 지표 개발<br/>라이벌 추천 고도화</td>
+      <td align="center">데이터 EDA<br/>라이벌 추천 모델링<br/>라이벌 문제추천 모델링<br/>온•오프라인 지표 개발</td>
       <td align="center">Back-end 개발<br/>Front-end 디자인<br/>CI & CD 자동화<br/>문제 추천 모델 전처리</td>
       <td align="center">데이터 수집과 EDA<br/>문제 추천 모델링<br/>티어 필터링</td>
    </tr>
