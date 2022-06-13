@@ -2,19 +2,17 @@
 
 
 
-![recjoon-main7-large](https://cdn.jsdelivr.net/gh/Glanceyes/Image-Repository/2022/06/13/20220613_1655085908.png)
+![RECJOON Logo](https://cdn.jsdelivr.net/gh/Glanceyes/Image-Repository/2022/06/13/20220613_1655085908.png)
 
 ## Baekjoon Online Judge 문제 추천과 solved.ac 라이벌 추천 서비스
 
 딥 러닝과 머신 러닝을 사용하여 BOJ(Baekjoon Online Judge)와 solved.ac 유저의 개인별 문제 풀이 이력을 바탕으로 본인의 수준에 맞는 문제와 라이벌을 추천하는 AI 모델 기반 서비스입니다.
 
-![computers](https://cdn.jsdelivr.net/gh/Glanceyes/Image-Repository/2022/06/13/20220613_1655087579.png)
+![RECJOON Computers](https://cdn.jsdelivr.net/gh/Glanceyes/Image-Repository/2022/06/13/20220613_1655087579.png)
 
 🖥 **[웹 사이트 보러 가기](http://recjoon.com)**
 
 ※ 본 웹 서비스는 베타 버전이며 2022년 7월 31일까지 한시적으로 운영될 예정입니다.
-
-<br/>
 
 <br/>
 
@@ -50,8 +48,9 @@ RECJOON 웹 서비스를 통해 개인의 실력에 맞는 알고리즘 문제�
 
 > 원하는 추천 결과는 핸들 검색으로 간단하게.
 
-![20220613_1655102630.gif](https://github.com/Glanceyes/Image-Repository/blob/main/2022/06/13/20220613_1655102630.gif?raw=true)
+![Handle Search](https://github.com/Glanceyes/Image-Repository/blob/main/2022/06/13/20220613_1655106073.gif?raw=true)
 
+![ezgif-3-c6d7533c49](https://cdn.jsdelivr.net/gh/Glanceyes/Image-Repository/2022/06/13/20220613_1655106073.gif)
 
 별도의 회원가입 없이 바로 검색창에 BOJ 핸들만 입력하세요. 사용자 검색 자동완성으로 본인의 핸들이 검색되는지도 한눈에 파악할 수 있습니다.
 
@@ -63,7 +62,7 @@ RECJOON 웹 서비스를 통해 개인의 실력에 맞는 알고리즘 문제�
 
 > 내 실력에 맞는 알고리즘 문제는 무엇일까?
 
-![ezgif-3-b6207f91b9](https://cdn.jsdelivr.net/gh/Glanceyes/Image-Repository/2022/06/13/20220613_1655105972.gif)
+![Algorithm Recommender](https://cdn.jsdelivr.net/gh/Glanceyes/Image-Repository/2022/06/13/20220613_1655105972.gif)
 
 유저 개개인의 solved.ac 티어와 문제 풀이 이력을 바탕으로 자신의 실력에 맞는 알고리즘 문제를 추천해드립니다.
 
@@ -75,7 +74,7 @@ RECJOON 웹 서비스를 통해 개인의 실력에 맞는 알고리즘 문제�
 
 > 나와 실력이 비슷한 라이벌은 누구지?
 
-![ezgif-4-386506167d](https://cdn.jsdelivr.net/gh/Glanceyes/Image-Repository/2022/06/13/20220613_1655116552.gif)
+![Rival Recommender](https://cdn.jsdelivr.net/gh/Glanceyes/Image-Repository/2022/06/13/20220613_1655116552.gif)
 
 
 
@@ -89,7 +88,7 @@ RECJOON 웹 서비스를 통해 개인의 실력에 맞는 알고리즘 문제�
 
 > 나의 라이벌이 푼 문제는 무엇일까?
 
-![ezgif-3-9399300884](https://cdn.jsdelivr.net/gh/Glanceyes/Image-Repository/2022/06/13/20220613_1655106250.gif)
+![Rival's Problem Recommender](https://cdn.jsdelivr.net/gh/Glanceyes/Image-Repository/2022/06/13/20220613_1655106250.gif)
 
 
 
@@ -105,9 +104,9 @@ RECJOON 웹 서비스를 통해 개인의 실력에 맞는 알고리즘 문제�
 
 ## Data Analysis
 
-![스크린샷 2022-06-13 오후 4.54.37](https://cdn.jsdelivr.net/gh/Glanceyes/Image-Repository/2022/06/13/20220613_1655106882.png)
+![RECJOON_EDA](https://cdn.jsdelivr.net/gh/Glanceyes/Image-Repository/2022/06/13/20220613_1655106882.png)
 
-📊 **[EDA 보러 가기](https://github.com/boostcampaitech3/final-project-level3-recsys-14/blob/feature/eda/experiments/EDA/EDA.ipynb)**
+📊 **[EDA 보러 가기](https://github.com/boostcampaitech3/final-project-level3-recsys-14/blob/main/experiments/EDA/EDA.ipynb)**
 
 데이터 분석 결과에 관한 자세한 내용은 EDA 파일을 참고해주세요.
 
@@ -180,7 +179,7 @@ RECJOON에서는 정해진 주기에 따라 batch serving으로 데이터 수집
 
 ### **Service Architecture**
 
-![Architecture_new](https://cdn.jsdelivr.net/gh/Glanceyes/Image-Repository/2022/06/13/20220613_1655086276.png)
+![Architecture](https://cdn.jsdelivr.net/gh/Glanceyes/Image-Repository/2022/06/13/20220613_1655086276.png)
 
 
 
@@ -192,7 +191,7 @@ RECJOON에서는 정해진 주기에 따라 batch serving으로 데이터 수집
 
 #### **UML Sequence Diagram**
 
-![image-20220613140914812](https://cdn.jsdelivr.net/gh/Glanceyes/Image-Repository/2022/06/13/20220613_1655096955.png)
+![UML Sequence Diagram](https://cdn.jsdelivr.net/gh/Glanceyes/Image-Repository/2022/06/13/20220613_1655096955.png)
 
 <br/>
 
@@ -297,37 +296,37 @@ RECJOON에서는 정해진 주기에 따라 batch serving으로 데이터 수집
 
 
 
-<b id="f1">1</b> Baekjoon Online Judge 사이트 유저 수와 공개된 문제 수 (2022.04.21) [↩](#a1)
+<b id="f1">1.</b> Baekjoon Online Judge 사이트 유저 수와 공개된 문제 수 (2022.04.21) [↩](#a1)
 
-<b id="f2">2</b> Baekjoon Online Judge 문제와 라이벌 추천 서비스 예상 선호도 조사 응답 결과 ('BOJ 문제를 선택하는 데 있어서 어느 정도의 어려움을 겪고 있으신가요?', 약 51.1%의 응답자 보통 이상 응답, 45명 참여, S 대학교 ICPC Team Slack 채널 등)[↩](#a2)
+<b id="f2">2.</b> Baekjoon Online Judge 문제와 라이벌 추천 서비스 예상 선호도 조사 응답 결과 ('BOJ 문제를 선택하는 데 있어서 어느 정도의 어려움을 겪고 있으신가요?', 약 51.1%의 응답자 보통 이상 응답, 45명 참여, S 대학교 ICPC Team Slack 채널 등)[↩](#a2)
 
-<b id="f3">3</b> EDA 분석 결과, '라이벌과 역라이벌 수 분석' (2022.04.21) [↩](#a3)
+<b id="f3">3.</b> EDA 분석 결과, '라이벌과 역라이벌 수 분석' (2022.04.21) [↩](#a3)
 
-<b id="f4">4</b> 서비스 개시일 기준 (2022.06.11), 추후 변동 가능 [↩](#a3)
+<b id="f4">4.</b> 서비스 개시일 기준 (2022.06.11), 추후 변동 가능 [↩](#a3)
 
-<b id="f5">5</b> RecVAE(Variational AutoEncoder), Multi-VAE, Multi-DAE(Denoising AutoEncoder) (서비스 개시일 기준, 2022.06.11) [↩](#a5)
+<b id="f5">5.</b> RecVAE(Variational AutoEncoder), Multi-VAE, Multi-DAE(Denoising AutoEncoder) (서비스 개시일 기준, 2022.06.11) [↩](#a5)
 
-<b id="f6">6</b> Recall@30(모델이 해당 유저가 좋아할 것이라고 예측한 상위 30개 문제가 실제로 유저가 좋아하는 문제에 속하는 비율) [↩](#a6)
+<b id="f6">6.</b> Recall@30(모델이 해당 유저가 좋아할 것이라고 예측한 상위 30개 문제가 실제로 유저가 좋아하는 문제에 속하는 비율) [↩](#a6)
 
-<b id="f7">7</b> [Yifan Chen, and Maarten de Rijke. 2017. A Collective Variational Autoencoder for Top-N Recommendation with Side Information. ACM](https://dl.acm.org/doi/10.1145/3270323.3270326) [↩](#a7)
+<b id="f7">7.</b> [Yifan Chen, and Maarten de Rijke. 2017. A Collective Variational Autoencoder for Top-N Recommendation with Side Information. ACM](https://dl.acm.org/doi/10.1145/3270323.3270326) [↩](#a7)
 
-<b id="f8">8</b> Collaborative MF(Matrix Factorization), K-nearest neighbors (서비스 개시일 기준, 2022.06.11) [↩](#a8)
+<b id="f8">8.</b> Collaborative MF(Matrix Factorization), K-nearest neighbors (서비스 개시일 기준, 2022.06.11) [↩](#a8)
 
-<b id="f9">9</b> solved.ac 레이팅 산출법에 기반한 아래 세 가지 지표 값의 평균
+<b id="f9">9.</b> solved.ac 레이팅 산출법에 기반한 아래 세 가지 지표 값의 평균
 
-![라이벌추천지표1](https://cdn.jsdelivr.net/gh/Glanceyes/Image-Repository/2022/06/13/20220613_1655118533.svg)
+![라이벌추천지표1](https://cdn.jsdelivr.net/gh/Glanceyes/Image-Repository/2022/06/13/20220613_1655120252.svg)
 
-![라이벌추천지표2](https://cdn.jsdelivr.net/gh/Glanceyes/Image-Repository/2022/06/13/20220613_1655118590.svg)
+![라이벌추천지표2](https://cdn.jsdelivr.net/gh/Glanceyes/Image-Repository/2022/06/13/20220613_1655120195.svg)
 
-![라이벌추천지표3](https://cdn.jsdelivr.net/gh/Glanceyes/Image-Repository/2022/06/13/20220613_1655118628.svg)
+![라이벌추천지표3](https://cdn.jsdelivr.net/gh/Glanceyes/Image-Repository/2022/06/13/20220613_1655119880.svg)
 
 [↩](#a9)
 
-<b id="f10">10</b> BPR(Bayesian Personalized Ranking), ALS(Alternating Least Squares) Matrix Factorization, item-based CF(Collaborative Filtering) [↩](#a10)
+<b id="f10">10.</b> BPR(Bayesian Personalized Ranking), ALS(Alternating Least Squares) Matrix Factorization, item-based CF(Collaborative Filtering) [↩](#a10)
 
-<b id="f11">11</b> 추천된 문제와 타겟 유저가 푼 문제의 난이도 차이를 기반으로 구한 지표
+<b id="f11">11.</b> 추천된 문제와 타겟 유저가 푼 문제의 난이도 차이를 기반으로 구한 지표
 
-![라이벌 문제 추천 지표](https://cdn.jsdelivr.net/gh/Glanceyes/Image-Repository/2022/06/13/20220613_1655118454.svg)[↩](#a11)
+![라이벌 문제 추천 지표](https://cdn.jsdelivr.net/gh/Glanceyes/Image-Repository/2022/06/13/20220613_1655119568.svg)[↩](#a11)
 
 
 
