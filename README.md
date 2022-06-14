@@ -309,6 +309,14 @@ RECJOON에서는 정해진 주기에 따라 batch serving으로 데이터 수집
 
 <br/>
 
+💻 **[RECJOON Server Git Repository](https://github.com/RecSys-RECognizer/RECJOON-Server)**
+
+GitHub Action 권한 문제로 인해 변경 사항이 적용된 코드는 현재 Repository를 통해 배포되지 않습니다.
+
+서비스 업데이트 사항은 위의 Git Repository를 참고해주세요.
+
+<br/>
+
 <br/>
 
 ------
