@@ -54,8 +54,6 @@ RECJOON 웹 서비스를 통해 개인의 실력에 맞는 알고리즘 문제�
 
 ![Handle Search](https://github.com/Glanceyes/Image-Repository/blob/main/2022/06/13/20220613_1655106073.gif?raw=true)
 
-![ezgif-3-c6d7533c49](https://cdn.jsdelivr.net/gh/Glanceyes/Image-Repository/2022/06/13/20220613_1655106073.gif)
-
 별도의 회원가입 없이 바로 검색창에 BOJ 핸들만 입력하세요. 사용자 검색 자동완성으로 본인의 핸들이 검색되는지도 한눈에 파악할 수 있습니다.
 
 <br/>
@@ -102,6 +100,26 @@ RECJOON 웹 서비스를 통해 개인의 실력에 맞는 알고리즘 문제�
 
 <br/>
 
+
+
+------
+
+
+
+## Data Resource
+
+<br/>
+
+- 유저, 문제, 유저별 문제 풀이 이력: **[solved.ac 비공식 API](https://solvedac.github.io/unofficial-documentation/#/)**
+
+- 문제가 속한 클래스: [**solved.ac 클래스 페이지**](https://solved.ac/class)에서 직접 웹 스크레이핑
+
+<br/>
+
+**※ Baekjoon Online Judge에서 데이터를 웹 스크레이핑하지 않습니다.**
+
+<br/>
+
 ------
 
 
@@ -124,7 +142,7 @@ RECJOON 웹 서비스를 통해 개인의 실력에 맞는 알고리즘 문제�
 
 ## DL & ML Model
 
-RECJOON에서는 정해진 주기에 따라 batch serving으로 데이터 수집과 함께 모델 학습과 예측을 실행합니다. 모든 추천 서비스는 모델 학습 후 검증 과정에서 사전에 정의된 지표를 측정하고, 주기별로 가장 좋은 결과 보인 모델을 예측 모델로 선택합니다.
+RECJOON에서는 정해진 주기에 따라 batch serving으로 데이터 수집과 함께 모델 학습과 예측을 실행합니다. 모든 추천 서비스는 모델 학습 후 검증 과정에서 사전에 정의된 지표를 측정하고, 주기별로 가장 좋은 결과롤 보인 모델을 예측 모델로 선택합니다.
 
 <br/>
 
@@ -135,6 +153,12 @@ RECJOON에서는 정해진 주기에 따라 batch serving으로 데이터 수집
 | RecVAE(Variational AutoEncoder)  | [Ilya Shenbin, Anton Alekseev, Elena Tutubalina, Valentin Malykh, and Sergy I. Nikolenko. 2019. RecVAE: A New Variational Autoencoder for Top-N Recommendations with Implicit Feedback. ACM](https://arxiv.org/abs/1912.11160) |
 | Multi-VAE                        | [Dawen Liang, Rahul G. Krishnan, Matthew D. Hoffman, Tony Jebara. 2018. Variational Autoencoders for Collaborative Filtering', WWW '18: Proceedings of the 2018 World Wide Web Conference](https://dl.acm.org/doi/10.1145/3178876.3186150) |
 | Multi-DAE(Denoising AutoEncoder) | [Dawen Liang, Rahul G. Krishnan, Matthew D. Hoffman, Tony Jebara. 2018. Variational Autoencoders for Collaborative Filtering', WWW '18: Proceedings of the 2018 World Wide Web Conference](https://dl.acm.org/doi/10.1145/3178876.3186150) |
+
+<br/>
+
+![model_pipeline](https://cdn.jsdelivr.net/gh/Glanceyes/Image-Repository/2022/06/14/20220614_1655175870.png)
+
+<br/>
 
 유저가 푼 문제를 기반으로 Autoencoder 기반<sup id="a5">[5](#f5)</sup>의 딥 러닝 모델을 학습시키고, 검증 결과에 따라 미리 정의된 평가 지표<sup id="a6">[6](#f6)</sup> 값이 가장 결과가 잘 나온 모델을 선택합니다. 이후 선택된 모델을 바탕으로 문제 후보를 선정하고 필터링을 통해 최종 문제 추천 결과가 출력됩니다.
 
@@ -169,7 +193,7 @@ RECJOON에서는 정해진 주기에 따라 batch serving으로 데이터 수집
 
 
 
-라이벌 기반 문제 추천에서도 마찬가지로 여러 모델<sup id="a10">[10](#f10)</sup>을 통해 성능 지표<sup id="a11">[11](#f11)</sup>를 최소화 하는 방향으로 유저의 문제 풀이 패턴을 학습하고, 예측한 결과에서 실제로 라이벌이 푼 문제 중 내가 푼 문제들은 필터링한 후 결과를 출력합니다.
+라이벌 기반 문제 추천에서도 마찬가지로 여러 모델<sup id="a10">[10](#f10)</sup>을 통해 성능 지표<sup id="a11">[11](#f11)</sup>를 최소화 하는 방향으로 유저의 문제 풀이 패턴을 학습하고, 예측한 결과에서 실제로 라이벌이 푼 문제는 제외하여 필터링한 결과를 출력합니다.
 
 <br/>
 
@@ -197,6 +221,8 @@ RECJOON에서는 정해진 주기에 따라 batch serving으로 데이터 수집
 
 ![UML Sequence Diagram](https://cdn.jsdelivr.net/gh/Glanceyes/Image-Repository/2022/06/13/20220613_1655096955.png)
 
+※ 유저로부터 Explicit Feedback을 받는 API가 추가되었습니다. (2022.06.11)
+
 <br/>
 
 <br/>
@@ -223,36 +249,36 @@ RECJOON에서는 정해진 주기에 따라 batch serving으로 데이터 수집
    <tr height="160px">
       <td align="center">
          <a href="https://github.com/sun1187">
-            <img height="120px" weight="120px" src="https://cdn.jsdelivr.net/gh/Glanceyes/Image-Repository/2022/06/13/20220613_1655117297.png"/>
+            <img weight="120px" src="https://cdn.jsdelivr.net/gh/Glanceyes/Image-Repository/2022/06/13/20220613_1655117297.png"/>
          </a>
       </td>
       <td align="center">
          <a href="https://github.com/juk1329">
-            <img height="120px" weight="120px" src="https://cdn.jsdelivr.net/gh/Glanceyes/Image-Repository/2022/06/13/20220613_1655117331.png"/>
+            <img weight="120px" src="https://cdn.jsdelivr.net/gh/Glanceyes/Image-Repository/2022/06/13/20220613_1655117331.png"/>
          </a>
       </td>
       <td align="center">
          <a href="https://github.com/seo-h2">
-            <img height="120px" weight="120px" src="https://cdn.jsdelivr.net/gh/Glanceyes/Image-Repository/2022/06/13/20220613_1655117366.png"/>
+            <img weight="120px" src="https://cdn.jsdelivr.net/gh/Glanceyes/Image-Repository/2022/06/13/20220613_1655117366.png"/>
          </a>
       </td>
        <td align="center">
          <a href="https://github.com/Glanceyes">
-            <img height="120px" weight="120px" src="https://cdn.jsdelivr.net/gh/Glanceyes/Image-Repository/2022/06/13/20220613_1655117384.png"/>
+            <img weight="120px" src="https://cdn.jsdelivr.net/gh/Glanceyes/Image-Repository/2022/06/13/20220613_1655117384.png"/>
          </a>
       </td>
       <td align="center">
          <a href="https://github.com/wh4044">
-            <img height="120px" weight="120px" src="https://cdn.jsdelivr.net/gh/Glanceyes/Image-Repository/2022/06/13/20220613_1655117401.png"/>
+            <img weight="120px" src="https://cdn.jsdelivr.net/gh/Glanceyes/Image-Repository/2022/06/13/20220613_1655117401.png"/>
          </a>
       </td>
    </tr>
    <tr>
-      <td align="center"><b>김은선</b></td>
-      <td align="center"><b>박정규</b></td>
-      <td align="center"><b>이서희</b></td>
-      <td align="center"><b>이선호</b></td>
-      <td align="center"><b>진완혁</b></td>
+       <td align="center"><a href="https://github.com/sun1187"><b>김은선</b></a></td>
+       <td align="center"><a href="https://github.com/juk1329"><b>박정규</b></a></td>
+       <td align="center"><a href="https://github.com/seo-h2"><b>이서희</b></a></td>
+      <td align="center"><a href="https://github.com/Glanceyes"><b>이선호</b></a></td>
+       <td align="center"><a href="https://github.com/wh4044"><b>진완혁</b></a></td>
    </tr>
    <tr>
       <td align="center">라이벌 추천 모델링<br/>라이벌 문제 추천 모델링<br/>태스크 자동화<br/>모델 실행 코드 모듈화</td>
@@ -277,7 +303,17 @@ RECJOON에서는 정해진 주기에 따라 batch serving으로 데이터 수집
 
 🔖 **[발표 자료 보러 가기](https://github.com/boostcampaitech3/final-project-level3-recsys-14/blob/main/experiments/documents/RECJOON_Presentation.pdf)**
 
- 주 사용 모델 실험•분석 결과와 프로젝트 진행에 관한 자세한 내용은 발표 자료를 참고해 주세요.
+📃 **[Wrap-up Report 보러 가기](https://github.com/boostcampaitech3/final-project-level3-recsys-14/blob/main/experiments/documents/RECJOON_Wrap-up_Report.pdf)**
+
+주 사용 모델 실험•분석 결과와 프로젝트 진행에 관한 자세한 내용은 발표 자료와 Wrap-up Report를 참고해 주세요.
+
+<br/>
+
+💻 **[RECJOON Server Git Repository](https://github.com/RecSys-RECognizer/RECJOON-Server)**
+
+GitHub Action 권한 문제로 인해 변경 사항이 적용된 코드는 현재 Repository를 통해 배포되지 않습니다.
+
+서비스 업데이트 사항은 위의 Git Repository를 참고해주세요.
 
 <br/>
 
@@ -287,7 +323,7 @@ RECJOON에서는 정해진 주기에 따라 batch serving으로 데이터 수집
 
 
 
-## Reference
+## Annotation
 
 
 
