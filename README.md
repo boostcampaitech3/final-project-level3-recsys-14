@@ -170,7 +170,7 @@ RECJOON에서는 정해진 주기에 따라 batch serving으로 데이터 수집
 
 | 모델명                                 | 참조                                                         |
 | -------------------------------------- | ------------------------------------------------------------ |
-| Collaborative MF(Matrix Factorization) | [David Cortes. 2020. Cold-start recommendations in Collective Matrix Factorization](https://arxiv.org/abs/1809.00366) |
+| Collective MF(Matrix Factorization) | [David Cortes. 2020. Cold-start recommendations in Collective Matrix Factorization](https://arxiv.org/abs/1809.00366) |
 | K-nearest neighbors                    | [Altman, and Naomi S. 1992. An introduction to kernel and nearest-neighbor nonparametric regression](https://ieeexplore.ieee.org/abstract/document/4781121) |
 
 
@@ -209,7 +209,7 @@ RECJOON에서는 정해진 주기에 따라 batch serving으로 데이터 수집
 
 
 
-※ 6월 15일 전후로 AI Stages Server에서 GCP(Google Cloud Platform) Instance로 전환할 예정입니다.
+※ 2022년 6월 15일 전후로 AI Stages Server에서 GCP(Google Cloud Platform) Instance로 전환되었습니다.
 
 <br/>
 
