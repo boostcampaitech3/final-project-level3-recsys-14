@@ -55,7 +55,7 @@ jobs:
 
       - name: Install client dependencies
         run: npm install
-        working-directory: ./client
+        working-directory: ./web_server/client
 
       # - name: Build server
       #   run: CI=false && npm run build
@@ -63,7 +63,7 @@ jobs:
 
       - name: Build client
         run: CI=false && npm run build
-        working-directory: ./client
+        working-directory: ./web_server/client
 
       - name: Create zip
         run: zip -qq -r ./recjoon_server.zip .
