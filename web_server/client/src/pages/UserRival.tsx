@@ -51,8 +51,8 @@ const RivalIntroStyledDiv = styled.div`
     color: #fff;
     text-align: center;
     text-shadow:
-        1px 1px 14px rgb(0 0 0 / 14%), 
-        2px 2px 28px rgb(0 0 0 / 28%);
+        1px 1px 14px rgb(0 0 0 / 12%), 
+        2px 2px 28px rgb(0 0 0 / 20%);
     font-size: min(max(calc(16px + 3.6vmin), 20px), 54px);
     font-weight: 800;
     margin: 2.5rem 0;
@@ -66,14 +66,14 @@ const RivalIntroImage = styled.div`
 `;
 
 const RivalIntroStyledSpan = styled.span`
-    color: #6aa273;
+    color: #bbb286;
     text-align: center;
     font-size: min(max(calc(10px + 1vmin), 10px), 18px);
     font-weight: 500;
     text-shadow: 
-        -1px -1px 4px rgb(237 252 161 / 70%),
-        1px 1px 6px rgb(238 252 162 / 80%), 
-        2px 2px 10px rgb(237 252 162 / 65%);
+        -1px -1px 4px rgb(245 241 194 / 70%),
+        1px 1px 6px rgb(244 240 190 / 80%), 
+        2px 2px 10px rgb(243 239 187 / 65%);
 `;
 
 const SliderWrap = styled.div`
@@ -146,6 +146,10 @@ const RivalDescription = styled.div`
     margin: 1.2rem 0;
     text-align: left !important;
 
+    &:hover .linkIcon{
+        transform: translate(3px);
+    }
+
     @media screen and (max-width: 800px){
         text-align: center !important;
     }
@@ -160,6 +164,7 @@ const LinkSvgIcon = styled(svgIcon)`
     stroke: ${light_purple};
     fill: ${light_purple};
     cursor: pointer;
+    transition: transform 0.6s cubic-bezier(.25,.8,.25,1) 0.2s;
 `;
 
 const LinkSvgIconWrapper = styled.div`
@@ -190,7 +195,7 @@ function Userrival() {
 
     const userHandle = useSelector((state: RootState) => state.userSearchInput.userHandle);
     const rivalItem = useSelector((state : RootState) => state.rivalItem)
-    const rivalProblem = useSelector((state:RootState) => state.rivalProblemItem)
+    // const rivalProblem = useSelector((state:RootState) => state.rivalProblemItem)
     const tagSwitch = useSelector((state:RootState) => state.tagSwitch.toggle);
 
     // console.log(userHandle);
@@ -262,7 +267,7 @@ function Userrival() {
                 <BlankBox/>
                 <SliderWrap>
                     <RivalProblem />
-                    {rivalProblem.toggle && tagSwitch && <ProblemDetail item = {rivalProblem.item}/>}
+                    {/* {rivalProblem.toggle && tagSwitch && <ProblemDetail item = {rivalProblem.item}/>} */}
                 </SliderWrap>
                 <ContentContainer>
                     <ContentInnerContainer>
@@ -277,7 +282,7 @@ function Userrival() {
                         <LinkSvgIconWrapper>
                             <LinkSvgIcon 
                                 onClick={() => { navigate(`/user/${userHandle}`)}}
-                                className="searchicon"
+                                className="linkIcon"
                                 fill-rule="evenodd"
                                 clip-rule="evenodd"
                                 viewBox="0 0 36 36">

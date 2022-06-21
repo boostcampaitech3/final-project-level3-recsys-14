@@ -20,6 +20,8 @@ import {useSelector} from 'react-redux';
 import TagSwitch from "./TagSwitch";
 import TagSwitchContainer from "../container/tagSwitchContainer";
 import { Phone } from "../constants/mediaQuery";
+import ProblemDetail from "./problemDetail";
+import ProblemItemList from "./problemItemList";
 
 export const Box = styled.div`
     position: relative;
@@ -68,6 +70,8 @@ function RivalProblem(){
     const [validAPI, setValidAPI] = React.useState(false);
 
     const userHandle = useSelector((state: RootState) => state.userSearchInput.userHandle);
+    const rivalProblem = useSelector((state:RootState) => state.rivalProblemItem)
+    const tagSwitch = useSelector((state:RootState) => state.tagSwitch.toggle);
 
     // console.log(userHandle) //13번째
     const fetchprob = async() =>{
@@ -100,6 +104,8 @@ function RivalProblem(){
         <Box>
                 <CarouselTitle>라이벌이 푼 문제도 <Phone><br/></Phone>같이 풀어볼까요?<TagSwitchContainer /></CarouselTitle>
                 <RivalItemSlide validAPI = {validAPI} rivalprobs = {rivalprob} />
+                {rivalProblem.toggle && tagSwitch && <ProblemDetail item = {rivalProblem.item}/>}
+                <ProblemItemList validAPI={validAPI} probs={rivalprob}></ProblemItemList>
        </Box>
     );
 }
