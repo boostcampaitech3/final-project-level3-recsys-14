@@ -53,8 +53,8 @@
   "scripts": {
     "start": "set PORT=80 && env-cmd -f .env.production react-scripts start",
     "test": "set PORT=80 && env-cmd -f .env react-scripts start",
-    "build": "env-cmd -f .env.production react-scripts build",
-    "develop": "env-cmd -f .env.development react-scripts build",
+    "build": "react-scripts build",
+    "develop": "react-scripts build",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
