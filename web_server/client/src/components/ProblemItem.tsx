@@ -45,7 +45,7 @@ const ProblemLinkButton = styled.button`
     &:hover {
         transform: scale(1.08);
     }
-    &:hover .searchicon{
+    &:hover .linkIcon{
         transform: translate(3px);
     }
 `;
@@ -82,7 +82,7 @@ const ProblemItem = ({item, onToggle}:any) => {
                         {item.problem_id} 풀기
                         <LinkSvgIconWrapper>
                             <LinkSvgIcon
-                                className="searchicon"
+                                className="linkIcon"
                                 fill-rule="evenodd"
                                 clip-rule="evenodd"
                                 viewBox="0 0 36 36">

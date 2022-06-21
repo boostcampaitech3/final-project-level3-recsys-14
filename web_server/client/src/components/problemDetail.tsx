@@ -22,7 +22,7 @@ const ProblemItemPage = styled.div`
     border-radius: 1.5rem;
     box-shadow: 
         0px 15px 35px -5px rgb(50 88 130 / 32%);
-    margin: 0 20px;
+    margin: 30px 20px 60px;
     cursor: pointer;
     &:hover {
         color: #6b6eff;

@@ -10,7 +10,7 @@ import { API } from "../utils/axios";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { search } from "../modules/userSearchInput";
 import { toggleSwitch } from "../modules/tagSwitch";
-
+ 
 import { RootState } from "../modules";
 import userBackgroundImage from '../assets/images/user_background_large.png';
 import userRecImage from "../assets/images/problem_rec_large.png";
@@ -142,6 +142,10 @@ const ProblemDescription = styled.div`
     margin: 1.2rem 0;
     text-align: left !important;
 
+    &:hover .linkIcon{
+        transform: translate(3px);
+    }
+
     @media screen and (max-width: 800px){
         text-align: center !important;
     }
@@ -156,6 +160,7 @@ const LinkSvgIcon = styled(svgIcon)`
     stroke: ${light_purple};
     fill: ${light_purple};
     cursor: pointer;
+    transition: transform 0.6s cubic-bezier(.25,.8,.25,1) 0.2s;
 `;
 
 const LinkSvgIconWrapper = styled.div`
@@ -170,10 +175,8 @@ const BlankBox = styled.div`
 
 function Userpage() {
     const params = useParams();
-    // console.log(params); // 첫 번째 userHandle : juk1329, 여섯 번째 userHandle : juk1329
 
     const location = useLocation();
-    // console.log(location.pathname);
 
     const dispatch = useDispatch();
     const userHandleDispatch = useCallback((userHandle : string | undefined)=> dispatch(search(userHandle)), [dispatch]);
@@ -183,13 +186,9 @@ function Userpage() {
 
     const initialUserpage = useCallback(() => dispatch(initialProblem()),[dispatch]);
 
-    // dispatch(search(params.userHandle));
-
     const userHandle = useSelector((state: RootState) => state.userSearchInput.userHandle);
-    const problemItem = useSelector((state: RootState) => state.problemItem);
+    // const problemItem = useSelector((state: RootState) => state.problemItem);
     const tagSwitch = useSelector((state : RootState) => state.tagSwitch.toggle);
-
-    // console.log(userHandle); //두 번째 '', 일곱 번째 juk1329
 
     let navigate = useNavigate();
 
@@ -206,7 +205,6 @@ function Userpage() {
     }
 
     useEffect(()=>{
-        // userHandleDispatch(params.userHandle);
         fetchUserCheck();
         userHandleDispatch(params.userHandle);
         initialUserpage();
@@ -216,13 +214,8 @@ function Userpage() {
         if(tagSwitch == true){
             onTagSwitch();
         }
-        // initialUserpage();
     }, []);
     
-    //NavBar 세 번째, 8번쨰
-    //individual 네 번째 9번째
-    // App 다섯 번째
-
     return(
         <div>
             <NavBar pathname={location.pathname} />
@@ -240,7 +233,7 @@ function Userpage() {
             </UserIntroBox>
             <SliderWrap>
                 <Individual />
-                {problemItem.toggle && tagSwitch && <ProblemDetail item={problemItem.item} />}
+                {/* {problemItem.toggle && tagSwitch && <ProblemDetail item={problemItem.item} />} */}
             </SliderWrap>
             <ContentContainer>
                 <ContentInnerContainer>
@@ -255,7 +248,7 @@ function Userpage() {
                         <LinkSvgIconWrapper>
                             <LinkSvgIcon 
                                 onClick={() => { navigate(`/user/${userHandle}/rival`)}}
-                                className="searchicon"
+                                className="linkIcon"
                                 fill-rule="evenodd"
                                 clip-rule="evenodd"
                                 viewBox="0 0 36 36">

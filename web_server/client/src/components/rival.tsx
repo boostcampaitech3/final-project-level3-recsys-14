@@ -21,6 +21,7 @@ import { useDispatch, useSelector } from "react-redux";
 import TagSwitch from "./TagSwitch";
 import { clickClose } from "../modules/alertClose";
 import { Phone } from "../constants/mediaQuery";
+import { Link } from "react-router-dom";
 
 export const Box = styled.div`
     position: relative;
@@ -97,7 +98,7 @@ function Rival(){
                     onClose={onClickClose} dismissible>
                     <div>
                     잠깐, 라이벌 등록 페이지로 이동하기 전에 solved.ac 로그인이 되어 있나요? <br/>
-                    추천된 라이벌을 등록하러 가는 링크를 클릭하기 전에 <Alert.Link href="https://solved.ac/">solved.ac 로그인</Alert.Link>이 되어 있는지 우선 확인해주세요!
+                    추천된 라이벌을 등록하러 가는 링크를 클릭하기 전에 <a href="https://solved.ac/" target="_blank">solved.ac 로그인</a>이 되어 있는지 우선 확인해주세요!
                     </div>
                 </Alert> }
                 <RivalSlide validAPI = {validAPI} rival = {rival} />
