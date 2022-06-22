@@ -34,7 +34,8 @@ def update_rec_rivals(db:Session, rec_rivals:RecommendRivals):
 
 def insert_rec_rivals(db:Session, rec_rivals:RecommendRivals):
     #기존: db.add였는데 dupilcated pk 에러가 있어서 merge로 바꿈. (https://stackoverflow.com/questions/10322514/dealing-with-duplicate-primary-keys-on-insert-in-sqlalchemy-declarative-style)
-    db.merge(rec_rivals)
+#    db.merge(rec_rivals)
+    db.add(rec_rivals)
     db.commit()
 
 def delete_rec_rivals(db:Session, handle: str):
@@ -54,7 +55,8 @@ def update_rec_rivals_problems(db:Session, rec_rivals_problems:RecommendRivalsPr
     db.commit()
 
 def insert_rec_rivals_problems(db:Session, rec_rivals_problems:RecommendRivalsProblems):
-    db.merge(rec_rivals_problems)
+#    db.merge(rec_rivals_problems)
+    db.add(rec_rivals_problems)
     db.commit()
 
 def delete_rec_rivals_problems(db:Session, handle: str):

@@ -26,6 +26,7 @@ def train_recvae():
         args.cuda = True
 
     device = torch.device("cuda" if args.cuda else "cpu")
+    #device = "cpu"
     print("DEVICE: ", device)
     
     def evaluate(model, data_tr, data_te, metrics, batch_size=500):
@@ -79,7 +80,6 @@ def train_recvae():
             for optimizer in opts:
                 optimizer.step()
 
-    print("아아아아아아아아아아ㅏ아아아아")
     loader = DataLoader(args.dataset)
     print("loader 완료")
     n_items = loader.load_n_items()
@@ -99,7 +99,7 @@ def train_recvae():
     metrics = [
         {'metric': ndcg, 'k': 100},
         {'metric': recall, 'k': 10},
-        {'metric': recall, 'k': 20},
+        {'metric': recall, 'k': 30},
         {'metric': recall, 'k': 50}
     ]
 
@@ -154,7 +154,7 @@ def train_recvae():
 
         print('validation set')
         for metric, score in zip(metrics, valid_scores):
-            if metric['metric'].__name__ == 'recall' and metric['k'] == 10:
+            if metric['metric'].__name__ == 'recall' and metric['k'] == 30:
                 valid_recall = score
             print(f"{metric['metric'].__name__}@{metric['k']}:\t{score:.4f}")
 

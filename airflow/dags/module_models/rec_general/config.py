@@ -2,7 +2,7 @@
 # CFG
 # ====================================================
 class args:
-    dataset = '/opt/ml/airflow/dags/module_models/rec_general'
+    dataset = '/home/recognizer14/airflow/dags/module_models/rec_general'
     hidden_dim = 600
     latent_dim = 200
     batch_size = 500
@@ -24,4 +24,4 @@ class args:
     log_dir = './logs'
     wd = 0.00
     log_interval = 100
-    save_dir = '/opt/ml/airflow/dags/module_models/rec_general/best_models'
+    save_dir = '/home/recognizer14/airflow/dags/module_models/rec_general/best_models'

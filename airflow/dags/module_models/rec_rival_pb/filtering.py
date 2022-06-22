@@ -38,8 +38,9 @@ class filter:
         tmp[2]= tmp[2].apply(self.numerize_for_profile)
         tmp[3]= tmp[3].apply(self.numerize_for_profile)
         tmp[4]= tmp[4].apply(self.numerize_for_profile)
+        tmp[5]= tmp[5].apply(self.numerize_for_profile)
         # 리스트 값으로 들어가도록 변환
-        tmp= pd.DataFrame(tmp[[0,1,2,3,4]].apply(lambda row: list(row), axis=1))
+        tmp= pd.DataFrame(tmp[[0,1,2,3,4,5]].apply(lambda row: list(row), axis=1))
         # 라이벌이 푼 문제들을 전부 합침
         rival_prob= tmp[0].apply(lambda x: ','.join(df_problems_solved.iloc[x]['problems']))
         only_prob= pd.DataFrame({'rival_prob':rival_prob})

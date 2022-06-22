@@ -35,8 +35,9 @@ def processing_user_probelms(df_problems_solved):
 
 def main_item_based_cf(db):
     seed = 0
-    df_problems_solved, df_problems_class, df_rec_rivals = load_data(db)
-    df_problems = pd.read_sql('select * from problems', db)
+    #df_problems_solved, df_problems_class, df_rec_rivals = load_data(db)
+    df_problems_solved, df_problems_class, df_rec_rivals, df_problems= load_data(db)
+    #df_problems = pd.read_sql('select * from problems', db)
 
     # 유저별 푼 태그와 문제 난이도 구하기
     col_tag = ['data_structures', 'geometry', 'graphs', 'greedy','implementation','math','string', 'dp']
@@ -65,16 +66,19 @@ def main_item_based_cf(db):
     df_new_problems.fillna(0, inplace=True)
 
     # 라이벌은 풀고 내가 안 푼 문제
-    df_problems_solved, _, df_rec_rivals= load_data(db)
+    df_problems_solved, df_problems_class, df_rec_rivals, df_problems= load_data(db)
+    #df_problems_solved, _, df_rec_rivals= load_data(db)
+    
     print('데이터 로드 완료!')
     lst_rivals= df_rec_rivals['rec_rivals']
     target_users= df_rec_rivals['handle']
         
-    data, profile2id, show2id= preprocess_rival_prob(df_problems_solved)
-    
-    with open('/opt/ml/airflow/dags/module_models/rec_rival_pb/item_based_prog/show2id.pkl','wb') as f:
+    #data, profile2id, show2id = preprocess_rival_prob(df_problems_solved)
+    data, profile2id, show2id, _ = preprocess_rival_prob(df_problems_solved)
+
+    with open('/home/recognizer14/airflow/dags/module_models/rec_rival_pb/item_based_prog/show2id.pkl','wb') as f:
         pickle.dump(show2id,f)
-    with open('/opt/ml/airflow/dags/module_models/rec_rival_pb/item_based_prog/profile2id.pkl','wb') as f:
+    with open('/home/recognizer14/airflow/dags/module_models/rec_rival_pb/item_based_prog/profile2id.pkl','wb') as f:
         pickle.dump(profile2id,f)
 
     print('데이터 전처리 완료!')
@@ -138,7 +142,7 @@ def main_item_based_cf(db):
     res_result.columns = ['handle', 'rec_problems']
     res_result.index += 1  #mysql에서 auto increment를 위해 1 추가
     res_result.index.name='id'
-    res_result.to_csv('/opt/ml/airflow/dags/module_models/rec_rival_pb/item_based_prog/rec_rival_pb_item_based_cf_output.csv')
+    res_result.to_csv('/home/recognizer14/airflow/dags/module_models/rec_rival_pb/item_based_prog/rec_rival_pb_item_based_cf_output.csv')
 
     print('라이벌 기반 문제 추천 완료!')
     return res_result

@@ -74,8 +74,8 @@ class Users(Base):
 class ProblemsClass(Base):
     __tablename__ = "problems_class"
 
-    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
-    problem_id = Column(Integer, unique=True, index=True)
+    id = Column(Integer)
+    problem_id = Column(Integer, primary_key=True)
     title = Column(String(4294000000), unique=False, index=False, nullable=True)
     accepted_user_count = Column(Integer, unique=False, index=False, nullable=True)
     average_tries = Column(Float, unique=False, index=False, nullable=True)

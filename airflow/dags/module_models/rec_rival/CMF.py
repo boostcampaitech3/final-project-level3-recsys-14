@@ -130,12 +130,12 @@ def rival_cmf(db):
     ## item ID
     unique_sid = pd.unique(df_user_problems['problems'])
     show2id = dict((sid, i) for (i, sid) in enumerate(unique_sid))
-    with open('/opt/ml/airflow/dags/module_models/rec_rival/cmf_prog/unique_sid.txt', 'w') as f:
+    with open('/home/recognizer14/airflow/dags/module_models/rec_rival/cmf_prog/unique_sid.txt', 'w') as f:
         for sid in unique_sid:
             f.write('%s\n' % sid)
-    with open('/opt/ml/airflow/dags/module_models/rec_rival/cmf_prog/show2id.pkl','wb') as f:
+    with open('/home/recognizer14/airflow/dags/module_models/rec_rival/cmf_prog/show2id.pkl','wb') as f:
         pickle.dump(show2id,f)
-    with open('/opt/ml/airflow/dags/module_models/rec_rival/cmf_prog/profile2id.pkl','wb') as f:
+    with open('/home/recognizer14/airflow/dags/module_models/rec_rival/cmf_prog/profile2id.pkl','wb') as f:
         pickle.dump(profile2id,f)
     print("Done Preprocessing")
 
@@ -171,7 +171,8 @@ def rival_cmf(db):
     emb_user = tmp_user
 
     #유저간 유사도 구하기
-    device= torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    #device= torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    device = "cpu"
     print("DEVICE: ", device)
     df_for_cos= torch.tensor(emb_user, dtype=torch.float16)
     print("torch로 변환  완료")
@@ -222,7 +223,7 @@ def rival_cmf(db):
     output['rec_rivals'] = df_result.rec_rivals
     output.index += 1  #mysql에서 auto increment를 위해 1 추가
     output.index.name='id'
-    output.to_csv('/opt/ml/airflow/dags/module_models/rec_rival/cmf_prog/rec_rival_cmf.csv')
+    output.to_csv('/home/recognizer14/airflow/dags/module_models/rec_rival/cmf_prog/rec_rival_cmf.csv')
 
     return output
 
