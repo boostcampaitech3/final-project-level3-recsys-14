@@ -1,5 +1,5 @@
 import pandas as pd
-from .preprocess_for_eval import load_data  
+from .preprocess_for_eval import load_data
 import warnings
 warnings.filterwarnings("ignore")
 
@@ -32,11 +32,11 @@ def rec_level(user, lst_probs):
     print('평가용 데이터프레임 생성 완료!')
     return prob_level
 
-def prob_evaluate_high(target_user, lst_probs):
+def prob_evaluate_high(target_user, lst_probs, db):
     lst_probs= list(lst_probs)
     target_user= list(target_user)
     global df_problems, df_problems_solved, df_users,df_problems_class
-    df_problems, df_problems_solved, df_users, df_problems_class = load_data()
+    df_problems, df_problems_solved, df_users, df_problems_class = load_data(db)
     
     user_avg= user_level(target_user)
     user_avg= pd.DataFrame(target_user)[0].apply(lambda x: user_avg[x])
@@ -44,3 +44,4 @@ def prob_evaluate_high(target_user, lst_probs):
     prob_avg= pd.DataFrame(target_user)[0].apply(lambda x: prob_avg[x])
 
     return sum(abs(prob_avg - user_avg))/len(prob_avg)
+

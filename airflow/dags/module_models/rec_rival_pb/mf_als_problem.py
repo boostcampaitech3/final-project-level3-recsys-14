@@ -13,7 +13,7 @@ import pickle
 from .preprocess import load_data, preprocess_rival_prob
 from .filtering import filter
 import torch
-
+from sklearn.metrics.pairwise import cosine_similarity
 import warnings
 warnings.filterwarnings("ignore")
 
@@ -38,9 +38,9 @@ def main_mf_als(db):
     
     data, profile2id, show2id,  df_user_problems= preprocess_rival_prob(df_problems_solved)
 
-    with open('/opt/ml/airflow/dags/module_models/rec_rival_pb/mf_als_prog/show2id.pkl','wb') as f:
+    with open('/home/recognizer14/airflow/dags/module_models/rec_rival_pb/mf_als_prog/show2id.pkl','wb') as f:
         pickle.dump(show2id,f)
-    with open('/opt/ml/airflow/dags/module_models/rec_rival_pb/mf_als_prog/profile2id.pkl','wb') as f:
+    with open('//home/recognizer14/airflow/dags/module_models/rec_rival_pb/mf_als_prog/profile2id.pkl','wb') as f:
         pickle.dump(profile2id,f)
 
     print('데이터 전처리 완료!')
@@ -53,9 +53,11 @@ def main_mf_als(db):
         use_gpu_value = True
     else:
         use_gpu_value = False
+    #device = "cpu"
+    #use_gpu_value = False
     print('DEVICE: ', device)
     print("use_gpu_value: ", use_gpu_value)
-
+    
     als_model = ALS(factors=7, regularization=0.01, iterations = 50, random_state=seed, use_gpu=use_gpu_value)
     als_model.fit(data)
 
@@ -127,6 +129,6 @@ def main_mf_als(db):
     result.index.name='id'
 
     print('라이벌 기반 문제 추천 완료!')
-    result.to_csv('/opt/ml/airflow/dags/module_models/rec_rival_pb/mf_als_prog/rec_rival_pb_mf_als_output.csv')
+    result.to_csv('/home/recognizer14/airflow/dags/module_models/rec_rival_pb/mf_als_prog/rec_rival_pb_mf_als_output.csv')
 
     return result

@@ -7,8 +7,8 @@ from database import Base
 class RecommendGeneralProblems(Base):
     __tablename__ = "recommend_general_problems"
 
-    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
-    handle = Column(String(255), unique=True, index=True)
+    id = Column(Integer)
+    handle = Column(String(255), primary_key=True)
     rec_problems = Column(String(4294000000), unique=False, index=False, nullable=True)
 
     def __repr__(self):
@@ -19,9 +19,9 @@ class RecommendGeneralProblems(Base):
 class RecommendRivals(Base):
     __tablename__ = "recommend_rivals"
 
-    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
-    handle = Column(String(255), unique=True, index=True)
-    rec_rivals = Column(String(4294000000), unique=False, index=False, nullable=True)
+    id = Column(Integer)
+    handle = Column(String(255), primary_key=True)
+    rec_rivals = Column(String(4294000000), unique=False, nullable=True)
 
     def __repr__(self):
         return f"recommend_rivals('{self.id}', '{self.handle}', '{self.rec_rivals}')"
@@ -31,8 +31,8 @@ class RecommendRivals(Base):
 class RecommendRivalsProblems(Base):
     __tablename__ = "recommend_rivals_problems"
 
-    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
-    handle = Column(String(255), unique=True, index=True)
+    id = Column(Integer)
+    handle = Column(String(255), primary_key=True)
     rec_problems = Column(String(4294000000), unique=False, index=False, nullable=True)
 
     def __repr__(self):
@@ -43,8 +43,8 @@ class RecommendRivalsProblems(Base):
 class ProblemsClass(Base):
     __tablename__ = "problems_class"
 
-    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
-    problem_id = Column(Integer, unique=True, index=True)
+    id = Column(Integer)
+    problem_id = Column(Integer, primary_key=True)
     title = Column(String(4294000000), unique=False, index=False, nullable=True)
     accepted_user_count = Column(Integer, unique=False, index=False, nullable=True)
     average_tries = Column(Float, unique=False, index=False, nullable=True)

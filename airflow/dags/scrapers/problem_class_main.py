@@ -3,6 +3,10 @@ import sys
 
 #from .args import parse_args
 from sqlalchemy.orm import Session
+#from .database import session_local
+#from .problem_class_scraper import scraper_problem_class_main
+#from .entity import ProblemsClass
+#from .query import get_problems_class_by_problem_id, update_problems_class, insert_problems_class
 from .database import session_local
 from .problem_class_scraper import scraper_problem_class_main
 from .entity import ProblemsClass
@@ -47,5 +51,13 @@ def scraper_problem_class_main(): #https://desmort68.tistory.com/9
     return {"result": "problems_class 테이블에 저장 완료!"}
 
 
-#if __name__ == "__main__":
-#    scrap_problem_main(10)
+def scraper_problem_class_scrap(): #https://desmort68.tistory.com/9
+    print("SCRAPPING")
+    output = scraper_problem_class_main()
+    output.reset_index(inplace=True, drop=False)
+    output.to_csv('problem_class.csv')
+
+
+
+if __name__ == "__main__":
+    scraper_problem_class_scrap()

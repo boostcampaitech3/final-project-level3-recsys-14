@@ -10,6 +10,7 @@ import bottleneck as bn
 import numpy as np
 import time
 from copy import deepcopy
+from math import log, floor, ceil
 
 
 def load_train_data(csv_file, n_items, n_users, global_indexing=False):
@@ -241,16 +242,10 @@ def min_max(lv):
         return 5, 12
     elif lv <= 13:
         return 8, 16
-    elif lv <= 16:
-        return 11, 19
-    elif lv <= 20:
-        return 13, 22
-    elif lv <= 23:
-        return 15, 26
-    elif lv <= 25:
-        return 16, 27
+    elif lv <= 15:
+        return 11, 18
     else:
-        return 17, 31
+        return (floor(lv-log(lv, 2)), ceil(lv+log(lv, 3)))
 
 def infer(user, item, dict_user_lv, dict_item_lv, id2show, infer_cnt):
     pred = np.array([])
