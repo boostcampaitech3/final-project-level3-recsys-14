@@ -24,7 +24,7 @@ seed = args.seed
 np.random.seed(seed)
 torch.manual_seed(seed)
 
-def infer_all(raw_data, db):
+def infer_all(raw_data, df_problems, db):
     ## 배치사이즈 포함
     ### 데이터 준비
     # Load Data
@@ -33,19 +33,24 @@ def infer_all(raw_data, db):
     with open(pro_dir + '/model_score.json', 'r', encoding="utf-8") as f:
         model_score = json.load(f)
 
-    raw_data, _, _ = filter_triplets(raw_data, 5, 10)
-    df_problems = pd.read_sql('select * from problems', db)
-    df_problems.drop(df_problems[df_problems.average_tries == 7340].index, axis=0, inplace=True)
-    # level 0에 해당하는 문제 제거
-    df_problems = df_problems[df_problems.level != 0]
-    # not_solvable == False만
-    df_problems = df_problems[df_problems.is_solvable == True]
-    # tag가 nan인 문제 제거
-    df_problems = df_problems[~df_problems.tags.isnull()]
+#    raw_data, _, _ = filter_triplets(raw_data, 5, 10)
+#    df_problems = pd.read_sql('select * from problems', db)
+#    df_problems.drop(df_problems[df_problems.average_tries == 7340].index, axis=0, inplace=True)
+#    # level 0에 해당하는 문제 제거
+#    df_problems = df_problems[df_problems.level != 0]
+#    # not_solvable == False만
+#    df_problems = df_problems[df_problems.is_solvable == True]
+#    # tag가 nan인 문제 제거
+#    df_problems = df_problems[~df_problems.tags.isnull()]
+#
+#    raw_data = raw_data[raw_data['item'].isin(df_problems['problem_id'].values)].reset_index(drop=True)
+    print("raw_data nunique:", raw_data.user.nunique())
 
-    raw_data = raw_data[raw_data['item'].isin(df_problems['problem_id'].values)].reset_index(drop=True)
-    
-    device = torch.device("cuda")
+    if torch.cuda.is_available():
+        args.cuda = True
+#    device = torch.device("cuda")
+    device = torch.device("cuda" if args.cuda else "cpu")
+    #device = "cpu"
 
     # Import Data
     print("Inference Start!!")
@@ -58,7 +63,7 @@ def infer_all(raw_data, db):
 
     infer_df = numerize_for_infer(raw_data, profile2id, show2id)
 
-    loader = DataLoader(args.data)
+    loader = DataLoader(args.dataset)
     n_items = loader.load_n_items()
     n_users = infer_df['uid'].max() + 1
 
@@ -93,8 +98,11 @@ def infer_all(raw_data, db):
     score = 0
     for m, s in model_score.items():
         if s > score:
+            print("확인")
             model_name = m
             score = s
+        print(m, s)
+        print(score)
     print(f"Best Model => {model_name} : {score:.4f}")
 
     if model_name == 'recvae':        
@@ -133,7 +141,13 @@ def infer_all(raw_data, db):
             data_batch = data[index_list[start_index:end_index]]
             data_tensor = naive_sparse2tensor(data_batch).to(device)
 
-            recon_batch = model(data_tensor, calculate_loss=False)
+            #recon_batch = model(data_tensor, calculate_loss=False)
+            if model_name == 'vae':
+                 recon_batch, _, _ = model(data_tensor)
+            elif model_name == 'dae':
+                 recon_batch = model(data_tensor)
+            else:
+                 recon_batch = model(data_tensor, calculate_loss=False)
 
             recon_batch = recon_batch.cpu().numpy()
 

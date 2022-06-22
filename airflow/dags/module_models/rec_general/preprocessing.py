@@ -17,7 +17,7 @@ from .config import *
 # Set the random seed manually for reproductibility.
 torch.manual_seed(args.seed)
 
-def preprocessing_all(raw_data, db):
+def preprocessing_all(raw_data, df_problems, db):
     #만약 GPU가 사용가능한 환경이라면 GPU를 사용
     if torch.cuda.is_available():
         args.cuda = True
@@ -27,24 +27,25 @@ def preprocessing_all(raw_data, db):
     print("Load and Preprocess BOJ dataset")
     # Load Data
     # Filter Data
-    raw_data, user_activity, item_popularity = filter_triplets(raw_data, 5, 10)
+#    raw_data, user_activity, item_popularity = filter_triplets(raw_data, 5, 10)
     #---------------------------
     # 여기에 tag == None인 아이템은 제외
-    df_problems = pd.read_sql('select * from problems', db)
-    df_problems.drop(df_problems[df_problems.average_tries == 7340].index, axis=0, inplace=True)
+#    df_problems = pd.read_sql('select * from problems', db)
+#    df_problems.drop(df_problems[df_problems.average_tries == 7340].index, axis=0, inplace=True)
     # level 0에 해당하는 문제 제거
-    df_problems = df_problems[df_problems.level != 0]
+#    df_problems = df_problems[df_problems.level != 0]
     # not_solvable == False만
-    df_problems = df_problems[df_problems.is_solvable == True]
+#    df_problems = df_problems[df_problems.is_solvable == True]
     # tag가 nan인 문제 제거
-    df_problems = df_problems[~df_problems.tags.isnull()]
+#    df_problems = df_problems[~df_problems.tags.isnull()]
 
-    raw_data = raw_data[raw_data['item'].isin(df_problems['problem_id'].values)].reset_index(drop=True)
+ #   raw_data = raw_data[raw_data['item'].isin(df_problems['problem_id'].values)].reset_index(drop=True)
     #---------------------------
 
 
     # Shuffle User Indices
     unique_uid = pd.unique(raw_data['user'])
+    print("len(unique_uid): ", len(unique_uid))
     print("(BEFORE) unique_uid:",unique_uid)
     np.random.seed(98765)
     idx_perm = np.random.permutation(unique_uid.size) # 해당 숫자까지의 인덱스를 무작위로 섞은 것을 arr로 반환
