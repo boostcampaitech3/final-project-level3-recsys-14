@@ -28,6 +28,7 @@ def train_dae():
         args.cuda = True
 
     device = torch.device("cuda" if args.cuda else "cpu")
+    #device = "cpu"
     print("DEVICE: ", device)
 
     def train(model, criterion, optimizer, is_VAE=False):
@@ -75,7 +76,7 @@ def train_dae():
         e_N = data_tr.shape[0]
         n100_list = []
         r10_list = []
-        r20_list = []
+        r30_list = []
 
         with torch.no_grad():
             for start_idx in range(0, e_N, args.batch_size):
@@ -108,18 +109,18 @@ def train_dae():
 
                 n100 = ndcg(recon_batch, heldout_data, 100)
                 r10 = recall(recon_batch, heldout_data, 10)
-                r20 = recall(recon_batch, heldout_data, 20)
+                r30 = recall(recon_batch, heldout_data, 30)
 
                 n100_list.append(n100)
                 r10_list.append(r10)
-                r20_list.append(r20)
+                r30_list.append(r30)
 
         total_loss /= len(range(0, e_N, args.batch_size))
         n100_list = np.concatenate(n100_list)
         r10_list = np.concatenate(r10_list)
-        r20_list = np.concatenate(r20_list)
+        r30_list = np.concatenate(r30_list)
 
-        return total_loss, np.mean(n100_list), np.mean(r10_list), np.mean(r20_list)
+        return total_loss, np.mean(n100_list), np.mean(r10_list), np.mean(r30_list)
 
 
     ###############################################################################
@@ -153,7 +154,7 @@ def train_dae():
     ###############################################################################
 
     # best_n100 = -np.inf
-    best_r10 = -np.inf
+    best_r30 = -np.inf
     update_count = 0
     early_stopping = 40
     stopping_cnt = 0
@@ -172,21 +173,21 @@ def train_dae():
         epoch_start_time = time.time()
         train(model, criterion, optimizer, is_VAE=False)
 
-        val_loss, n100, r10, r20 = evaluate(model, criterion, vad_data_tr, vad_data_te, is_VAE=False)
+        val_loss, n100, r10, r30 = evaluate(model, criterion, vad_data_tr, vad_data_te, is_VAE=False)
         print('-' * 89)
         print('| end of epoch {:3d}/{:3d} | time: {:4.2f}s | valid loss {:4.4f} | '
-            'n100 {:5.4f} | r10 {:5.4f} | r20 {:5.4f}'.format(
+            'n100 {:5.4f} | r10 {:5.4f} | r30 {:5.4f}'.format(
             epoch, args.n_epochs, time.time() - epoch_start_time, val_loss,
-            n100, r10, r20))
+            n100, r10, r30))
         print('-' * 89)
 
         n_iter = epoch * len(range(0, N, args.batch_size))
 
-        if r10 > best_r10:
+        if r30 > best_r30:
             with open(os.path.join(log_dir, 'best_dae_' + args.save), 'wb') as f:
                 torch.save(model.state_dict(), f)
-                print(f"Best model saved! r@10 : {r10:.4f}")
-            best_r10 = r10
+                print(f"Best model saved! r@30 : {r30:.4f}")
+            best_r30 = r30
             stopping_cnt = 0
         else:
             print(f'Stopping Count : {stopping_cnt} / {early_stopping}')
@@ -204,10 +205,10 @@ def train_dae():
         torch.save(model.state_dict(), f)
 
     # Run on test data.
-    test_loss, n100, r10, r20 = evaluate(model, criterion, test_data_tr, test_data_te, is_VAE=False)
+    test_loss, n100, r10, r30 = evaluate(model, criterion, test_data_tr, test_data_te, is_VAE=False)
     print('=' * 89)
     print('| End of training | test loss {:4.4f} | n100 {:4.4f} | r10 {:4.4f} | '
-        'r20 {:4.4f}'.format(test_loss, n100, r10, r20))
+        'r30 {:4.4f}'.format(test_loss, n100, r10, r30))
     print('=' * 89)
 
     with open(os.path.join(log_dir, "update_count_dae.txt"), "w", encoding='utf-8') as f:

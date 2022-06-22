@@ -38,7 +38,7 @@ def rival_knn_main(db):
     output['rec_rivals'] = lst_rivals
     output.index += 1  #mysql에서 auto increment를 위해 1 추가
     output.index.name='id'
-    output.to_csv('/opt/ml/airflow/dags/module_models/rec_rival/knn_prog/rec_rival_knn.csv')
+    output.to_csv('/home/recognizer14/airflow/dags/module_models/rec_rival/knn_prog/rec_rival_knn.csv')
 
     print('라이벌 추천 완료!')
     return output

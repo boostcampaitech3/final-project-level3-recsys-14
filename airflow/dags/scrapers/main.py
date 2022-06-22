@@ -30,6 +30,9 @@ def scrap_problem_solved_main(args_time_interval):
     with session_local() as db:
         scrap_problem_solved(db, args_time_interval)
 
+
 #if __name__ == "__main__":
 #    args = parse_args()
 #    main(args)
+
+

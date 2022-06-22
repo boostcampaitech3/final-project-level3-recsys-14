@@ -21,18 +21,19 @@ def first_division(num):
 
 def main_bpr(db):
     seed = 0
-    global profile2id, show2id
 
-    df_problems_solved, df_problems_class, df_rec_rivals = load_data(db)
+#    df_problems_solved, df_problems_class, df_rec_rivals = load_data(db)
+    df_problems_solved, df_problems_class, df_rec_rivals, df_problems= load_data(db)
     print('데이터 로드 완료!')
     lst_rivals= df_rec_rivals['rec_rivals']
     target_users= df_rec_rivals['handle']
     
-    data, profile2id, show2id= preprocess_rival_prob(df_problems_solved)
+#    data, profile2id, show2id= preprocess_rival_prob(df_problems_solved)
+    data, profile2id, show2id, df_user_problems= preprocess_rival_prob(df_problems_solved)
 
-    with open('/opt/ml/airflow/dags/module_models/rec_rival_pb/bpr_prog/show2id.pkl','wb') as f:
+    with open('/home/recognizer14/airflow/dags/module_models/rec_rival_pb/bpr_prog/show2id.pkl','wb') as f:
         pickle.dump(show2id,f)
-    with open('/opt/ml/airflow/dags/module_models/rec_rival_pb/bpr_prog/profile2id.pkl','wb') as f:
+    with open('/home/recognizer14/airflow/dags/module_models/rec_rival_pb/bpr_prog/profile2id.pkl','wb') as f:
         pickle.dump(profile2id,f)
 
     print('데이터 전처리 완료!')
@@ -45,6 +46,8 @@ def main_bpr(db):
         use_gpu_value = True
     else:
         use_gpu_value = False
+    #device = "cpu"
+    #use_gpu_value = False
     print('DEVICE: ', device)
     print("use_gpu_value: ", use_gpu_value)
     
@@ -103,9 +106,7 @@ def main_bpr(db):
     output.index.name='id'
 
     print('라이벌 기반 문제 추천 완료!')
-    output.to_csv('/opt/ml/airflow/dags/module_models/rec_rival_pb/bpr_prog/rec_rival_pb_bpr_output.csv')
+    output.to_csv('/home/recognizer14/airflow/dags/module_models/rec_rival_pb/bpr_prog/rec_rival_pb_bpr_output.csv')
 
     return output
     
-
-
