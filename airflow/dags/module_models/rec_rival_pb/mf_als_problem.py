@@ -58,7 +58,7 @@ def main_mf_als(db):
     print('DEVICE: ', device)
     print("use_gpu_value: ", use_gpu_value)
     
-    als_model = ALS(factors=7, regularization=0.01, iterations = 50, random_state=seed, use_gpu=use_gpu_value)
+    als_model = ALS(factors=7, regularization=0.01, iterations = 50, random_state=seed, use_gpu=False)
     als_model.fit(data)
 
     print('모델 학습 완료!')
