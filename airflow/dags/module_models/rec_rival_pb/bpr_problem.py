@@ -52,7 +52,7 @@ def main_bpr(db):
     print("use_gpu_value: ", use_gpu_value)
     
     model = implicit.bpr.BayesianPersonalizedRanking(factors=50, learning_rate=0.01,
-                            regularization=0, iterations=100, use_gpu=use_gpu_value)
+                            regularization=0, iterations=100, use_gpu=False)
     model.fit(data)
 
     if torch.cuda.is_available():
