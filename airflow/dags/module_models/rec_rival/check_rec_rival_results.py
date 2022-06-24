@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 
-from .similarity_eval2 import evaluate
+from .similarity_eval import evaluate
 
 
 def check_main_rival(db):

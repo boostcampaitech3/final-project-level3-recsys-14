@@ -7,7 +7,7 @@ import {
 
 const FooterWrapper = styled.div`
     width: 100%;
-    height: 120px;
+    min-height: 120px;
     background-color: ${light_gray};
 `;
 
