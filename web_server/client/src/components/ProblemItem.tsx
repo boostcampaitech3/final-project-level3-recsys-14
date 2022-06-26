@@ -75,7 +75,7 @@ const ProblemItem = ({item, onToggle}:any) => {
     //onClick={onToggle(item)}
     <ProblemItemBox className='item' onClick={onClick}>
         <div style={{display:'flex', flexDirection: 'column'}}>
-            <ProblemTitle>{item.title}</ProblemTitle>
+            <ProblemTitle>{item.title.length > 30 ? `${item.title.substring(0, 30)}...`: item.title}</ProblemTitle>
             <h3>
                 <a href = {`https://www.acmicpc.net/problem/${item.problem_id}`} target='_blank'> 
                     <ProblemLinkButton>
