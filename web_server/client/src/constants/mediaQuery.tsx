@@ -16,6 +16,14 @@ export const Tablet = ({children}: {children: JSX.Element}): JSX.Element | null 
     return isTablet ? children : null;
 };
 
+
+export const PC = ({children}: {children: JSX.Element}): JSX.Element | null => {
+    const isPC = useMediaQuery({ 
+        minWidth: 480
+    });
+    return isPC ? children : null;
+};
+
 export const NarrowPC = ({children}: {children: JSX.Element}): JSX.Element | null => {
     const isNarrowPC = useMediaQuery({ 
         minWidth: 800,

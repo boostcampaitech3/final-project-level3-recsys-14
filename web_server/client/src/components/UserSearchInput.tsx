@@ -9,7 +9,6 @@ import { useDispatch } from "react-redux";
 import { autoUserInitial, autoUserSearch } from "../modules/autoSearch";
 import AutoSearch from "./AutoSearch";
 import _ from 'lodash';
-
 import { 
     primary_purple,
     light_purple,
@@ -18,7 +17,7 @@ import {
     bright_purple,
     deep_purple,
 } from "../constants/color";
-import { Phone } from "../constants/mediaQuery";
+import { Phone, PC } from "../constants/mediaQuery";
 
 const UserSearchWrapper = styled.div`
     width: 60%;
@@ -61,6 +60,7 @@ const UserSearchStyledInput = styled.input`
     display: inline-block;
     border: none;
     outline: none;
+    width: calc(100% - 120px);
     min-width: 75%;
     height: 100%;
     padding: 0 20px;
@@ -73,7 +73,8 @@ const UserSearchStyledInput = styled.input`
         opacity: .6;
     }
     @media screen and (max-width: 480px){
-        min-width: 60%;
+        min-width: 40%;
+        padding: 0 5px;
     }
     @media screen and (min-width: 480px) and (max-width: 800px){
         min-width: 65%;
@@ -219,33 +220,11 @@ const UserSearchInput = ({onInput} : any)=>{
     const onSubmit = (e : FormEvent) => {
         e.preventDefault();
         fetchUserCheck();
-
-        // onInput(userId);
-        // setUserId('');
-
-        // if (selectedMenu == 'problem'){
-        //     navigate(`/user/${userId}`);
-        // }
-        // else {
-        //     navigate(`/user/${userId}/rival`);
-        // }
-
-        // setUserId('');
     };
 
     const onEnter = (e : React.KeyboardEvent<HTMLInputElement>) =>{
         if(e.key === 'Enter'){
-            // onInput(userId);
-            // setUserId('');
             fetchUserCheck();
-            // if (selectedMenu == 'problem'){
-            //     navigate(`/user/${userId}`);
-            // }
-            // else {
-            //     navigate(`/user/${userId}/rival`);
-            // }
-
-            // setUserId('');
         }
     }
 
@@ -256,15 +235,26 @@ const UserSearchInput = ({onInput} : any)=>{
                 <option value="problem">문제 추천</option>
                 <option value="rival">라이벌 추천</option>
             </SearchSelectBox>
-            <UserSearchStyledInput
-                name="userId"
-                ref={inputRef}
-                // onBlur={()=>setAuto(false)}
-                placeholder="아이디(handle)를 검색하세요."
-                value={userId}
-                onChange={onChange}
-                onKeyPress = {onEnter}
-            />
+            <Phone>
+                <UserSearchStyledInput
+                    name="userId"
+                    ref={inputRef}
+                    placeholder="아이디(handle) 검색"
+                    value={userId}
+                    onChange={onChange}
+                    onKeyPress = {onEnter}
+                />
+            </Phone>
+            <PC>
+                <UserSearchStyledInput
+                    name="userId"
+                    ref={inputRef}
+                    placeholder="아이디(handle)를 검색하세요."
+                    value={userId}
+                    onChange={onChange}
+                    onKeyPress = {onEnter}
+                />
+            </PC>
             <UserSearchStyledButton type="submit">
                 <SearchSvgIcon 
                     fill='none'
@@ -279,7 +269,7 @@ const UserSearchInput = ({onInput} : any)=>{
         </UserSearchStyledForm>
         
 
-        {show && //추가
+        {show &&
             <Modal
             show={show}
             onHide={handleClose}
