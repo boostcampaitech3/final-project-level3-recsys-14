@@ -297,7 +297,7 @@ RECJOON에서는 정해진 주기에 따라 batch serving으로 데이터 수집
 
 ## Further Information
 
-
+<br/>
 
 📹 **[발표 영상 보러 가기](https://www.youtube.com/watch?v=S5TFpJ0uZrA)**   🔖 **[발표 자료 보러 가기](https://github.com/boostcampaitech3/final-project-level3-recsys-14/blob/main/experiments/documents/RECJOON_Presentation.pdf)**
 
