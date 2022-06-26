@@ -12,7 +12,7 @@
 
 🖥 **[웹 사이트 보러 가기](http://recjoon.com)**
 
-※ 본 웹 서비스는 베타 버전이며 2022년 7월 31일까지 한시적으로 운영될 예정입니다.
+**※ 본 웹 서비스는 베타 버전이며 <u>2022년 7월 31일까지</u> 한시적으로 운영될 예정입니다.**
 
 <img src="https://img.shields.io/badge/PyTorch-EE4C2C?style=flat-square&logo=PyTorch&logoColor=white"/>&nbsp;<img src="https://img.shields.io/badge/Apache_Airflow-018CEE?style=flat-square&logo=Apache Airflow&logoColor=white"/>&nbsp;<img src="https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=Node.js&logoColor=white"/>&nbsp;<img src="https://img.shields.io/badge/Express-20c997?style=flat-square&logo=Express&logoColor=white"/>&nbsp;<img src="https://img.shields.io/badge/React-0088cc?style=flat-square&logo=React&logoColor=white"/>&nbsp;<img src="https://img.shields.io/badge/Amazon_AWS-232F3E?style=flat-square&logo=Amazon-AWS&logoColor=white"/>&nbsp;<img src="https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=Docker&logoColor=white"/>
 
@@ -111,12 +111,11 @@ RECJOON 웹 서비스를 통해 개인의 실력에 맞는 알고리즘 문제�
 <br/>
 
 - 유저, 문제, 유저별 문제 풀이 이력: **[solved.ac 비공식 API](https://solvedac.github.io/unofficial-documentation/#/)**
-
-- 문제가 속한 클래스: [**solved.ac 클래스 페이지**](https://solved.ac/class)에서 직접 웹 스크레이핑
-
-**※ Baekjoon Online Judge에서 데이터를 웹 스크레이핑하지 않습니다.**
+- 문제가 속한 클래스: [**solved.ac 클래스 페이지**](https://solved.ac/class)에서 웹 스크레이핑
 
 <br/>
+
+**※ Baekjoon Online Judge에서 데이터를 웹 스크레이핑하지 않습니다.**
 
 <br/>
 
@@ -168,10 +167,10 @@ RECJOON에서는 정해진 주기에 따라 batch serving으로 데이터 수집
 
 ### 라이벌 추천 모델
 
-| 모델명                                 | 참조                                                         |
-| -------------------------------------- | ------------------------------------------------------------ |
+| 모델명                              | 참조                                                         |
+| ----------------------------------- | ------------------------------------------------------------ |
 | Collective MF(Matrix Factorization) | [David Cortes. 2020. Cold-start recommendations in Collective Matrix Factorization](https://arxiv.org/abs/1809.00366) |
-| K-nearest neighbors                    | [Altman, and Naomi S. 1992. An introduction to kernel and nearest-neighbor nonparametric regression](https://ieeexplore.ieee.org/abstract/document/4781121) |
+| K-nearest neighbors                 | [Altman, and Naomi S. 1992. An introduction to kernel and nearest-neighbor nonparametric regression](https://ieeexplore.ieee.org/abstract/document/4781121) |
 
 
 
@@ -191,7 +190,7 @@ RECJOON에서는 정해진 주기에 따라 batch serving으로 데이터 수집
 
 
 
-라이벌 기반 문제 추천에서도 마찬가지로 여러 모델<sup id="a10">[10](#f10)</sup>을 통해 성능 지표<sup id="a11">[11](#f11)</sup>를 최소화 하는 방향으로 유저의 문제 풀이 패턴을 학습하고, 예측한 결과에서 실제로 내가 풀었던 문제는 제외하여 필터링한 결과를 출력합니다.
+라이벌 기반 문제 추천에서도 마찬가지로 여러 모델<sup id="a10">[10](#f10)</sup>을 통해 성능 지표<sup id="a11">[11](#f11)</sup>를 최소화 하는 방향으로 유저의 문제 풀이 패턴을 학습하고, 예측한 결과에서 실제로 자신이 풀었던 문제는 제외하여 필터링한 결과를 출력합니다.
 
 <br/>
 
@@ -205,11 +204,13 @@ RECJOON에서는 정해진 주기에 따라 batch serving으로 데이터 수집
 
 ### **Service Architecture**
 
-![Architecture](https://cdn.jsdelivr.net/gh/Glanceyes/Image-Repository/2022/06/13/20220613_1655086276.png)
+
+
+![Architecture_0626](https://cdn.jsdelivr.net/gh/Glanceyes/Image-Repository/2022/06/26/20220626_1656245363.png)
 
 
 
-※ 2022년 6월 15일 전후로 AI Stages Server에서 GCP(Google Cloud Platform) Instance로 전환되었습니다.
+※ 2022년 6월 15일 전후로 AI Stages Server에서 GCP(Google Cloud Platform) VM Instance로 전환되었습니다.
 
 <br/>
 
@@ -247,27 +248,27 @@ RECJOON에서는 정해진 주기에 따라 batch serving으로 데이터 수집
    <tr height="160px">
       <td align="center">
          <a href="https://github.com/sun1187">
-            <img weight="120px" src="https://cdn.jsdelivr.net/gh/Glanceyes/Image-Repository/2022/06/13/20220613_1655117297.png"/>
+            <img src="https://cdn.jsdelivr.net/gh/Glanceyes/Image-Repository/2022/06/13/20220613_1655117297.png"/>
          </a>
       </td>
       <td align="center">
          <a href="https://github.com/juk1329">
-            <img weight="120px" src="https://cdn.jsdelivr.net/gh/Glanceyes/Image-Repository/2022/06/13/20220613_1655117331.png"/>
+            <img src="https://cdn.jsdelivr.net/gh/Glanceyes/Image-Repository/2022/06/13/20220613_1655117331.png"/>
          </a>
       </td>
       <td align="center">
          <a href="https://github.com/seo-h2">
-            <img weight="120px" src="https://cdn.jsdelivr.net/gh/Glanceyes/Image-Repository/2022/06/13/20220613_1655117366.png"/>
+            <img src="https://cdn.jsdelivr.net/gh/Glanceyes/Image-Repository/2022/06/13/20220613_1655117366.png"/>
          </a>
       </td>
        <td align="center">
          <a href="https://github.com/Glanceyes">
-            <img weight="120px" src="https://cdn.jsdelivr.net/gh/Glanceyes/Image-Repository/2022/06/13/20220613_1655117384.png"/>
+            <img src="https://cdn.jsdelivr.net/gh/Glanceyes/Image-Repository/2022/06/13/20220613_1655117384.png"/>
          </a>
       </td>
       <td align="center">
          <a href="https://github.com/wh4044">
-            <img weight="120px" src="https://cdn.jsdelivr.net/gh/Glanceyes/Image-Repository/2022/06/13/20220613_1655117401.png"/>
+            <img src="https://cdn.jsdelivr.net/gh/Glanceyes/Image-Repository/2022/06/13/20220613_1655117401.png"/>
          </a>
       </td>
    </tr>
@@ -286,7 +287,6 @@ RECJOON에서는 정해진 주기에 따라 batch serving으로 데이터 수집
       <td align="center">데이터 수집과 EDA<br/>문제 추천 모델링<br/>티어 필터링</td>
    </tr>
 </table>
-
 <br/>
 
 <br/>
@@ -299,7 +299,11 @@ RECJOON에서는 정해진 주기에 따라 batch serving으로 데이터 수집
 
 
 
-🔖 **[발표 자료 보러 가기](https://github.com/boostcampaitech3/final-project-level3-recsys-14/blob/main/experiments/documents/RECJOON_Presentation.pdf)**
+📹 **[발표 영상 보러 가기](https://www.youtube.com/watch?v=S5TFpJ0uZrA)**   🔖 **[발표 자료 보러 가기](https://github.com/boostcampaitech3/final-project-level3-recsys-14/blob/main/experiments/documents/RECJOON_Presentation.pdf)**
+
+프로젝트에 관한 전반적인 내용 소개는 발표 영상 또는 자료를 확인해주세요.
+
+<br/>
 
 📃 **[Wrap-up Report 보러 가기](https://github.com/boostcampaitech3/final-project-level3-recsys-14/blob/main/experiments/documents/RECJOON_Wrap-up_Report.pdf)**
 
@@ -309,9 +313,9 @@ RECJOON에서는 정해진 주기에 따라 batch serving으로 데이터 수집
 
 💻 **[RECJOON Server Git Repository](https://github.com/RecSys-RECognizer/RECJOON-Server)**
 
-GitHub Action 권한 문제로 인해 변경 사항이 적용된 코드는 현재 Repository를 통해 배포되지 않습니다.
+GitHub Action 권한 문제로 인해 웹 서버로의 배포는 현재 Repository를 통해 이루어지지 않습니다.
 
-서비스 업데이트 사항은 위의 Git Repository를 참고해주세요.
+실제 웹 서버로 배포된 코드는 위의 Git Repository를 참고해주세요.
 
 <br/>
 
@@ -333,7 +337,7 @@ GitHub Action 권한 문제로 인해 변경 사항이 적용된 코드는 현�
 
 <b id="f3">3.</b> EDA 분석 결과, '라이벌과 역라이벌 수 분석' (2022.04.21) [↩](#a3)
 
-<b id="f4">4.</b> 서비스 개시일 기준 (2022.06.11), 추후 변동 가능 [↩](#a3)
+<b id="f4">4.</b> 서비스 개시일 기준 (2022.06.11), 추후 변동 가능 [↩](#a4)
 
 <b id="f5">5.</b> RecVAE(Variational AutoEncoder), Multi-VAE, Multi-DAE(Denoising AutoEncoder) (서비스 개시일 기준, 2022.06.11) [↩](#a5)
 
@@ -351,7 +355,7 @@ GitHub Action 권한 문제로 인해 변경 사항이 적용된 코드는 현�
 
 ![라이벌추천지표3](https://cdn.jsdelivr.net/gh/Glanceyes/Image-Repository/2022/06/13/20220613_1655119880.svg)[↩](#a9)
 
-<b id="f10">10.</b> BPR(Bayesian Personalized Ranking), ALS(Alternating Least Squares) Matrix Factorization, item-based CF(Collaborative Filtering) [↩](#a10)
+<b id="f10">10.</b> BPR(Bayesian Personalized Ranking), ALS(Alternating Least Squares) Matrix Factorization, item-based CF(Collaborative Filtering) (서비스 개시일 기준, 2022.06.11) [↩](#a10)
 
 <b id="f11">11.</b> 추천된 문제와 타겟 유저가 푼 문제의 난이도 차이를 기반으로 구한 지표
 
