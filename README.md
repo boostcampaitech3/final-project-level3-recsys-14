@@ -12,7 +12,7 @@
 
 🖥 **[웹 사이트 보러 가기](http://recjoon.com)**
 
-**※ 본 웹 서비스는 베타 버전이며 <u>2022년 7월 31일까지</u> 한시적으로 운영될 예정입니다.**
+**※ 본 웹 서비스는 2022년 9월까지 운영될 계획이며, 피드백을 바탕으로 운영 기간동안 지속하여 개선이 이루어질 예정입니다.**
 
 <img src="https://img.shields.io/badge/PyTorch-EE4C2C?style=flat-square&logo=PyTorch&logoColor=white"/>&nbsp;<img src="https://img.shields.io/badge/Apache_Airflow-018CEE?style=flat-square&logo=Apache Airflow&logoColor=white"/>&nbsp;<img src="https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=Node.js&logoColor=white"/>&nbsp;<img src="https://img.shields.io/badge/Express-20c997?style=flat-square&logo=Express&logoColor=white"/>&nbsp;<img src="https://img.shields.io/badge/React-0088cc?style=flat-square&logo=React&logoColor=white"/>&nbsp;<img src="https://img.shields.io/badge/Amazon_AWS-232F3E?style=flat-square&logo=Amazon-AWS&logoColor=white"/>&nbsp;<img src="https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=Docker&logoColor=white"/>
 
